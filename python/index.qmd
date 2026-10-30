@@ -6,3 +6,5 @@ toc: false
 Python scripts and notes will go here.
 
 To add a page: create a `.qmd` with Python code chunks, or a Jupyter notebook (`.ipynb`), in `python/` and list it under the `python` sidebar in `_quarto.yml`.
+
+**Winter Break Project**: [Python for Data Science](https://aeturrell.github.io/python4DS/) is heavily inspired by [Hadley's R for Data Science (2e)](https://r4ds.hadley.nz/). P4DS would make an excellent primer for recreating R projects in Python.
