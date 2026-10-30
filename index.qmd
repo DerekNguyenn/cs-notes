@@ -9,10 +9,13 @@ This site collects my course notes and coding work in R, Python and more. Use th
 ## Courses
 
 | Course | Term | Notes |
-|:-----------------------------|:---------------|:-------------------------|
+|:----------------------------|:-----------------|:------------------------|
 | **B DATA 200**: Introduction to Data Studies | Autumn 2026 | [Go to B DATA 200 notes](bdata200/index.qmd) |
 | **B DATA 232**: Introduction to Data Visualization | Autumn 2026 | [Go to B DATA 232 notes](bdata232/index.qmd) |
 
 ## Languages & Projects
 
-- [Python](python/index.qmd): scripts and notes (coming soon)
+- **R**: [B DATA 200](https://dereknguyenn.github.io/cs-notes/bdata200/) and [B DATA 232](https://dereknguyenn.github.io/cs-notes/bdata232/)
+- [**Python**](python/index.qmd): scripts and notes (coming soon)
+- **SQL**: coming soon
+- **Linear Algebra**: coming soon
