@@ -45,7 +45,7 @@ subtitle: "UW Bothell · Winter 2027"
 toc: false
 ---
 
-Notes for STAT 301.
+Notes for MATH 208.
 ```
 
 #### 2. Add it to the navbar
