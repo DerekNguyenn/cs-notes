@@ -148,3 +148,13 @@ B DATA 200 pages also go into the printable PDF (`bdata200/bdata200-notes.qmd`) 
   Without step 3, the chapter shows on the site but not in the PDF.
 
 Other sections (232, Python, new courses) can use plain `title:` unless they get a printable PDF too. If they do, copy the setup in `bdata200/bdata200-notes.qmd`.
+
+### Helpful Links
+
+- [Quarto - PDF Basics](https://quarto.org/docs/output-formats/pdf-basics.html)
+
+- [Quarto - Website Navigation](https://quarto.org/docs/websites/website-navigation.html)
+
+- [Quarto - Website Options](https://quarto.org/docs/reference/projects/websites.html)
+
+- [Quarto - Publishing Basics](https://quarto.org/docs/publishing/)
