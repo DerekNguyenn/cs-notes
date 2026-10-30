@@ -1,0 +1,43 @@
+---
+title: "B DATA 200: Introduction to Data Studies"
+subtitle: "UW Bothell · Autumn 2026 · Instructor: Regina Lisinker"
+toc: false
+---
+
+::: {.callout-tip appearance="simple"}
+## For grading
+
+- **Notes #2 (PDF):** [Download the full course notes](bdata200-notes.pdf). Every chapter in one file, with a table of contents
+- **Feedback addressed:** [Feedback Log](feedback-log.qmd) lists each Notes #1 comment and where it was fixed
+- **What's new since Notes #1:** see the list at the bottom of this page
+:::
+
+These are my running notes for B DATA 200. Each topic has its own page, and the sidebar works as a clickable table of contents.
+
+## Chapters
+
+| Part                    | Chapters                                                                                                        |
+|:------------------------|:----------------------------------------------------------------------------------------------------------------|
+| R Workflow              | [Workflow & Reminders](workflow.qmd) · [Data Basics](basics.qmd)                                                 |
+| Wrangling               | [Rows & Columns](rows-columns.qmd) · [Groups & Summaries](groups.qmd) · [Tidying](tidying.qmd) · [Joins](joins.qmd) |
+| Visualizing & Modeling  | [Plots](plots.qmd) · [Exploratory Data Analysis](eda.qmd) · [Choosing Plots & Models](models.qmd)                |
+| Data in Context         | [Study Design & Data Ethics](study-design.qmd)                                                                   |
+| Wrap-up                 | [Common Pitfalls](pitfalls.qmd) · [Reflection & To-do](reflection.qmd) · [Feedback Log](feedback-log.qmd)        |
+
+## How to use these notes
+
+- **Looking up a function?** Start with the Quick Reference tables at the top of each chapter.
+- **Stuck on an error?** Check [Common Pitfalls](pitfalls.qmd).
+
+## Conventions
+
+- `!!` marks something I got wrong at least once or want to remember.
+- Worked examples follow the same pattern: **Question** → **Pseudocode** → code → **Answer**.
+- Every code chunk uses the native pipe `|>` and `<-` for assignment (see [Assignment Operators](workflow.qmd#assignment-operators)).
+- Packages: `tidyverse` (dplyr, ggplot2, tidyr, readr, stringr) and `nycflights13` (the `flights` data). `mpg` comes with ggplot2.
+
+## What's new in Notes #2
+
+- Moved from one long PDF to this website, following feedback on Notes #1 (see [Feedback Log](feedback-log.qmd))
+- New chapters: [Tidying](tidying.qmd), [Joins](joins.qmd), [Exploratory Data Analysis](eda.qmd), [Choosing Plots & Models](models.qmd), [Study Design & Ethics](study-design.qmd)
+- Trend lines, overplotting fixes and reference lines added to [Plots](plots.qmd)

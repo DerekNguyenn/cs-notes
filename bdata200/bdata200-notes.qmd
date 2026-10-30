@@ -1,0 +1,57 @@
+---
+title: "B DATA 200 Notes"
+subtitle: "Introduction to Data Studies, Autumn 2026"
+author: "Derek Nguyen"
+date: today
+date-format: long
+format:
+  pdf:
+    documentclass: scrreprt
+    toc: true
+    number-sections: true
+    geometry:
+      - margin=0.8in
+    code-overflow: wrap
+    fig-width: 6
+    fig-height: 3.5
+    linkcolor: blue
+filters:
+  - ../filters/pdf-local-links.lua
+execute:
+  # freeze can't see edits to the included chapters, so always rebuild this file
+  freeze: false
+---
+
+<!--
+Printable version of every B DATA 200 page, for Canvas submissions.
+It renders to bdata200-notes.pdf (linked from the course home page).
+When adding a new chapter page, add an include line for it here too.
+-->
+
+Online version, with search: <https://dereknguyenn.github.io/cs-notes/bdata200/>
+
+{{< include workflow.qmd >}}
+
+{{< include basics.qmd >}}
+
+{{< include rows-columns.qmd >}}
+
+{{< include groups.qmd >}}
+
+{{< include tidying.qmd >}}
+
+{{< include joins.qmd >}}
+
+{{< include plots.qmd >}}
+
+{{< include eda.qmd >}}
+
+{{< include models.qmd >}}
+
+{{< include study-design.qmd >}}
+
+{{< include pitfalls.qmd >}}
+
+{{< include reflection.qmd >}}
+
+{{< include feedback-log.qmd >}}

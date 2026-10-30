@@ -1,0 +1,83 @@
+---
+pagetitle: "Data Basics"
+---
+
+# Data Basics {#sec-basics}
+
+```{r}
+#| include: false
+library(tidyverse)
+library(nycflights13)
+```
+
+## Quick Reference: Inspecting / Overview
+
+| Use Case                                    | Function                        | Example                                                     |
+|:--------------------------------------------|:--------------------------------|:------------------------------------------------------------|
+| See the first n rows                        | `head()`                        | `head(mpg, n = 10)`                                         |
+| See the last n rows                         | `tail()`                        | `tail(mpg, n = 3)`                                          |
+| See every column, its type and first values | `glimpse()`                     | `glimpse(flights)`                                          |
+| Summary stats for each column               | `summary()`                     | `mpg |> select(hwy) |> summary()`                           |
+| See the structure of the data               | `str()`                         | `str(mpg)`                                                  |
+| List the column names                       | `names()`                       | `names(mpg)`                                                |
+| Count the rows                              | `nrow()`                        | `nrow(flights)`                                             |
+| Count missing values in every column        | `across()` inside `summarize()` | see the chunk below                                         |
+| Open a spreadsheet view                     | `View()`                        | `View(flights)` !! keep out of the render with `eval: false` |
+| Read the help page for a dataset/function   | `?`                             | `?mpg` (in the Console)                                     |
+
+```{r}
+# Count missing values in every column
+flights |>
+  summarize(across(everything(), ~ sum(is.na(.))))
+```
+
+## Case-by-Variable Format
+
+- Each **row** is one case (a passenger, a flight, a car)
+- Each **column** is a variable measured on that case
+- **Tibbles** are the tidyverse's version of a data frame
+
+A dataset is **tidy** when it follows three rules (more in [Tidying](tidying.qmd)):
+
+1. Each variable is a column; each column is a variable
+2. Each observation is a row; each row is an observation
+3. Each value is a cell; each cell is a single value
+
+## Column Types
+
+Column types determine which operations are possible. For example, you can take the `mean()` of a number (`int`, `dbl`), but not of text (`chr`).
+
+| Type     | Means                                   | Example values               |
+|:---------|:----------------------------------------|:-----------------------------|
+| `<int>`  | integer (whole numbers)                 | `month`, `hwy`               |
+| `<dbl>`  | double (decimal numbers)                | `dep_delay`, `displ`         |
+| `<chr>`  | character (text)                        | `carrier`, `class`           |
+| `<lgl>`  | logical (`TRUE` / `FALSE`)              | the result of `dep_delay > 0` |
+| `<fct>`  | factor (categories with a fixed order)  | study strategy in [Models](models.qmd) |
+
+- Change a type with `as.numeric()`, `as.character()`, `factor()`
+- !! A number stored as text (`"10"`) looks fine but `mean()` fails on it. Check `glimpse()` first.
+
+## The dplyr Rules
+
+**Every dplyr verb follows the same rules:**
+
+1. First argument is the data frame
+2. Columns are named without quotes
+   - !! **Exception, pivots:** when a function *creates* new columns from text, the new names go in quotes: `pivot_longer(cols = ..., names_to = "season", values_to = "count")`. Existing columns (`cols =`) are still unquoted. See [Tidying](tidying.qmd).
+   - Joins also accept quoted names: `left_join(y, by = "county_id")`
+3. Output is always a **new** data frame (the original is never changed unless you save over it with `<-`)
+
+## The Pipe `|>`
+
+The pipe means "and then".
+
+- Passes the result on its left into the first argument of the function on its right
+- Because of rule 1, every dplyr verb can be chained
+
+```{r}
+# "Take flights, AND THEN keep Seattle flights, AND THEN count them by carrier"
+flights |>
+  filter(dest == "SEA") |>
+  count(carrier, sort = TRUE)
+```

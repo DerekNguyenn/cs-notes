@@ -1,0 +1,8 @@
+---
+title: "Python"
+toc: false
+---
+
+Python scripts and notes will go here.
+
+To add a page: create a `.qmd` with Python code chunks, or a Jupyter notebook (`.ipynb`), in `python/` and list it under the `python` sidebar in `_quarto.yml`.

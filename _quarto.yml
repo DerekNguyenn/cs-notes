@@ -1,42 +1,84 @@
 project:
-  type: book
+  type: website
   output-dir: docs
 
-book:
-  title: "BDATA 200 Notes"
-  subtitle: "Introduction to Data Studies, Autumn 2026"
-  author: "Derek Nguyen"
-  date: today
-  date-format: long
-  repo-url: https://github.com/DerekNguyenn/bdata200-notes
-  downloads: [pdf]
+website:
+  title: "Derek Nguyen"
+  site-url: https://dereknguyenn.github.io
+  repo-url: https://github.com/DerekNguyenn/DerekNguyenn.github.io
   search: true
-  chapters:
-    - index.qmd
-    - part: "R Workflow"
-      chapters:
-        - workflow.qmd
-        - basics.qmd
-    - part: "Wrangling"
-      chapters:
-        - rows-columns.qmd
-        - groups.qmd
-        - tidying.qmd
-        - joins.qmd
-    - part: "Visualizing & Modeling"
-      chapters:
-        - plots.qmd
-        - eda.qmd
-        - models.qmd
-    - part: "Data in Context"
-      chapters:
-        - study-design.qmd
-    - part: "Wrap-up"
-      chapters:
-        - pitfalls.qmd
-        - reflection.qmd
-  appendices:
-    - feedback-log.qmd
+  page-navigation: true
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - href: bdata200/index.qmd
+        text: B DATA 200
+      - href: bdata232/index.qmd
+        text: B DATA 232
+      - href: python/index.qmd
+        text: Python
+    right:
+      - icon: github
+        href: https://github.com/DerekNguyenn
+
+  sidebar:
+    - id: bdata200
+      title: "B DATA 200"
+      style: docked
+      contents:
+        - href: bdata200/index.qmd
+          text: Course home
+        - section: "R Workflow"
+          contents:
+            - href: bdata200/workflow.qmd
+              text: Workflow & Reminders
+            - href: bdata200/basics.qmd
+              text: Data Basics
+        - section: "Wrangling"
+          contents:
+            - href: bdata200/rows-columns.qmd
+              text: Rows & Columns
+            - href: bdata200/groups.qmd
+              text: Groups & Summaries
+            - href: bdata200/tidying.qmd
+              text: Tidying & Reshaping
+            - href: bdata200/joins.qmd
+              text: Joins & Relational Data
+        - section: "Visualizing & Modeling"
+          contents:
+            - href: bdata200/plots.qmd
+              text: Plots with ggplot2
+            - href: bdata200/eda.qmd
+              text: Exploratory Data Analysis
+            - href: bdata200/models.qmd
+              text: Choosing Plots & Models
+        - section: "Data in Context"
+          contents:
+            - href: bdata200/study-design.qmd
+              text: Study Design & Data Ethics
+        - section: "Wrap-up"
+          contents:
+            - href: bdata200/pitfalls.qmd
+              text: Common Pitfalls
+            - href: bdata200/reflection.qmd
+              text: Reflection & To-do
+            - href: bdata200/feedback-log.qmd
+              text: Feedback Log
+
+    - id: bdata232
+      title: "B DATA 232"
+      style: docked
+      contents:
+        - href: bdata232/index.qmd
+          text: Course home
+
+    - id: python
+      title: "Python"
+      style: docked
+      contents:
+        - href: python/index.qmd
+          text: Overview
 
 execute:
   freeze: auto
@@ -48,14 +90,5 @@ format:
     toc: true
     code-copy: true
     code-overflow: wrap
-  pdf:
-    documentclass: scrreprt
-    toc: true
-    number-sections: true
-    geometry:
-      - margin=0.8in
-    code-overflow: wrap
-    fig-width: 6
-    fig-height: 3.5
 
 editor: visual

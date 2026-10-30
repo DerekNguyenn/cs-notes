@@ -1,0 +1,9 @@
+---
+title: "B DATA 232"
+subtitle: "UW Bothell · Autumn 2026"
+toc: false
+---
+
+Notes for B DATA 232 will go here.
+
+To add a page: create a `.qmd` in `bdata232/` and list it under the `bdata232` sidebar in `_quarto.yml`.

@@ -1,0 +1,86 @@
+---
+pagetitle: "Groups & Summaries"
+---
+
+# Groups & Summaries {#sec-groups}
+
+```{r}
+#| include: false
+library(tidyverse)
+library(nycflights13)
+```
+
+## Quick Reference
+
+| Use Case                                  | Function              | Example                                                |
+|:------------------------------------------|:----------------------|:-------------------------------------------------------|
+| Split the data into groups                | `group_by()`          | `mpg |> group_by(class)`                               |
+| Collapse each group to one row of results | `summarize()`         | `summarize(avg_hwy = mean(hwy))`                       |
+| Count rows per group                      | `n()`                 | `summarize(n = n())`                                   |
+| Count rows per group (shortcut)           | `count()` / `tally()` | `mpg |> count(class, sort = TRUE)`                     |
+| Find the center                           | `mean()` / `median()` | `summarize(mean_hwy = mean(hwy))`                      |
+| Find the spread                           | `sd()` / `IQR()`      | `summarize(sd_hwy = sd(hwy), iqr_hwy = IQR(hwy))`      |
+| Find the extremes                         | `min()` / `max()`     | `summarize(min_hwy = min(hwy), max_hwy = max(hwy))`    |
+| Find a percentile                         | `quantile()`          | `quantile(hwy, 0.25)`                                  |
+| Ignore missing values                     | `na.rm = TRUE`        | `mean(dep_delay, na.rm = TRUE)`                        |
+| Get the first or last value               | `first()` / `last()`  | `summarize(first_model = first(model))`                |
+| Group by more than one variable           | `group_by(a, b)`      | `group_by(year, month, day)`                           |
+| Remove the grouping                       | `ungroup()`           | `... |> ungroup()`                                     |
+
+A full group-and-summarize pipeline:
+
+```{r}
+mpg |>
+  group_by(class) |>
+  summarize(
+    avg_hwy = mean(hwy),
+    median_hwy = median(hwy),
+    n = n()
+  ) |>
+  arrange(desc(avg_hwy))
+```
+
+## Counting: `count()` versus `tally()` versus `n()`
+
+All three count rows:
+
+- `count()` groups and counts in one step
+  - Add `sort = TRUE` to sort greatest to least
+- `tally()` counts rows in data that is **already grouped** with `group_by()`
+- `n()` only works inside `summarize()` or `mutate()`, so it can sit next to other summaries
+
+```{r}
+mpg |> count(drv)
+
+# use group_by() before tally()
+mpg |>
+  group_by(drv) |>
+  tally()
+
+# use n() inside summarize(), alongside other summaries
+mpg |>
+  group_by(drv) |>
+  summarize(
+    n_cars = n(),
+    avg_hwy = mean(hwy)
+  )
+```
+
+## Worked Example: Most Delayed Departures by NYC Airport
+
+**Question:** Which NYC airport has the longest average departure delay?
+
+**Pseudocode:** group flights by origin airport → average the departure delay in each group (skip `NA`s for cancelled flights) → count flights per group for context → sort, biggest first.
+
+```{r}
+#| label: airport-delays
+flights |>
+  group_by(origin) |>
+  summarize(
+    avg_dep_delay = mean(dep_delay, na.rm = TRUE),
+    n_flights = n()
+  ) |>
+  arrange(desc(avg_dep_delay))
+```
+
+**Answer:** Newark (EWR) has the longest average departure delay at 15.1 minutes, followed by JFK (12.1) and LaGuardia (10.3).
