@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.10.19">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -79,7 +79,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap-9d6eaac639fa2e3953f5999e4f8e0492.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -341,7 +341,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#mutating-joins-add-columns" id="toc-mutating-joins-add-columns" class="nav-link" data-scroll-target="#mutating-joins-add-columns">Mutating Joins (add columns)</a></li>
   <li><a href="#filtering-joins-keep-or-drop-rows-no-new-columns" id="toc-filtering-joins-keep-or-drop-rows-no-new-columns" class="nav-link" data-scroll-target="#filtering-joins-keep-or-drop-rows-no-new-columns">Filtering Joins (keep or drop rows, no new columns)</a></li>
   <li><a href="#set-operations-compare-whole-rows" id="toc-set-operations-compare-whole-rows" class="nav-link" data-scroll-target="#set-operations-compare-whole-rows">Set Operations (compare whole rows)</a></li>
-  <li><a href="#checking-a-join" id="toc-checking-a-join" class="nav-link" data-scroll-target="#checking-a-join">Checking a Join</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -361,14 +360,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>What makes two records a <strong>valid match</strong>?</li>
 <li>After joining, does the result still answer my question? (Check the row count and what one row now means.)</li>
 </ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="https://medium.com/@gajendrasharmawork/understanding-sql-joins-left-join-right-join-and-union-explained-11de9a80522c"><img src="images/clipboard-1449090112.png" class="quarto-figure quarto-figure-center figure-img" width="591" height="332"></a></p>
+</figure>
+</div>
+<figcaption>Source: medium.com</figcaption>
+</figure>
+</div>
 <section id="quick-reference" class="level2">
 <h2 class="anchored" data-anchor-id="quick-reference">Quick Reference</h2>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 20%">
-<col style="width: 25%">
-<col style="width: 20%">
-<col style="width: 33%">
+<col style="width: 22%">
+<col style="width: 22%">
+<col style="width: 22%">
+<col style="width: 31%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -473,9 +482,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="keys">Keys</h2>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 13%">
-<col style="width: 54%">
-<col style="width: 31%">
+<col style="width: 21%">
+<col style="width: 49%">
+<col style="width: 28%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -530,9 +539,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="relationships">Relationships</h3>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 15%">
-<col style="width: 50%">
-<col style="width: 34%">
+<col style="width: 22%">
+<col style="width: 45%">
+<col style="width: 31%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -705,17 +714,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>!! <code>intersect()</code> finds identical student-<em>and</em>-course rows. To find students enrolled in both terms <em>regardless of course</em>, compare just the key: <code>fall |&gt; semi_join(spring, by = "student_id")</code>.</p>
-</section>
-<section id="checking-a-join" class="level2">
-<h2 class="anchored" data-anchor-id="checking-a-join">Checking a Join</h2>
-<p>A join isn’t correct just because the row count looks right. Check:</p>
-<ul>
-<li><strong>Meaning:</strong> do the key columns identify the same thing in both tables?</li>
-<li><strong>Uniqueness:</strong> does each key have the expected number of rows?</li>
-<li><strong>Unmatched records:</strong> what does <code>anti_join()</code> turn up?</li>
-<li><strong>Row count and row meaning:</strong> what does one output row represent now?</li>
-<li><strong>Spot check:</strong> look up a few records by hand</li>
-</ul>
 
 
 </section>
