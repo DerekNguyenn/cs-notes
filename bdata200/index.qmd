@@ -5,29 +5,24 @@ toc: false
 ---
 
 ::: {.callout-tip appearance="simple"}
-## For grading
+## Notice for Dr. Lisinker - Oct. 29, 2026
 
-- **Notes #2 (PDF):** [Download the full course notes](bdata200-notes.pdf). Every chapter in one file, with a table of contents
+- **Backup PDF:** [Download the full course notes](bdata200-notes.pdf).
 - **Feedback addressed:** [Feedback Log](feedback-log.qmd) lists each Notes #1 comment and where it was fixed
-- **What's new since Notes #1:** see the list at the bottom of this page
+- **What's new since Notes #1 (besides this site):** see the list at the bottom of this page!
 :::
 
-These are my running notes for B DATA 200. Each topic has its own page, and the sidebar works as a clickable table of contents.
+Running notes for B DATA 200 at the University of Washington Bothell, Autumn 2026.
 
 ## Chapters
 
-| Part                    | Chapters                                                                                                        |
-|:------------------------|:----------------------------------------------------------------------------------------------------------------|
-| R Workflow              | [Workflow & Reminders](workflow.qmd) · [Data Basics](basics.qmd)                                                 |
-| Wrangling               | [Rows & Columns](rows-columns.qmd) · [Groups & Summaries](groups.qmd) · [Tidying](tidying.qmd) · [Joins](joins.qmd) |
-| Visualizing & Modeling  | [Plots](plots.qmd) · [Exploratory Data Analysis](eda.qmd) · [Choosing Plots & Models](models.qmd)                |
-| Data in Context         | [Study Design & Data Ethics](study-design.qmd)                                                                   |
-| Wrap-up                 | [Common Pitfalls](pitfalls.qmd) · [Reflection & To-do](reflection.qmd) · [Feedback Log](feedback-log.qmd)        |
-
-## How to use these notes
-
-- **Looking up a function?** Start with the Quick Reference tables at the top of each chapter.
-- **Stuck on an error?** Check [Common Pitfalls](pitfalls.qmd).
+| Part | Chapters |
+|:---------------|:-------------------------------------------------------|
+| R Workflow | [Workflow & Reminders](workflow.qmd) · [Data Basics](basics.qmd) |
+| Wrangling | [Rows & Columns](rows-columns.qmd) · [Groups & Summaries](groups.qmd) · [Tidying](tidying.qmd) · [Joins](joins.qmd) |
+| Visualizing & Modeling | [Plots](plots.qmd) · [Exploratory Data Analysis](eda.qmd) · [Choosing Plots & Models](models.qmd) |
+| Data in Context | [Study Design & Data Ethics](study-design.qmd) |
+| Wrap-up | [Common Pitfalls](pitfalls.qmd) · [Reflection & To-do](reflection.qmd) · [Feedback Log](feedback-log.qmd) |
 
 ## Conventions
 
