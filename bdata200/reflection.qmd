@@ -6,25 +6,59 @@ pagetitle: "Reflection & To-do"
 
 ## Notes #2 Reflection
 
-::: {.callout-note}
-TODO (Derek): answer the Notes #2 reflection questions here in my own words.
-:::
+1.  **What topics or concepts have been the most trouble since Notes #1?**
+
+    I think one of the more notable topics introduced between Notes #1 and now was the section on joins. I can definitely see how incredibly useful they are when you're working with multiple data sets, which is why it's taken me more time to wrap my head around this concept. I think I did a pretty good job with my notes on joins, but I do want to start using it more on projects or activities to help me solidify my understanding.
+
+    \
+    Day 6's class activity on cleaning up data was also really informative. In a perfect world, data comes out squeaky clean and we can jump straight to analysis, right? I actually found myself enjoying the puzzle solving nature of how to tidy up a data set. Although we didn't get around to doing a code implementation, it was still pretty fun planning out a procedure in pseudocode.
+
+2.  **Did a mistake in HW1 or class show up again later? How was it addressed?**
+
+    I wouldn't call this a "mistake," but I still tend to forget how useful some functions and operators are in R. For example:
+
+    - The combination `c()` function to store multiple values as a vector.
+
+    - The `%in%` to search in a vector, as opposed to writing multiple conditionals.
+
+    - Storing stuff in variables. It's a bit ironic since you do this a lot in other programming languages, but I haven't made it in a habit in R (besides storing new datasets, of course).
+
+    These haven't been addressed yet, but they're going into my to-do list for the next notes update.
+
+3.  **What has helped most since Notes #1?**
+
+    ...This site (lol). No, seriously, finally setting aside time to figure out how to make a site built on Quarto documents has been immensely helpful for my learning in this class and outside with my own personal projects! Splitting my master document into multiple documents was a chore, but I really like the current workflow I have for adding new content going forward. The site looks really clean — it reminds me of the [R for Data Science](https://r4ds.hadley.nz/) layout with the added benefit that these are still my personalized notes, so I know how to navigate quickly!
+
+4.  **Feedback for Dr. Lisinker**
+
+    As we approach the halfway mark this quarter, I can feel things picking up and I am pretty excited about finally getting to lay out the foundations for my data story project. I do not have any notable comments or concerns I want to bring to your attention at this time. Thank you for prefixing the activities with the class sections! I also liked the new changes you made to the Canvas modules page.
+
+    I'll be honest, some readings (like anything from the IMS textbook) are pretty dense, but I do like the current format we have with the activities. For example, Day 9's introduction to study designs was helpful. Reading the textbook and jotting down definitions is one thing, but identifying each designs' strengths and limitations under real-life scenarios really helped solidify my understanding.
 
 ## Notes #1 Reflection (archived)
 
-1. **What is something you find yourself struggling with the most often in this class? How did you incorporate that into your cheatsheet?**
+1.  **What is something you find yourself struggling with the most often in this class? How did you incorporate that into your cheatsheet?**
 
     I can see myself struggling to keep track of all the syntax, even with using Quarto. The tables featured in this assignment were copied from my own personal notes I've been maintaining since week 1. A weakness of Quarto documents is that it will always be structured as an actual document that reads from top to bottom. This can be (and is already) quite lengthy unless I split my notes up into separate Quarto documents. Alternatively, I am looking into saving my notes with the Quarto sites feature and treating each document as a separate section / web page.
 
-2. **What is something in the class that is helping you learn?**
+2.  **What is something in the class that is helping you learn?**
 
     Quarto! I find the ability to write markdown-styled notes along with runnable code chunks extremely useful. I used to use Notion and Obsidian for my notes, but having to flip between a window for note-taking and an IDE interrupted my learning flow.
 
-3. **What is something that I could do to help your learning in this class?**
+3.  **What is something that I could do to help your learning in this class?**
 
     I already like the current flow of the pre-class readings and working on an in-class activity each session. The only minor feedback I have would be a request for you to prefix the activity .zips with the class section (ex. `200_Day5.zip`, `232_Day6.zip`). Since I'm in both of our BDATA sections, my activities get marked as a duplicate when I go to download them.
 
 ## To-do List
+
+### Notes #2 - October 29, 2026
+
+- [ ] Start syncing in-class activities to the GitHub repository for archiving and "deeper dives."
+- [ ] Complete the code implementation under [Cleaning Messy Survey Answers](tidying.qmd)
+- [ ] Write a checklist for evaluating a join (*did the join actually do what it was supposed to do?*)
+- [ ] Notes on `%in%` operator
+- [ ] Notes on using the `c()` function
+- [ ] Storing values into variables: how and when its useful in R
 
 ### Done since Notes #1
 
@@ -35,9 +69,3 @@ TODO (Derek): answer the Notes #2 reflection questions here in my own words.
 - [x] EDA reading notes: center, spread, outliers, variation, covariation ([EDA](eda.qmd))
 - [x] Pseudocode before worked examples
 - [x] Look up the `<-` vs `=` convention ([Workflow](workflow.qmd))
-
-### Still to do
-
-- [ ] Logistic regression in more depth if we come back to it
-- [ ] More regex patterns for `str_detect()` / `names_pattern`
-- [x] Make a personal site on GitHub Pages that holds these notes ([home](../index.qmd))
