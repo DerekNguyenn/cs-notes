@@ -19,6 +19,8 @@ website:
       - href: python/index.qmd
         text: Python
     right:
+      - href: guide.qmd
+        text: Site Guide
       - icon: github
         href: https://github.com/DerekNguyenn
 
