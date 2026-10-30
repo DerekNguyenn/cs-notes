@@ -10,6 +10,7 @@ toc: false
 - **Backup PDF:** [Download the full course notes](bdata200-notes.pdf).
 - **Feedback addressed:** [Feedback Log](feedback-log.qmd) lists each Notes #1 comment and where it was fixed
 - **What's new since Notes #1 (besides this site):** see the list at the bottom of this page!
+- Reflection can be found under [Reflection & To-do](reflection.qmd)
 :::
 
 Running notes for B DATA 200 at the University of Washington Bothell, Autumn 2026.
@@ -17,7 +18,7 @@ Running notes for B DATA 200 at the University of Washington Bothell, Autumn 202
 ## Chapters
 
 | Part | Chapters |
-|:---------------|:-------------------------------------------------------|
+|:-----------------|:-----------------------------------------------------|
 | R Workflow | [Workflow & Reminders](workflow.qmd) · [Data Basics](basics.qmd) |
 | Wrangling | [Rows & Columns](rows-columns.qmd) · [Groups & Summaries](groups.qmd) · [Tidying](tidying.qmd) · [Joins](joins.qmd) |
 | Visualizing & Modeling | [Plots](plots.qmd) · [Exploratory Data Analysis](eda.qmd) · [Choosing Plots & Models](models.qmd) |
