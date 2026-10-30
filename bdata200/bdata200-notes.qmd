@@ -6,15 +6,10 @@ date: today
 date-format: long
 format:
   pdf:
-    documentclass: scrreprt
     toc: true
     number-sections: true
     geometry:
       - margin=0.8in
-    code-overflow: wrap
-    fig-width: 6
-    fig-height: 3.5
-    linkcolor: blue
 filters:
   - ../filters/pdf-local-links.lua
 execute:
@@ -22,11 +17,13 @@ execute:
   freeze: false
 ---
 
+```{=html}
 <!--
 Printable version of every B DATA 200 page, for Canvas submissions.
 It renders to bdata200-notes.pdf (linked from the course home page).
 When adding a new chapter page, add an include line for it here too.
 -->
+```
 
 Online version, with search: <https://dereknguyenn.github.io/cs-notes/bdata200/>
 
