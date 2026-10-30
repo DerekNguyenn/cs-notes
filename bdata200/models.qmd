@@ -17,13 +17,13 @@ A **plot** helps you see and communicate a pattern. A **model** puts a number on
 
 Start with the question, then name the **outcome** (what I'm trying to understand) and the **predictor** (what might explain it), and their types.
 
-| Outcome     | Predictor   | First plot to try                              | Possible model                         |
-|:------------|:------------|:-----------------------------------------------|:---------------------------------------|
-| Numerical   | Numerical   | Scatterplot (+ trend line)                     | Linear regression                      |
-| Numerical   | Categorical | Jittered points or boxplots by group, means marked | ANOVA / linear model with a categorical predictor |
-| Categorical | Categorical | Two-way table; bar chart of **proportions**    | Chi-square test                        |
-| Binary (yes/no) | Numerical | Proportion "yes" across groups; jittered 0/1 points | Logistic regression              |
-| Count       | Time        | Counts over time                               | A count model (beyond this class)      |
+| Outcome | Predictor | First plot to try | Possible model |
+|:-------------|:-------------|:------------------------|:-------------------|
+| Numerical | Numerical | Scatterplot (+ trend line) | Linear regression |
+| Numerical | Categorical | Jittered points or boxplots by group, means marked | ANOVA / linear model with a categorical predictor |
+| Categorical | Categorical | Two-way table; bar chart of **proportions** | Chi-square test |
+| Binary (yes/no) | Numerical | Proportion "yes" across groups; jittered 0/1 points | Logistic regression |
+| Count | Time | Counts over time | A count model (beyond this class) |
 
 - These are starting points, not rules
 - !! A scatterplot is the wrong choice when both variables are categorical: every point lands on a few grid spots
@@ -46,11 +46,11 @@ The fitted line:
 
 $$\hat{y} = b_0 + b_1 x$$
 
-| Term                 | Meaning                                                     |
-|:---------------------|:------------------------------------------------------------|
-| Slope $b_1$          | Predicted change in y for a **one-unit increase** in x      |
-| Intercept $b_0$      | Predicted y when x = 0 (often an extrapolation, so not meaningful) |
-| Residual             | Observed y − predicted y: the vertical gap between a point and the line |
+| Term | Meaning |
+|:-------------------|:---------------------------------------------------|
+| Slope $b_1$ | Predicted change in y for a **one-unit increase** in x |
+| Intercept $b_0$ | Predicted y when x = 0 (often an extrapolation, so not meaningful) |
+| Residual | Observed y − predicted y: the vertical gap between a point and the line |
 
 ### Worked Example: Study Hours and Exam Scores
 
@@ -69,7 +69,7 @@ coef(fit)
 ```
 
 - `lm()` makes the model but prints nothing; save it with `<-` and use `coef()` to see the numbers
-- !! Formula order is `outcome ~ predictor` (y ~ x)
+- !! Formula order is `outcome ~ predictor` (y \~ x)
 
 ```{r}
 # predicted values and residuals for each student
@@ -119,15 +119,3 @@ anova(group_fit)
 - A tiny p-value means the group means differ by more than chance would explain
 - With exactly two groups, ANOVA, a two-sample t-test, and `lm()` give the same test
 - !! Lead with the **plot**, not the table: means alone hide spread, overlap and outliers
-
-## Binary Outcomes: Logistic Regression (first look)
-
-When the outcome is yes/no (pass/fail), a straight line can predict impossible probabilities below 0 or above 1. **Logistic regression** models the *probability* of "yes" with an S-shaped curve that stays between 0 and 1.
-
-```r
-ggplot(data, aes(x = hours, y = passed)) +   # passed is 0 or 1
-  geom_jitter(height = 0.05, width = 0) +
-  geom_smooth(method = "glm", method.args = list(family = "binomial"))
-```
-
-Matching rule of thumb: **numerical outcome → linear model; binary outcome → logistic regression.**
