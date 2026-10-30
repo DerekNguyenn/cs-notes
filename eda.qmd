@@ -1,0 +1,101 @@
+# Exploratory Data Analysis {#sec-eda}
+
+```{r}
+#| include: false
+library(tidyverse)
+```
+
+*From the R4DS Ch. 10 reading and the 10/14 in-class activity (Day 5), using `mpg`*
+
+EDA means looking at the data **before** building a model. Five questions to work through:
+
+| Idea                  | Question                                                    | Go-to tools                                |
+|:----------------------|:------------------------------------------------------------|:-------------------------------------------|
+| **Variation**         | How much do values differ from case to case?                | `geom_histogram()`, `sd()`, `IQR()`        |
+| **Typical values**    | What's a reasonable summary of the "middle"?               | `mean()`, `median()`, `summary()`          |
+| **Unusual values**    | Which cases stand out? Errors, rare cases, or informative?  | `geom_boxplot()`, 1.5 × IQR rule           |
+| **Covariation**       | How do two variables change together?                       | `geom_point()`, boxplots by group, `color =` |
+| **Patterns & models** | Is the trend linear, curved, clustered?                     | `geom_smooth()`                            |
+
+## Variation and Typical Values
+
+```{r}
+ggplot(mpg, aes(x = hwy)) +
+  geom_histogram(binwidth = 3, color = "white") +
+  labs(x = "Highway mpg", y = "Number of cars")
+```
+
+When describing a distribution, cover:
+
+- **Center:** where most values sit (here, two bumps around 17–20 and 26–27 mpg)
+- **Shape:** symmetric or skewed? One peak or several? (here: two peaks, slight right skew)
+- **Spread:** how far apart values are
+- **Unusual values:** anything far from the rest (a couple of cars above 40 mpg)
+
+```{r}
+mpg |>
+  summarize(
+    mean_hwy = mean(hwy),
+    median_hwy = median(hwy),
+    sd_hwy = sd(hwy),
+    iqr_hwy = IQR(hwy)
+  )
+```
+
+### Measures of center and spread
+
+| Measure          | What it is                                   | Affected by outliers?        | Use when...                      |
+|:-----------------|:---------------------------------------------|:-----------------------------|:---------------------------------|
+| Mean             | Average of all values                        | **Yes**, pulled toward them  | Data is roughly symmetric        |
+| Median           | Middle value (50th percentile)               | No (resistant)               | Data is skewed or has outliers   |
+| Standard deviation | Typical distance of values from the mean   | **Yes**                      | Paired with the mean             |
+| IQR              | Q3 (75th pct.) − Q1 (25th pct.): the spread of the middle 50% | No (resistant) | Paired with the median   |
+
+- !! Mean far from median is a clue the data is skewed: the mean gets dragged toward the long tail
+- Same median, different IQR = same center, different spread
+
+## Unusual Values
+
+A boxplot flags a point as an outlier if it's more than **1.5 × IQR** beyond the box (below Q1 or above Q3).
+
+```{r}
+mpg |>
+  mutate(
+    lower_limit = quantile(hwy, 0.25) - 1.5 * IQR(hwy),
+    upper_limit = quantile(hwy, 0.75) + 1.5 * IQR(hwy)
+  ) |>
+  filter(hwy < lower_limit | hwy > upper_limit) |>
+  select(manufacturer, model, class, hwy)
+```
+
+- Three cars are outliers, but the boxplot only shows two dots: two of them have the **same** `hwy` value, so their points overlap
+- Before removing an outlier, ask: is it a data entry error, or a real (rare) case? What do the outliers have in common?
+- !! "Outlier" depends on the comparison group. Split `mpg` by `class` and new outliers appear within each class.
+
+## Covariation
+
+**One numerical + one categorical:** compare distributions across groups.
+
+```{r}
+ggplot(mpg, aes(x = class, y = hwy)) +
+  geom_boxplot() +
+  coord_flip()
+```
+
+**Two numerical:** scatterplot. Describe the relationship with four words:
+
+- **Direction:** positive or negative?
+- **Form:** linear or curved?
+- **Strength:** weak, moderate, or strong?
+- **Exceptions:** which points don't follow the pattern?
+
+```{r}
+ggplot(mpg, aes(x = displ, y = hwy, color = class)) +
+  geom_point()
+```
+
+Bigger engines get worse highway mileage (negative, slightly curved, moderately strong). Coloring by `class` explains many exceptions: the 2-seaters have big engines but better mileage than SUVs and pickups with similar engines.
+
+## Patterns and Models
+
+Adding a trend line helps judge **form**. See [Trend Lines](plots.qmd#trend-lines) for a straight line vs. a LOESS curve on this same plot. If the two disagree, a single straight line hides a real pattern.

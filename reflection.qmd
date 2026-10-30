@@ -1,0 +1,39 @@
+# Reflection & To-do {#sec-reflection}
+
+## Notes #2 Reflection
+
+::: {.callout-note}
+TODO (Derek): answer the Notes #2 reflection questions here in my own words.
+:::
+
+## Notes #1 Reflection (archived)
+
+1. **What is something you find yourself struggling with the most often in this class? How did you incorporate that into your cheatsheet?**
+
+    I can see myself struggling to keep track of all the syntax, even with using Quarto. The tables featured in this assignment were copied from my own personal notes I've been maintaining since week 1. A weakness of Quarto documents is that it will always be structured as an actual document that reads from top to bottom. This can be (and is already) quite lengthy unless I split my notes up into separate Quarto documents. Alternatively, I am looking into saving my notes with the Quarto sites feature and treating each document as a separate section / web page.
+
+2. **What is something in the class that is helping you learn?**
+
+    Quarto! I find the ability to write markdown-styled notes along with runnable code chunks extremely useful. I used to use Notion and Obsidian for my notes, but having to flip between a window for note-taking and an IDE interrupted my learning flow.
+
+3. **What is something that I could do to help your learning in this class?**
+
+    I already like the current flow of the pre-class readings and working on an in-class activity each session. The only minor feedback I have would be a request for you to prefix the activity .zips with the class section (ex. `200_Day5.zip`, `232_Day6.zip`). Since I'm in both of our BDATA sections, my activities get marked as a duplicate when I go to download them.
+
+## To-do List
+
+### Done since Notes #1
+
+- [x] Replace longer code in table cells with real code chunks ([Plots](plots.qmd))
+- [x] Table of contents: the book sidebar on the website, and `toc: true` in the PDF
+- [x] Chunk options `error`, `message`, `label`, `warning`, `echo`, `include` ([Workflow](workflow.qmd))
+- [x] Trend lines with `geom_smooth()` ([Plots](plots.qmd))
+- [x] EDA reading notes: center, spread, outliers, variation, covariation ([EDA](eda.qmd))
+- [x] Pseudocode before worked examples
+- [x] Look up the `<-` vs `=` convention ([Workflow](workflow.qmd))
+
+### Still to do
+
+- [ ] Logistic regression in more depth if we come back to it
+- [ ] More regex patterns for `str_detect()` / `names_pattern`
+- [ ] Make a personal landing page on GitHub Pages that links to this book

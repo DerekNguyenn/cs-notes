@@ -1,0 +1,32 @@
+# Preface {.unnumbered}
+
+These are my running notes for **B DATA 200: Introduction to Data Studies** (UW Bothell, Autumn 2026). They started as a single Quarto PDF for Notes #1 and are now a Quarto book, so each topic gets its own chapter and the sidebar works as a clickable table of contents.
+
+## How to use these notes
+
+- **Looking up a function?** Start with the Quick Reference tables at the top of each chapter.
+- **Stuck on an error?** Check [Common Pitfalls](pitfalls.qmd).
+- **Need the whole thing as one file?** Use the PDF download button in the sidebar (also what I submit to Canvas).
+
+## Conventions
+
+- `!!` marks something I got wrong at least once or want to remember.
+- Worked examples follow the same pattern: **Question** → **Pseudocode** → code → **Answer**.
+- Every code chunk uses the native pipe `|>` and `<-` for assignment (see [Assignment Operators](workflow.qmd#assignment-operators)).
+
+## Packages used throughout
+
+```{r}
+library(tidyverse)
+library(nycflights13)
+```
+
+- `tidyverse` loads dplyr, ggplot2, tidyr, readr, stringr and friends
+- `nycflights13` provides the `flights` data (every flight that left NYC in 2013)
+- `mpg` (cars and fuel economy) comes built in with ggplot2
+
+## What's new in Notes #2
+
+- Moved from one long PDF to this book, following feedback on Notes #1 (see [Feedback Log](feedback-log.qmd))
+- New chapters: [Tidying](tidying.qmd), [Joins](joins.qmd), [Exploratory Data Analysis](eda.qmd), [Models](models.qmd), [Study Design & Ethics](study-design.qmd)
+- Trend lines, overplotting fixes and reference lines added to [Plots](plots.qmd)

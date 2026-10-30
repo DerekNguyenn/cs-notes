@@ -1,0 +1,988 @@
+[
+  {
+    "objectID": "bdata232/index.html",
+    "href": "bdata232/index.html",
+    "title": "B DATA 232",
+    "section": "",
+    "text": "! Under construction.\nNotes for B DATA 232 will go here.\nTo add a page: create a .qmd in bdata232/ and list it under the bdata232 sidebar in _quarto.yml.",
+    "crumbs": [
+      "B DATA 232",
+      "Course home"
+    ]
+  },
+  {
+    "objectID": "bdata200/study-design.html",
+    "href": "bdata200/study-design.html",
+    "title": "Study Design & Data Ethics",
+    "section": "",
+    "text": "From the 10/28 in-class activity (Day 9)\nThe design of a study decides which conclusions the data can support, before any code is written.\n\n\n\n\n\n\n\n\n\n\n\nDesign\nWhat happens\nCan show causation?\nWatch out for\n\n\n\n\nRandomized experiment\nResearcher randomly assigns a treatment\nYes, within the sample\nVolunteers may not represent everyone; short time frames\n\n\nObservational, cross-sectional\nMeasure people once, at one point in time\nNo (association)\nConfounders; self-report errors\n\n\nObservational, longitudinal\nMeasure the same people repeatedly over time\nNo, but shows change within people\nAttrition (people drop out, often not at random)\n\n\nObservational, retrospective\nUse records that already exist (sales, gym entries)\nNo\nRecords weren’t made to answer this question\n\n\n\n\nConfounder: a third variable related to both the predictor and the outcome (e.g. screen time could affect both sleep and GPA)\nBefore-and-after comparisons with no comparison group can’t separate the change from everything else that changed (season, prices, marketing)\n\n!! Random assignment ≠ random sampling\n\nRandom assignment (who gets which treatment) → supports causal conclusions\nRandom sampling (who is in the study) → supports generalizing to the population\nAn experiment on volunteers at one company shows cause for those volunteers, but not necessarily for everyone\n\n\n\n\n\n\n\n\n\n\n\n\nMethod\nGood for\nLimitation\n\n\n\n\nSurvey / self-report\nInternal experiences (stress, mood, opinions)\nRecall error, social desirability, nonresponse\n\n\nInterviews / focus groups\nHow people describe experiences, in their words\nSmall samples; stigma can cause underreporting\n\n\nWearables / tracking\nObjective, repeated measures (sleep, steps)\nDevice errors; only reaches people who own one\n\n\nNaturally generated records\nLarge volumes of real behavior, cheap\nNot designed for research; missing context\n\n\nWeb scraping / APIs\nPublic data at scale (prices, posts, sports stats)\nSite terms, changing page layouts; users aren’t representative\n\n\n\nA data collection plan should name: target population, data source, collection method, measurements with units/scales and timing, and a limitation.\n\n\n\n\nConsent = a meaningful chance to understand what participation involves and to say no. One “Accept all” click isn’t informed consent for every later use.\nPurpose shift: using data for a different purpose than people expected (site analytics → targeted housing ads) raises the privacy risk\n“Anonymous” isn’t unidentifiable: browsing patterns + IP address + device details, or a wearable’s daily routine, can act as a fingerprint\nBetter practices:\n\nmake “Reject” as easy as “Accept”\ncollect only what’s needed (data minimization)\nreplace names with study IDs and store the key separately\nset deletion dates\noffer tiered consent for future reuse\nget IRB review for new uses\n\n\n\n\n\n\n\n\n\n\n\n\n\nProblem\nExample\nFix\n\n\n\n\nLeading / loaded\n“Don’t you agree the overpriced dining…”\nNeutral wording, no opinion words\n\n\nDouble-barreled\nAsks about affordability and eating well in one question\nOne concept per question\n\n\nVague\n“Do you get enough sleep?”\nAsk for a number, with units\n\n\nNo time frame\n“How often do you…”\n“During the past 7 days…”\n\n\nMissing options\nOnly “car” or “bus” for commuting\nExhaustive options, “select all”, “Other”\n\n\nOverlapping bins\n1–2 hrs, 2–3 hrs\nNon-overlapping: 1–2, 3–4\n\n\nMeasures the wrong thing\n“How much does social media harm you?” when the goal is time spent\nMeasure the predictor and outcome separately",
+    "crumbs": [
+      "B DATA 200",
+      "Data in Context",
+      "Study Design & Data Ethics"
+    ]
+  },
+  {
+    "objectID": "bdata200/study-design.html#study-designs",
+    "href": "bdata200/study-design.html#study-designs",
+    "title": "Study Design & Data Ethics",
+    "section": "",
+    "text": "Design\nWhat happens\nCan show causation?\nWatch out for\n\n\n\n\nRandomized experiment\nResearcher randomly assigns a treatment\nYes, within the sample\nVolunteers may not represent everyone; short time frames\n\n\nObservational, cross-sectional\nMeasure people once, at one point in time\nNo (association)\nConfounders; self-report errors\n\n\nObservational, longitudinal\nMeasure the same people repeatedly over time\nNo, but shows change within people\nAttrition (people drop out, often not at random)\n\n\nObservational, retrospective\nUse records that already exist (sales, gym entries)\nNo\nRecords weren’t made to answer this question\n\n\n\n\nConfounder: a third variable related to both the predictor and the outcome (e.g. screen time could affect both sleep and GPA)\nBefore-and-after comparisons with no comparison group can’t separate the change from everything else that changed (season, prices, marketing)\n\n!! Random assignment ≠ random sampling\n\nRandom assignment (who gets which treatment) → supports causal conclusions\nRandom sampling (who is in the study) → supports generalizing to the population\nAn experiment on volunteers at one company shows cause for those volunteers, but not necessarily for everyone",
+    "crumbs": [
+      "B DATA 200",
+      "Data in Context",
+      "Study Design & Data Ethics"
+    ]
+  },
+  {
+    "objectID": "bdata200/study-design.html#ways-to-collect-data",
+    "href": "bdata200/study-design.html#ways-to-collect-data",
+    "title": "Study Design & Data Ethics",
+    "section": "",
+    "text": "Method\nGood for\nLimitation\n\n\n\n\nSurvey / self-report\nInternal experiences (stress, mood, opinions)\nRecall error, social desirability, nonresponse\n\n\nInterviews / focus groups\nHow people describe experiences, in their words\nSmall samples; stigma can cause underreporting\n\n\nWearables / tracking\nObjective, repeated measures (sleep, steps)\nDevice errors; only reaches people who own one\n\n\nNaturally generated records\nLarge volumes of real behavior, cheap\nNot designed for research; missing context\n\n\nWeb scraping / APIs\nPublic data at scale (prices, posts, sports stats)\nSite terms, changing page layouts; users aren’t representative\n\n\n\nA data collection plan should name: target population, data source, collection method, measurements with units/scales and timing, and a limitation.",
+    "crumbs": [
+      "B DATA 200",
+      "Data in Context",
+      "Study Design & Data Ethics"
+    ]
+  },
+  {
+    "objectID": "bdata200/study-design.html#consent-privacy",
+    "href": "bdata200/study-design.html#consent-privacy",
+    "title": "Study Design & Data Ethics",
+    "section": "",
+    "text": "Consent = a meaningful chance to understand what participation involves and to say no. One “Accept all” click isn’t informed consent for every later use.\nPurpose shift: using data for a different purpose than people expected (site analytics → targeted housing ads) raises the privacy risk\n“Anonymous” isn’t unidentifiable: browsing patterns + IP address + device details, or a wearable’s daily routine, can act as a fingerprint\nBetter practices:\n\nmake “Reject” as easy as “Accept”\ncollect only what’s needed (data minimization)\nreplace names with study IDs and store the key separately\nset deletion dates\noffer tiered consent for future reuse\nget IRB review for new uses",
+    "crumbs": [
+      "B DATA 200",
+      "Data in Context",
+      "Study Design & Data Ethics"
+    ]
+  },
+  {
+    "objectID": "bdata200/study-design.html#writing-unbiased-survey-questions",
+    "href": "bdata200/study-design.html#writing-unbiased-survey-questions",
+    "title": "Study Design & Data Ethics",
+    "section": "",
+    "text": "Problem\nExample\nFix\n\n\n\n\nLeading / loaded\n“Don’t you agree the overpriced dining…”\nNeutral wording, no opinion words\n\n\nDouble-barreled\nAsks about affordability and eating well in one question\nOne concept per question\n\n\nVague\n“Do you get enough sleep?”\nAsk for a number, with units\n\n\nNo time frame\n“How often do you…”\n“During the past 7 days…”\n\n\nMissing options\nOnly “car” or “bus” for commuting\nExhaustive options, “select all”, “Other”\n\n\nOverlapping bins\n1–2 hrs, 2–3 hrs\nNon-overlapping: 1–2, 3–4\n\n\nMeasures the wrong thing\n“How much does social media harm you?” when the goal is time spent\nMeasure the predictor and outcome separately",
+    "crumbs": [
+      "B DATA 200",
+      "Data in Context",
+      "Study Design & Data Ethics"
+    ]
+  },
+  {
+    "objectID": "bdata200/workflow.html",
+    "href": "bdata200/workflow.html",
+    "title": "Workflow & Reminders",
+    "section": "",
+    "text": "install.packages(\"package_name\") installs a package once per computer.\n\nTyped in the Console, never in a .qmd (it would reinstall on every render)\npackage_name is wrapped in quotes\n\nlibrary(package_name) loads a package and goes in every document\n\n!! On this site, every page is its own R session, so each page loads its own packages\n\n\n\n\n\nFrom the Day 4 activity, the workflow for every new .qmd:\n\nOpen the .Rproj first, so file paths like read_csv(\"titanic.csv\") work without a full path\nFirst chunk: load packages\nSecond chunk: import the data and give it a name\nMeet the data (glimpse(), head(), check for NAs) before wrangling or plotting\n\nKeep one purpose per chunk. Loading packages and importing data are separate chunks.\n\n\n\n\n\n\nI want to…\nShortcut\n\n\n\n\nRun the current line or selection\nCmd + Enter\n\n\nRun the whole current chunk\nCmd + Shift + Enter\n\n\nInsert a code chunk\nCmd + Option + I\n\n\nType the pipe |&gt;\nCmd + Shift + M\n\n\nType the assignment arrow &lt;-\nOption + -\n\n\nRender the document\nCmd + Shift + K\n\n\nSee all keyboard shortcuts (overlay)\nOption + Shift + K\n\n\n\n\n\n\nChunk options go on the first lines inside a code chunk and start with #|.\n\n\n\nOption\nWhat it does\nWhen I use it\n\n\n\n\n#| eval: false\nShows the code but never runs it\nView(), install.packages(), code I only want to display\n\n\n#| echo: false\nRuns the code and shows the output, but hides the code\nA finished plot in a report where the reader doesn’t need code\n\n\n#| include: false\nRuns the code but hides both code and output\nSetup chunks (loading packages, importing data)\n\n\n#| warning: false\nHides warnings (the code still runs)\nKnown, harmless warnings, e.g. geom_smooth() messages\n\n\n#| message: false\nHides messages, e.g. the startup text from library(tidyverse)\nPackage loading and read_csv() column-type messages\n\n\n#| error: true\nKeeps rendering even if the chunk errors, and shows the error\nDemonstrating a mistake on purpose (see Pitfalls)\n\n\n#| label: name\nNames the chunk\nFinding a chunk in the outline; cross-referencing figures\n\n\n\n\n\n# A tibble: 3 × 2\n  drv       n\n  &lt;chr&gt; &lt;int&gt;\n1 4       103\n2 f       106\n3 r        25\n\n\n!! Warnings vs. messages vs. errors:\n\nMessage: just information (e.g. which columns read_csv() guessed)\nWarning: something worth checking, but the code still ran (e.g. rows removed because of NAs)\nError: the code stopped and there is no result\n\nHide messages freely. Only hide a warning after reading it once and deciding it’s harmless.\n\n\n\nBoth store a value: x &lt;- 5 and x = 5 do the same thing.\nConvention: use &lt;- for assignment.\n\nIt keeps “store this” (&lt;-) visually separate from “is this equal?” (==)\n= is still used to name arguments inside a function: mean(x, na.rm = TRUE)\n= also works for assignment and some people (including my instructor) use it because it’s quicker. Pick one and be consistent.\n\n\n# assignment: store the result\njan_flights &lt;- flights |&gt; filter(month == 1)\n\n# = names an argument; == checks equality\njan_flights |&gt; summarize(avg_delay = mean(dep_delay, na.rm = TRUE))\n\n# A tibble: 1 × 1\n  avg_delay\n      &lt;dbl&gt;\n1      10.0\n\n\n\n\n\n\nread_csv(\"titanic.csv\") (with an underscore) is the tidyverse version and returns a tibble\nread.csv() (with a dot) is base R and returns a plain data frame, so stick with read_csv()\nread_csv() also reads straight from a URL, e.g. TidyTuesday data on GitHub",
+    "crumbs": [
+      "B DATA 200",
+      "R Workflow",
+      "Workflow & Reminders"
+    ]
+  },
+  {
+    "objectID": "bdata200/workflow.html#packages",
+    "href": "bdata200/workflow.html#packages",
+    "title": "Workflow & Reminders",
+    "section": "",
+    "text": "install.packages(\"package_name\") installs a package once per computer.\n\nTyped in the Console, never in a .qmd (it would reinstall on every render)\npackage_name is wrapped in quotes\n\nlibrary(package_name) loads a package and goes in every document\n\n!! On this site, every page is its own R session, so each page loads its own packages",
+    "crumbs": [
+      "B DATA 200",
+      "R Workflow",
+      "Workflow & Reminders"
+    ]
+  },
+  {
+    "objectID": "bdata200/workflow.html#project-setup",
+    "href": "bdata200/workflow.html#project-setup",
+    "title": "Workflow & Reminders",
+    "section": "",
+    "text": "From the Day 4 activity, the workflow for every new .qmd:\n\nOpen the .Rproj first, so file paths like read_csv(\"titanic.csv\") work without a full path\nFirst chunk: load packages\nSecond chunk: import the data and give it a name\nMeet the data (glimpse(), head(), check for NAs) before wrangling or plotting\n\nKeep one purpose per chunk. Loading packages and importing data are separate chunks.",
+    "crumbs": [
+      "B DATA 200",
+      "R Workflow",
+      "Workflow & Reminders"
+    ]
+  },
+  {
+    "objectID": "bdata200/workflow.html#keyboard-shortcuts",
+    "href": "bdata200/workflow.html#keyboard-shortcuts",
+    "title": "Workflow & Reminders",
+    "section": "",
+    "text": "I want to…\nShortcut\n\n\n\n\nRun the current line or selection\nCmd + Enter\n\n\nRun the whole current chunk\nCmd + Shift + Enter\n\n\nInsert a code chunk\nCmd + Option + I\n\n\nType the pipe |&gt;\nCmd + Shift + M\n\n\nType the assignment arrow &lt;-\nOption + -\n\n\nRender the document\nCmd + Shift + K\n\n\nSee all keyboard shortcuts (overlay)\nOption + Shift + K",
+    "crumbs": [
+      "B DATA 200",
+      "R Workflow",
+      "Workflow & Reminders"
+    ]
+  },
+  {
+    "objectID": "bdata200/workflow.html#chunk-options",
+    "href": "bdata200/workflow.html#chunk-options",
+    "title": "Workflow & Reminders",
+    "section": "",
+    "text": "Chunk options go on the first lines inside a code chunk and start with #|.\n\n\n\nOption\nWhat it does\nWhen I use it\n\n\n\n\n#| eval: false\nShows the code but never runs it\nView(), install.packages(), code I only want to display\n\n\n#| echo: false\nRuns the code and shows the output, but hides the code\nA finished plot in a report where the reader doesn’t need code\n\n\n#| include: false\nRuns the code but hides both code and output\nSetup chunks (loading packages, importing data)\n\n\n#| warning: false\nHides warnings (the code still runs)\nKnown, harmless warnings, e.g. geom_smooth() messages\n\n\n#| message: false\nHides messages, e.g. the startup text from library(tidyverse)\nPackage loading and read_csv() column-type messages\n\n\n#| error: true\nKeeps rendering even if the chunk errors, and shows the error\nDemonstrating a mistake on purpose (see Pitfalls)\n\n\n#| label: name\nNames the chunk\nFinding a chunk in the outline; cross-referencing figures\n\n\n\n\n\n# A tibble: 3 × 2\n  drv       n\n  &lt;chr&gt; &lt;int&gt;\n1 4       103\n2 f       106\n3 r        25\n\n\n!! Warnings vs. messages vs. errors:\n\nMessage: just information (e.g. which columns read_csv() guessed)\nWarning: something worth checking, but the code still ran (e.g. rows removed because of NAs)\nError: the code stopped and there is no result\n\nHide messages freely. Only hide a warning after reading it once and deciding it’s harmless.",
+    "crumbs": [
+      "B DATA 200",
+      "R Workflow",
+      "Workflow & Reminders"
+    ]
+  },
+  {
+    "objectID": "bdata200/workflow.html#assignment-operators",
+    "href": "bdata200/workflow.html#assignment-operators",
+    "title": "Workflow & Reminders",
+    "section": "",
+    "text": "Both store a value: x &lt;- 5 and x = 5 do the same thing.\nConvention: use &lt;- for assignment.\n\nIt keeps “store this” (&lt;-) visually separate from “is this equal?” (==)\n= is still used to name arguments inside a function: mean(x, na.rm = TRUE)\n= also works for assignment and some people (including my instructor) use it because it’s quicker. Pick one and be consistent.\n\n\n# assignment: store the result\njan_flights &lt;- flights |&gt; filter(month == 1)\n\n# = names an argument; == checks equality\njan_flights |&gt; summarize(avg_delay = mean(dep_delay, na.rm = TRUE))\n\n# A tibble: 1 × 1\n  avg_delay\n      &lt;dbl&gt;\n1      10.0",
+    "crumbs": [
+      "B DATA 200",
+      "R Workflow",
+      "Workflow & Reminders"
+    ]
+  },
+  {
+    "objectID": "bdata200/workflow.html#reading-data",
+    "href": "bdata200/workflow.html#reading-data",
+    "title": "Workflow & Reminders",
+    "section": "",
+    "text": "read_csv(\"titanic.csv\") (with an underscore) is the tidyverse version and returns a tibble\nread.csv() (with a dot) is base R and returns a plain data frame, so stick with read_csv()\nread_csv() also reads straight from a URL, e.g. TidyTuesday data on GitHub",
+    "crumbs": [
+      "B DATA 200",
+      "R Workflow",
+      "Workflow & Reminders"
+    ]
+  },
+  {
+    "objectID": "bdata200/joins.html",
+    "href": "bdata200/joins.html",
+    "title": "Joins & Relational Data",
+    "section": "",
+    "text": "From the 10/21–10/22 in-class activity (Day 7)\nA join is a decision about which records belong together, not just a line of code. Before joining, ask:\n\nWhat does one row represent in each table?\nWhat makes two records a valid match?\nAfter joining, does the result still answer my question? (Check the row count and what one row now means.)\n\n\n\n\n\n\n\n\n\n\n\n\nFunction\nKeeps which rows?\nAdds columns from y?\nUse it to…\n\n\n\n\nleft_join(x, y)\nAll rows in x\nYes\nAdd lookup info to my starting table\n\n\nright_join(x, y)\nAll rows in y\nYes\nSame as a left join with x/y swapped\n\n\ninner_join(x, y)\nOnly rows that match\nYes\nAnalyze complete matches only\n\n\nfull_join(x, y)\nAll rows from both\nYes\nReconcile/audit two sources\n\n\nsemi_join(x, y)\nRows in x with a match\nNo\nFilter x to records that have a match\n\n\nanti_join(x, y)\nRows in x with no match\nNo\nFind what didn’t match (diagnostics)\n\n\nintersect(x, y)\nIdentical rows in both\nNo (same columns)\nRows shared by two extracts\n\n\nunion(x, y)\nDistinct rows in either\nNo (same columns)\nStack two compatible tables, no duplicates\n\n\nsetdiff(x, y)\nRows in x not in y\nNo (same columns)\nWhat was added/removed between snapshots\n\n\n\n\nRead x |&gt; left_join(y, by = \"id\") as “join y to x”: x is the starting population\nAlways write by = (or join_by()) so dplyr doesn’t silently match on other columns that share a name\n\n\n\n\n\ncounties &lt;- tribble(\n  ~county_id, ~county,   ~population,\n  101,        \"Alder\",   10000,\n  102,        \"Birch\",   20000,\n  103,        \"Cedar\",   15000,\n  104,        \"Dogwood\",  8000\n)\n\nhealth &lt;- tribble(\n  ~county_id, ~measure,   ~estimate,\n  101,        \"Diabetes\", 10.2,\n  102,        \"Diabetes\", 12.5,\n  103,        \"Diabetes\",  9.8,\n  105,        \"Diabetes\", 14.1   # 105 isn't in counties!\n)\n\nprograms &lt;- tribble(\n  ~program_id, ~county_id, ~program,\n  \"P01\",       101,        \"Walking group\",\n  \"P02\",       101,        \"Nutrition class\",\n  \"P03\",       103,        \"Walking group\",\n  \"P04\",       104,        \"Nutrition class\",\n  \"P05\",       104,        \"Nutrition class\"\n)\n\n\n\n\n\n\n\n\n\n\n\n\nKey\nMeaning\nExample here\n\n\n\n\nPrimary key\nUniquely identifies each row; never repeated, never NA\ncounty_id in counties\n\n\nForeign key\nPoints to a key in another table; may repeat\ncounty_id in programs\n\n\nDuplicate key\nA key value in several rows: fine for a foreign key, a data problem for a primary key\n101 appears twice in programs\n\n\nSurrogate key\nAn ID made up just to identify records\nprogram_id (\"P01\")\n\n\nNatural key\nA meaningful attribute that already identifies the thing\nA state + county FIPS code\n\n\n\nCheck that a primary key really is unique. Both of these should return zero rows:\n\ncounties |&gt; count(county_id) |&gt; filter(n &gt; 1)\n\n# A tibble: 0 × 2\n# ℹ 2 variables: county_id &lt;dbl&gt;, n &lt;int&gt;\n\ncounties |&gt; filter(is.na(county_id))\n\n# A tibble: 0 × 3\n# ℹ 3 variables: county_id &lt;dbl&gt;, county &lt;chr&gt;, population &lt;dbl&gt;\n\n\n!! “Unique in this file” doesn’t make it a good key. county names happen to be unique here, but county names repeat across states.\n\n\n\n\n\n\n\n\n\n\nRelationship\nMeaning\nExample\n\n\n\n\nOne-to-one\nEach row matches at most one row on the other side\nCounty → one population value\n\n\nOne-to-many\nOne row can match several rows\nCounty → its programs\n\n\nMany-to-many\nRows on both sides can match several rows\nStudents ↔︎ courses\n\n\n\nA one-to-many join adds rows: Alder appears twice after joining programs because it has two programs. State what you expect so dplyr can warn you:\n\ncounties |&gt;\n  left_join(programs, by = \"county_id\", relationship = \"one-to-many\")\n\n# A tibble: 6 × 5\n  county_id county  population program_id program        \n      &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;          \n1       101 Alder        10000 P01        Walking group  \n2       101 Alder        10000 P02        Nutrition class\n3       102 Birch        20000 &lt;NA&gt;       &lt;NA&gt;           \n4       103 Cedar        15000 P03        Walking group  \n5       104 Dogwood       8000 P04        Nutrition class\n6       104 Dogwood       8000 P05        Nutrition class\n\n\n\n\n\n\nPrediction first: joining health to counties with a left join should keep all four counties, and Dogwood (104) should get NAs because it has no health row.\n\ncounties |&gt;\n  left_join(health, by = \"county_id\")\n\n# A tibble: 4 × 5\n  county_id county  population measure  estimate\n      &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt;\n1       101 Alder        10000 Diabetes     10.2\n2       102 Birch        20000 Diabetes     12.5\n3       103 Cedar        15000 Diabetes      9.8\n4       104 Dogwood       8000 &lt;NA&gt;         NA  \n\n\n\n!! Dogwood’s NA means no estimate, not a diabetes rate of zero\nCounty 105 is dropped because the join starts from counties\n\n\n# inner join: only Alder, Birch and Cedar have rows in both tables\ncounties |&gt;\n  inner_join(health, by = \"county_id\")\n\n# A tibble: 3 × 5\n  county_id county population measure  estimate\n      &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt;\n1       101 Alder       10000 Diabetes     10.2\n2       102 Birch       20000 Diabetes     12.5\n3       103 Cedar       15000 Diabetes      9.8\n\n\n\n!! An inner join silently drops unmatched rows. An average after an inner join describes only the matched counties.\n\n\n# full join: everything from both sides, NAs wherever there's no match\ncounties |&gt;\n  full_join(health, by = \"county_id\")\n\n# A tibble: 5 × 5\n  county_id county  population measure  estimate\n      &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt;\n1       101 Alder        10000 Diabetes     10.2\n2       102 Birch        20000 Diabetes     12.5\n3       103 Cedar        15000 Diabetes      9.8\n4       104 Dogwood       8000 &lt;NA&gt;         NA  \n5       105 &lt;NA&gt;            NA Diabetes     14.1\n\n\n\n\n\n\n# Which counties HAVE a health estimate?\ncounties |&gt; semi_join(health, by = \"county_id\")\n\n# A tibble: 3 × 3\n  county_id county population\n      &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt;\n1       101 Alder       10000\n2       102 Birch       20000\n3       103 Cedar       15000\n\n# Which counties are MISSING a health estimate?\ncounties |&gt; anti_join(health, by = \"county_id\")\n\n# A tibble: 1 × 3\n  county_id county  population\n      &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt;\n1       104 Dogwood       8000\n\n# Which health rows point to a county we don't have?\nhealth |&gt; anti_join(counties, by = \"county_id\")\n\n# A tibble: 1 × 3\n  county_id measure  estimate\n      &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt;\n1       105 Diabetes     14.1\n\n\nThe two anti joins answer different questions, so the order of x and y matters.\n\n\n\nSet operations need tables with the same columns and compare entire rows, not a chosen key.\n\nfall &lt;- tribble(\n  ~student_id, ~course,\n  1, \"Data 200\",\n  2, \"Data 200\",\n  3, \"Data 232\"\n)\nspring &lt;- tribble(\n  ~student_id, ~course,\n  2, \"Data 200\",\n  3, \"Data 232\",\n  4, \"Data 200\"\n)\n\nintersect(fall, spring)  # identical rows in both terms\n\n# A tibble: 2 × 2\n  student_id course  \n       &lt;dbl&gt; &lt;chr&gt;   \n1          2 Data 200\n2          3 Data 232\n\nunion(fall, spring)      # every distinct row, once\n\n# A tibble: 4 × 2\n  student_id course  \n       &lt;dbl&gt; &lt;chr&gt;   \n1          1 Data 200\n2          2 Data 200\n3          3 Data 232\n4          4 Data 200\n\nsetdiff(spring, fall)    # rows new in spring\n\n# A tibble: 1 × 2\n  student_id course  \n       &lt;dbl&gt; &lt;chr&gt;   \n1          4 Data 200\n\n\n!! intersect() finds identical student-and-course rows. To find students enrolled in both terms regardless of course, compare just the key: fall |&gt; semi_join(spring, by = \"student_id\").\n\n\n\nA join isn’t correct just because the row count looks right. Check:\n\nMeaning: do the key columns identify the same thing in both tables?\nUniqueness: does each key have the expected number of rows?\nUnmatched records: what does anti_join() turn up?\nRow count and row meaning: what does one output row represent now?\nSpot check: look up a few records by hand",
+    "crumbs": [
+      "B DATA 200",
+      "Wrangling",
+      "Joins & Relational Data"
+    ]
+  },
+  {
+    "objectID": "bdata200/joins.html#quick-reference",
+    "href": "bdata200/joins.html#quick-reference",
+    "title": "Joins & Relational Data",
+    "section": "",
+    "text": "Function\nKeeps which rows?\nAdds columns from y?\nUse it to…\n\n\n\n\nleft_join(x, y)\nAll rows in x\nYes\nAdd lookup info to my starting table\n\n\nright_join(x, y)\nAll rows in y\nYes\nSame as a left join with x/y swapped\n\n\ninner_join(x, y)\nOnly rows that match\nYes\nAnalyze complete matches only\n\n\nfull_join(x, y)\nAll rows from both\nYes\nReconcile/audit two sources\n\n\nsemi_join(x, y)\nRows in x with a match\nNo\nFilter x to records that have a match\n\n\nanti_join(x, y)\nRows in x with no match\nNo\nFind what didn’t match (diagnostics)\n\n\nintersect(x, y)\nIdentical rows in both\nNo (same columns)\nRows shared by two extracts\n\n\nunion(x, y)\nDistinct rows in either\nNo (same columns)\nStack two compatible tables, no duplicates\n\n\nsetdiff(x, y)\nRows in x not in y\nNo (same columns)\nWhat was added/removed between snapshots\n\n\n\n\nRead x |&gt; left_join(y, by = \"id\") as “join y to x”: x is the starting population\nAlways write by = (or join_by()) so dplyr doesn’t silently match on other columns that share a name",
+    "crumbs": [
+      "B DATA 200",
+      "Wrangling",
+      "Joins & Relational Data"
+    ]
+  },
+  {
+    "objectID": "bdata200/joins.html#example-tables",
+    "href": "bdata200/joins.html#example-tables",
+    "title": "Joins & Relational Data",
+    "section": "",
+    "text": "counties &lt;- tribble(\n  ~county_id, ~county,   ~population,\n  101,        \"Alder\",   10000,\n  102,        \"Birch\",   20000,\n  103,        \"Cedar\",   15000,\n  104,        \"Dogwood\",  8000\n)\n\nhealth &lt;- tribble(\n  ~county_id, ~measure,   ~estimate,\n  101,        \"Diabetes\", 10.2,\n  102,        \"Diabetes\", 12.5,\n  103,        \"Diabetes\",  9.8,\n  105,        \"Diabetes\", 14.1   # 105 isn't in counties!\n)\n\nprograms &lt;- tribble(\n  ~program_id, ~county_id, ~program,\n  \"P01\",       101,        \"Walking group\",\n  \"P02\",       101,        \"Nutrition class\",\n  \"P03\",       103,        \"Walking group\",\n  \"P04\",       104,        \"Nutrition class\",\n  \"P05\",       104,        \"Nutrition class\"\n)",
+    "crumbs": [
+      "B DATA 200",
+      "Wrangling",
+      "Joins & Relational Data"
+    ]
+  },
+  {
+    "objectID": "bdata200/joins.html#keys",
+    "href": "bdata200/joins.html#keys",
+    "title": "Joins & Relational Data",
+    "section": "",
+    "text": "Key\nMeaning\nExample here\n\n\n\n\nPrimary key\nUniquely identifies each row; never repeated, never NA\ncounty_id in counties\n\n\nForeign key\nPoints to a key in another table; may repeat\ncounty_id in programs\n\n\nDuplicate key\nA key value in several rows: fine for a foreign key, a data problem for a primary key\n101 appears twice in programs\n\n\nSurrogate key\nAn ID made up just to identify records\nprogram_id (\"P01\")\n\n\nNatural key\nA meaningful attribute that already identifies the thing\nA state + county FIPS code\n\n\n\nCheck that a primary key really is unique. Both of these should return zero rows:\n\ncounties |&gt; count(county_id) |&gt; filter(n &gt; 1)\n\n# A tibble: 0 × 2\n# ℹ 2 variables: county_id &lt;dbl&gt;, n &lt;int&gt;\n\ncounties |&gt; filter(is.na(county_id))\n\n# A tibble: 0 × 3\n# ℹ 3 variables: county_id &lt;dbl&gt;, county &lt;chr&gt;, population &lt;dbl&gt;\n\n\n!! “Unique in this file” doesn’t make it a good key. county names happen to be unique here, but county names repeat across states.\n\n\n\n\n\n\n\n\n\n\nRelationship\nMeaning\nExample\n\n\n\n\nOne-to-one\nEach row matches at most one row on the other side\nCounty → one population value\n\n\nOne-to-many\nOne row can match several rows\nCounty → its programs\n\n\nMany-to-many\nRows on both sides can match several rows\nStudents ↔︎ courses\n\n\n\nA one-to-many join adds rows: Alder appears twice after joining programs because it has two programs. State what you expect so dplyr can warn you:\n\ncounties |&gt;\n  left_join(programs, by = \"county_id\", relationship = \"one-to-many\")\n\n# A tibble: 6 × 5\n  county_id county  population program_id program        \n      &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;          \n1       101 Alder        10000 P01        Walking group  \n2       101 Alder        10000 P02        Nutrition class\n3       102 Birch        20000 &lt;NA&gt;       &lt;NA&gt;           \n4       103 Cedar        15000 P03        Walking group  \n5       104 Dogwood       8000 P04        Nutrition class\n6       104 Dogwood       8000 P05        Nutrition class",
+    "crumbs": [
+      "B DATA 200",
+      "Wrangling",
+      "Joins & Relational Data"
+    ]
+  },
+  {
+    "objectID": "bdata200/joins.html#mutating-joins-add-columns",
+    "href": "bdata200/joins.html#mutating-joins-add-columns",
+    "title": "Joins & Relational Data",
+    "section": "",
+    "text": "Prediction first: joining health to counties with a left join should keep all four counties, and Dogwood (104) should get NAs because it has no health row.\n\ncounties |&gt;\n  left_join(health, by = \"county_id\")\n\n# A tibble: 4 × 5\n  county_id county  population measure  estimate\n      &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt;\n1       101 Alder        10000 Diabetes     10.2\n2       102 Birch        20000 Diabetes     12.5\n3       103 Cedar        15000 Diabetes      9.8\n4       104 Dogwood       8000 &lt;NA&gt;         NA  \n\n\n\n!! Dogwood’s NA means no estimate, not a diabetes rate of zero\nCounty 105 is dropped because the join starts from counties\n\n\n# inner join: only Alder, Birch and Cedar have rows in both tables\ncounties |&gt;\n  inner_join(health, by = \"county_id\")\n\n# A tibble: 3 × 5\n  county_id county population measure  estimate\n      &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt;\n1       101 Alder       10000 Diabetes     10.2\n2       102 Birch       20000 Diabetes     12.5\n3       103 Cedar       15000 Diabetes      9.8\n\n\n\n!! An inner join silently drops unmatched rows. An average after an inner join describes only the matched counties.\n\n\n# full join: everything from both sides, NAs wherever there's no match\ncounties |&gt;\n  full_join(health, by = \"county_id\")\n\n# A tibble: 5 × 5\n  county_id county  population measure  estimate\n      &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt;\n1       101 Alder        10000 Diabetes     10.2\n2       102 Birch        20000 Diabetes     12.5\n3       103 Cedar        15000 Diabetes      9.8\n4       104 Dogwood       8000 &lt;NA&gt;         NA  \n5       105 &lt;NA&gt;            NA Diabetes     14.1",
+    "crumbs": [
+      "B DATA 200",
+      "Wrangling",
+      "Joins & Relational Data"
+    ]
+  },
+  {
+    "objectID": "bdata200/joins.html#filtering-joins-keep-or-drop-rows-no-new-columns",
+    "href": "bdata200/joins.html#filtering-joins-keep-or-drop-rows-no-new-columns",
+    "title": "Joins & Relational Data",
+    "section": "",
+    "text": "# Which counties HAVE a health estimate?\ncounties |&gt; semi_join(health, by = \"county_id\")\n\n# A tibble: 3 × 3\n  county_id county population\n      &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt;\n1       101 Alder       10000\n2       102 Birch       20000\n3       103 Cedar       15000\n\n# Which counties are MISSING a health estimate?\ncounties |&gt; anti_join(health, by = \"county_id\")\n\n# A tibble: 1 × 3\n  county_id county  population\n      &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt;\n1       104 Dogwood       8000\n\n# Which health rows point to a county we don't have?\nhealth |&gt; anti_join(counties, by = \"county_id\")\n\n# A tibble: 1 × 3\n  county_id measure  estimate\n      &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt;\n1       105 Diabetes     14.1\n\n\nThe two anti joins answer different questions, so the order of x and y matters.",
+    "crumbs": [
+      "B DATA 200",
+      "Wrangling",
+      "Joins & Relational Data"
+    ]
+  },
+  {
+    "objectID": "bdata200/joins.html#set-operations-compare-whole-rows",
+    "href": "bdata200/joins.html#set-operations-compare-whole-rows",
+    "title": "Joins & Relational Data",
+    "section": "",
+    "text": "Set operations need tables with the same columns and compare entire rows, not a chosen key.\n\nfall &lt;- tribble(\n  ~student_id, ~course,\n  1, \"Data 200\",\n  2, \"Data 200\",\n  3, \"Data 232\"\n)\nspring &lt;- tribble(\n  ~student_id, ~course,\n  2, \"Data 200\",\n  3, \"Data 232\",\n  4, \"Data 200\"\n)\n\nintersect(fall, spring)  # identical rows in both terms\n\n# A tibble: 2 × 2\n  student_id course  \n       &lt;dbl&gt; &lt;chr&gt;   \n1          2 Data 200\n2          3 Data 232\n\nunion(fall, spring)      # every distinct row, once\n\n# A tibble: 4 × 2\n  student_id course  \n       &lt;dbl&gt; &lt;chr&gt;   \n1          1 Data 200\n2          2 Data 200\n3          3 Data 232\n4          4 Data 200\n\nsetdiff(spring, fall)    # rows new in spring\n\n# A tibble: 1 × 2\n  student_id course  \n       &lt;dbl&gt; &lt;chr&gt;   \n1          4 Data 200\n\n\n!! intersect() finds identical student-and-course rows. To find students enrolled in both terms regardless of course, compare just the key: fall |&gt; semi_join(spring, by = \"student_id\").",
+    "crumbs": [
+      "B DATA 200",
+      "Wrangling",
+      "Joins & Relational Data"
+    ]
+  },
+  {
+    "objectID": "bdata200/joins.html#checking-a-join",
+    "href": "bdata200/joins.html#checking-a-join",
+    "title": "Joins & Relational Data",
+    "section": "",
+    "text": "A join isn’t correct just because the row count looks right. Check:\n\nMeaning: do the key columns identify the same thing in both tables?\nUniqueness: does each key have the expected number of rows?\nUnmatched records: what does anti_join() turn up?\nRow count and row meaning: what does one output row represent now?\nSpot check: look up a few records by hand",
+    "crumbs": [
+      "B DATA 200",
+      "Wrangling",
+      "Joins & Relational Data"
+    ]
+  },
+  {
+    "objectID": "bdata200/groups.html",
+    "href": "bdata200/groups.html",
+    "title": "Groups & Summaries",
+    "section": "",
+    "text": "Use Case\nFunction\nExample\n\n\n\n\nSplit the data into groups\ngroup_by()\nmpg |&gt; group_by(class)\n\n\nCollapse each group to one row of results\nsummarize()\nsummarize(avg_hwy = mean(hwy))\n\n\nCount rows per group\nn()\nsummarize(n = n())\n\n\nCount rows per group (shortcut)\ncount() / tally()\nmpg |&gt; count(class, sort = TRUE)\n\n\nFind the center\nmean() / median()\nsummarize(mean_hwy = mean(hwy))\n\n\nFind the spread\nsd() / IQR()\nsummarize(sd_hwy = sd(hwy), iqr_hwy = IQR(hwy))\n\n\nFind the extremes\nmin() / max()\nsummarize(min_hwy = min(hwy), max_hwy = max(hwy))\n\n\nFind a percentile\nquantile()\nquantile(hwy, 0.25)\n\n\nIgnore missing values\nna.rm = TRUE\nmean(dep_delay, na.rm = TRUE)\n\n\nGet the first or last value\nfirst() / last()\nsummarize(first_model = first(model))\n\n\nGroup by more than one variable\ngroup_by(a, b)\ngroup_by(year, month, day)\n\n\nRemove the grouping\nungroup()\n... |&gt; ungroup()\n\n\n\nA full group-and-summarize pipeline:\n\nmpg |&gt;\n  group_by(class) |&gt;\n  summarize(\n    avg_hwy = mean(hwy),\n    median_hwy = median(hwy),\n    n = n()\n  ) |&gt;\n  arrange(desc(avg_hwy))\n\n# A tibble: 7 × 4\n  class      avg_hwy median_hwy     n\n  &lt;chr&gt;        &lt;dbl&gt;      &lt;dbl&gt; &lt;int&gt;\n1 compact       28.3       27      47\n2 subcompact    28.1       26      35\n3 midsize       27.3       27      41\n4 2seater       24.8       25       5\n5 minivan       22.4       23      11\n6 suv           18.1       17.5    62\n7 pickup        16.9       17      33\n\n\n\n\n\nAll three count rows:\n\ncount() groups and counts in one step\n\nAdd sort = TRUE to sort greatest to least\n\ntally() counts rows in data that is already grouped with group_by()\nn() only works inside summarize() or mutate(), so it can sit next to other summaries\n\n\nmpg |&gt; count(drv)\n\n# A tibble: 3 × 2\n  drv       n\n  &lt;chr&gt; &lt;int&gt;\n1 4       103\n2 f       106\n3 r        25\n\n# use group_by() before tally()\nmpg |&gt;\n  group_by(drv) |&gt;\n  tally()\n\n# A tibble: 3 × 2\n  drv       n\n  &lt;chr&gt; &lt;int&gt;\n1 4       103\n2 f       106\n3 r        25\n\n# use n() inside summarize(), alongside other summaries\nmpg |&gt;\n  group_by(drv) |&gt;\n  summarize(\n    n_cars = n(),\n    avg_hwy = mean(hwy)\n  )\n\n# A tibble: 3 × 3\n  drv   n_cars avg_hwy\n  &lt;chr&gt;  &lt;int&gt;   &lt;dbl&gt;\n1 4        103    19.2\n2 f        106    28.2\n3 r         25    21  \n\n\n\n\n\nQuestion: Which NYC airport has the longest average departure delay?\nPseudocode: group flights by origin airport → average the departure delay in each group (skip NAs for cancelled flights) → count flights per group for context → sort, biggest first.\n\nflights |&gt;\n  group_by(origin) |&gt;\n  summarize(\n    avg_dep_delay = mean(dep_delay, na.rm = TRUE),\n    n_flights = n()\n  ) |&gt;\n  arrange(desc(avg_dep_delay))\n\n# A tibble: 3 × 3\n  origin avg_dep_delay n_flights\n  &lt;chr&gt;          &lt;dbl&gt;     &lt;int&gt;\n1 EWR             15.1    120835\n2 JFK             12.1    111279\n3 LGA             10.3    104662\n\n\nAnswer: Newark (EWR) has the longest average departure delay at 15.1 minutes, followed by JFK (12.1) and LaGuardia (10.3).",
+    "crumbs": [
+      "B DATA 200",
+      "Wrangling",
+      "Groups & Summaries"
+    ]
+  },
+  {
+    "objectID": "bdata200/groups.html#quick-reference",
+    "href": "bdata200/groups.html#quick-reference",
+    "title": "Groups & Summaries",
+    "section": "",
+    "text": "Use Case\nFunction\nExample\n\n\n\n\nSplit the data into groups\ngroup_by()\nmpg |&gt; group_by(class)\n\n\nCollapse each group to one row of results\nsummarize()\nsummarize(avg_hwy = mean(hwy))\n\n\nCount rows per group\nn()\nsummarize(n = n())\n\n\nCount rows per group (shortcut)\ncount() / tally()\nmpg |&gt; count(class, sort = TRUE)\n\n\nFind the center\nmean() / median()\nsummarize(mean_hwy = mean(hwy))\n\n\nFind the spread\nsd() / IQR()\nsummarize(sd_hwy = sd(hwy), iqr_hwy = IQR(hwy))\n\n\nFind the extremes\nmin() / max()\nsummarize(min_hwy = min(hwy), max_hwy = max(hwy))\n\n\nFind a percentile\nquantile()\nquantile(hwy, 0.25)\n\n\nIgnore missing values\nna.rm = TRUE\nmean(dep_delay, na.rm = TRUE)\n\n\nGet the first or last value\nfirst() / last()\nsummarize(first_model = first(model))\n\n\nGroup by more than one variable\ngroup_by(a, b)\ngroup_by(year, month, day)\n\n\nRemove the grouping\nungroup()\n... |&gt; ungroup()\n\n\n\nA full group-and-summarize pipeline:\n\nmpg |&gt;\n  group_by(class) |&gt;\n  summarize(\n    avg_hwy = mean(hwy),\n    median_hwy = median(hwy),\n    n = n()\n  ) |&gt;\n  arrange(desc(avg_hwy))\n\n# A tibble: 7 × 4\n  class      avg_hwy median_hwy     n\n  &lt;chr&gt;        &lt;dbl&gt;      &lt;dbl&gt; &lt;int&gt;\n1 compact       28.3       27      47\n2 subcompact    28.1       26      35\n3 midsize       27.3       27      41\n4 2seater       24.8       25       5\n5 minivan       22.4       23      11\n6 suv           18.1       17.5    62\n7 pickup        16.9       17      33",
+    "crumbs": [
+      "B DATA 200",
+      "Wrangling",
+      "Groups & Summaries"
+    ]
+  },
+  {
+    "objectID": "bdata200/groups.html#counting-count-versus-tally-versus-n",
+    "href": "bdata200/groups.html#counting-count-versus-tally-versus-n",
+    "title": "Groups & Summaries",
+    "section": "",
+    "text": "All three count rows:\n\ncount() groups and counts in one step\n\nAdd sort = TRUE to sort greatest to least\n\ntally() counts rows in data that is already grouped with group_by()\nn() only works inside summarize() or mutate(), so it can sit next to other summaries\n\n\nmpg |&gt; count(drv)\n\n# A tibble: 3 × 2\n  drv       n\n  &lt;chr&gt; &lt;int&gt;\n1 4       103\n2 f       106\n3 r        25\n\n# use group_by() before tally()\nmpg |&gt;\n  group_by(drv) |&gt;\n  tally()\n\n# A tibble: 3 × 2\n  drv       n\n  &lt;chr&gt; &lt;int&gt;\n1 4       103\n2 f       106\n3 r        25\n\n# use n() inside summarize(), alongside other summaries\nmpg |&gt;\n  group_by(drv) |&gt;\n  summarize(\n    n_cars = n(),\n    avg_hwy = mean(hwy)\n  )\n\n# A tibble: 3 × 3\n  drv   n_cars avg_hwy\n  &lt;chr&gt;  &lt;int&gt;   &lt;dbl&gt;\n1 4        103    19.2\n2 f        106    28.2\n3 r         25    21",
+    "crumbs": [
+      "B DATA 200",
+      "Wrangling",
+      "Groups & Summaries"
+    ]
+  },
+  {
+    "objectID": "bdata200/groups.html#worked-example-most-delayed-departures-by-nyc-airport",
+    "href": "bdata200/groups.html#worked-example-most-delayed-departures-by-nyc-airport",
+    "title": "Groups & Summaries",
+    "section": "",
+    "text": "Question: Which NYC airport has the longest average departure delay?\nPseudocode: group flights by origin airport → average the departure delay in each group (skip NAs for cancelled flights) → count flights per group for context → sort, biggest first.\n\nflights |&gt;\n  group_by(origin) |&gt;\n  summarize(\n    avg_dep_delay = mean(dep_delay, na.rm = TRUE),\n    n_flights = n()\n  ) |&gt;\n  arrange(desc(avg_dep_delay))\n\n# A tibble: 3 × 3\n  origin avg_dep_delay n_flights\n  &lt;chr&gt;          &lt;dbl&gt;     &lt;int&gt;\n1 EWR             15.1    120835\n2 JFK             12.1    111279\n3 LGA             10.3    104662\n\n\nAnswer: Newark (EWR) has the longest average departure delay at 15.1 minutes, followed by JFK (12.1) and LaGuardia (10.3).",
+    "crumbs": [
+      "B DATA 200",
+      "Wrangling",
+      "Groups & Summaries"
+    ]
+  },
+  {
+    "objectID": "bdata200/plots.html",
+    "href": "bdata200/plots.html",
+    "title": "Plots with ggplot2",
+    "section": "",
+    "text": "Every plot starts with the same structure:\nggplot(data, aes(x = ..., y = ...)) +\n  geom_*()\n\naes() maps columns to things you can see (x, y, color, fill, size)\nEach layer is added with a + at the end of the line\nPick the geom by the types of variables (more in Choosing a Plot)\n\n\n\n\n\n\n\n\n\n\n\nUse Case\nFunction\nVariables\n\n\n\n\nHistogram: distribution of one number\ngeom_histogram()\n1 numerical\n\n\nBoxplot: spread and outliers\ngeom_boxplot()\n1 numerical (+ 1 categorical)\n\n\nBar graph: count each category\ngeom_bar()\n1 categorical\n\n\nScatterplot: relationship between two numbers\ngeom_point()\n2 numerical\n\n\nJittered points: overlapping points spread out\ngeom_jitter()\n2 numerical or 1 cat. + 1 num.\n\n\nCount plot: point size = number of overlaps\ngeom_count()\n2 discrete (e.g. ratings 1–5)\n\n\nTrend line through a scatterplot\ngeom_smooth()\n2 numerical\n\n\nReference line at a value\ngeom_vline() / geom_hline()\nany\n\n\nSmall multiples: one panel per group\nfacet_wrap(~ group)\nany + 1 categorical\n\n\n\n\n\n# Histogram: play around with binwidth\nggplot(mpg, aes(x = hwy)) +\n  geom_histogram(binwidth = 3)\n# Boxplot of one variable\nggplot(mpg, aes(x = hwy)) +\n  geom_boxplot()\n# Bar graph: counts each category for you\nggplot(mpg, aes(x = class)) +\n  geom_bar()\n# Boxplot comparing a number across categories\nggplot(mpg, aes(x = class, y = hwy)) +\n  geom_boxplot() +\n  coord_flip() # flip so long category names don't overlap\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nFrom the Day 5 EDA activity\n\nggplot(mpg, aes(x = displ, y = hwy)) +\n  geom_point(alpha = 0.6) +\n  geom_smooth(method = \"lm\", formula = y ~ x, se = FALSE, color = \"blue\") +\n  geom_smooth(method = \"loess\", formula = y ~ x, se = FALSE, color = \"red\") +\n  labs(subtitle = \"Blue: straight line (lm). Red: LOESS curve\")\n\n\n\n\n\n\n\n\n\n\n\nArgument\nWhat it does\n\n\n\n\nmethod = \"lm\"\nStraight line of best fit (a linear model, see Models)\n\n\nmethod = \"loess\"\nFlexible curve that follows the local pattern (the default for small data)\n\n\nse = FALSE\nRemoves the gray confidence band around the line\n\n\nformula = y ~ x\nSpells out the formula and silences the “using formula” message\n\n\n\n\n!! If the straight line and the curve disagree (like above for big engines), a single straight line is a poor summary\nstat_smooth() does the same thing as geom_smooth()\n\n\n\n\nFrom the Day 8 activity. When values are whole numbers (ratings 1–5), hundreds of points land on the same spot and the plot hides how many there are.\nggplot(mpg, aes(x = cyl, y = hwy)) +\n  geom_jitter(width = 0.15, height = 0, alpha = 0.4) +\n  labs(title = \"geom_jitter() + alpha\")\nggplot(mpg, aes(x = cyl, y = hwy)) +\n  geom_count() +\n  labs(title = \"geom_count()\")\n\n\n\n\n\n\n\n\n\n\n\ngeom_jitter(width =, height =) nudges each point a little at random so stacks spread out\n\n!! Jitter only changes where points are drawn, not the data. Set height = 0 when the y values must stay exact\n\nalpha = 0.4 makes points see-through: darker spots = more points\ngeom_count() keeps points in place and sizes them by count. Downside: people judge areas poorly\n\n\n\n\nFrom HW1\n\nggplot(mpg, aes(x = displ, y = hwy)) +\n  geom_point() +\n  geom_vline(xintercept = mean(mpg$displ), linetype = \"dashed\") +\n  geom_hline(yintercept = mean(mpg$hwy), linetype = \"dashed\") +\n  scale_y_continuous(limits = c(0, 50))\n\n\n\n\n\n\n\n\n\ngeom_vline(xintercept =) draws a vertical line; geom_hline(yintercept =) draws a horizontal one\nmpg$hwy pulls one column out of a data frame as a vector (needed here because the line isn’t inside aes())\nscale_y_continuous(limits = c(0, 50)) sets the axis range. Starting at 0 avoids exaggerating differences\n\n\n\n\n\n\n\n\n\n\n\n\nUse Case\nFunction\nExample\n\n\n\n\nAdd a title, subtitle and axis labels\nlabs()\nsee the chunk below\n\n\nRename the legend\nlabs(fill = ) / labs(color = )\nlabs(fill = \"Fare Class\")\n\n\nColor by a variable\naes(color = ) / aes(fill = )\naes(x = displ, y = hwy, color = class)\n\n\nChoose a color for each category (bars)\nscale_fill_manual()\nsee the chunk below\n\n\nChoose a color for each category (points, lines)\nscale_color_manual()\nsee the chunk below\n\n\nList R’s color names\ncolors()\nRun in the Console; hex codes work too: \"#4682B4\"\n\n\nChange the overall look\ntheme_*()\ntheme_minimal(), theme_bw(), theme_classic()\n\n\nSave a plot as an object\n&lt;-\nmy_plot &lt;- ggplot(mpg, aes(x = class)) + geom_bar()\n\n\nExport a plot as an image file\nggsave()\nggsave(\"mpg-plot.png\", plot = my_plot)\n\n\n\n\nggplot(mpg, aes(x = displ, y = hwy, color = drv)) +\n  geom_point() +\n  scale_color_manual(\n    values = c(\"4\" = \"steelblue\", \"f\" = \"tomato\", \"r\" = \"gray40\")\n  ) +\n  labs(\n    title = \"Engine size and fuel economy\",\n    x = \"Displacement (L)\",\n    y = \"Highway mpg\",\n    color = \"Drive train\"\n  ) +\n  theme_minimal()\n\n\n\n\n\n\n\n\nscale_fill_manual() works the same way for bars (from the Titanic activity):\nscale_fill_manual(values = c(\"First\" = \"cornflowerblue\",\n                             \"Second\" = \"mediumvioletred\",\n                             \"Third\" = \"darkgoldenrod1\"))",
+    "crumbs": [
+      "B DATA 200",
+      "Visualizing & Modeling",
+      "Plots with ggplot2"
+    ]
+  },
+  {
+    "objectID": "bdata200/plots.html#quick-reference-geoms",
+    "href": "bdata200/plots.html#quick-reference-geoms",
+    "title": "Plots with ggplot2",
+    "section": "",
+    "text": "Use Case\nFunction\nVariables\n\n\n\n\nHistogram: distribution of one number\ngeom_histogram()\n1 numerical\n\n\nBoxplot: spread and outliers\ngeom_boxplot()\n1 numerical (+ 1 categorical)\n\n\nBar graph: count each category\ngeom_bar()\n1 categorical\n\n\nScatterplot: relationship between two numbers\ngeom_point()\n2 numerical\n\n\nJittered points: overlapping points spread out\ngeom_jitter()\n2 numerical or 1 cat. + 1 num.\n\n\nCount plot: point size = number of overlaps\ngeom_count()\n2 discrete (e.g. ratings 1–5)\n\n\nTrend line through a scatterplot\ngeom_smooth()\n2 numerical\n\n\nReference line at a value\ngeom_vline() / geom_hline()\nany\n\n\nSmall multiples: one panel per group\nfacet_wrap(~ group)\nany + 1 categorical\n\n\n\n\n\n# Histogram: play around with binwidth\nggplot(mpg, aes(x = hwy)) +\n  geom_histogram(binwidth = 3)\n# Boxplot of one variable\nggplot(mpg, aes(x = hwy)) +\n  geom_boxplot()\n# Bar graph: counts each category for you\nggplot(mpg, aes(x = class)) +\n  geom_bar()\n# Boxplot comparing a number across categories\nggplot(mpg, aes(x = class, y = hwy)) +\n  geom_boxplot() +\n  coord_flip() # flip so long category names don't overlap",
+    "crumbs": [
+      "B DATA 200",
+      "Visualizing & Modeling",
+      "Plots with ggplot2"
+    ]
+  },
+  {
+    "objectID": "bdata200/plots.html#trend-lines",
+    "href": "bdata200/plots.html#trend-lines",
+    "title": "Plots with ggplot2",
+    "section": "",
+    "text": "From the Day 5 EDA activity\n\nggplot(mpg, aes(x = displ, y = hwy)) +\n  geom_point(alpha = 0.6) +\n  geom_smooth(method = \"lm\", formula = y ~ x, se = FALSE, color = \"blue\") +\n  geom_smooth(method = \"loess\", formula = y ~ x, se = FALSE, color = \"red\") +\n  labs(subtitle = \"Blue: straight line (lm). Red: LOESS curve\")\n\n\n\n\n\n\n\n\n\n\n\nArgument\nWhat it does\n\n\n\n\nmethod = \"lm\"\nStraight line of best fit (a linear model, see Models)\n\n\nmethod = \"loess\"\nFlexible curve that follows the local pattern (the default for small data)\n\n\nse = FALSE\nRemoves the gray confidence band around the line\n\n\nformula = y ~ x\nSpells out the formula and silences the “using formula” message\n\n\n\n\n!! If the straight line and the curve disagree (like above for big engines), a single straight line is a poor summary\nstat_smooth() does the same thing as geom_smooth()",
+    "crumbs": [
+      "B DATA 200",
+      "Visualizing & Modeling",
+      "Plots with ggplot2"
+    ]
+  },
+  {
+    "objectID": "bdata200/plots.html#overplotting-jitter-transparency-count",
+    "href": "bdata200/plots.html#overplotting-jitter-transparency-count",
+    "title": "Plots with ggplot2",
+    "section": "",
+    "text": "From the Day 8 activity. When values are whole numbers (ratings 1–5), hundreds of points land on the same spot and the plot hides how many there are.\nggplot(mpg, aes(x = cyl, y = hwy)) +\n  geom_jitter(width = 0.15, height = 0, alpha = 0.4) +\n  labs(title = \"geom_jitter() + alpha\")\nggplot(mpg, aes(x = cyl, y = hwy)) +\n  geom_count() +\n  labs(title = \"geom_count()\")\n\n\n\n\n\n\n\n\n\n\n\ngeom_jitter(width =, height =) nudges each point a little at random so stacks spread out\n\n!! Jitter only changes where points are drawn, not the data. Set height = 0 when the y values must stay exact\n\nalpha = 0.4 makes points see-through: darker spots = more points\ngeom_count() keeps points in place and sizes them by count. Downside: people judge areas poorly",
+    "crumbs": [
+      "B DATA 200",
+      "Visualizing & Modeling",
+      "Plots with ggplot2"
+    ]
+  },
+  {
+    "objectID": "bdata200/plots.html#reference-lines-and-axis-limits",
+    "href": "bdata200/plots.html#reference-lines-and-axis-limits",
+    "title": "Plots with ggplot2",
+    "section": "",
+    "text": "From HW1\n\nggplot(mpg, aes(x = displ, y = hwy)) +\n  geom_point() +\n  geom_vline(xintercept = mean(mpg$displ), linetype = \"dashed\") +\n  geom_hline(yintercept = mean(mpg$hwy), linetype = \"dashed\") +\n  scale_y_continuous(limits = c(0, 50))\n\n\n\n\n\n\n\n\n\ngeom_vline(xintercept =) draws a vertical line; geom_hline(yintercept =) draws a horizontal one\nmpg$hwy pulls one column out of a data frame as a vector (needed here because the line isn’t inside aes())\nscale_y_continuous(limits = c(0, 50)) sets the axis range. Starting at 0 avoids exaggerating differences",
+    "crumbs": [
+      "B DATA 200",
+      "Visualizing & Modeling",
+      "Plots with ggplot2"
+    ]
+  },
+  {
+    "objectID": "bdata200/plots.html#quick-reference-plot-styling",
+    "href": "bdata200/plots.html#quick-reference-plot-styling",
+    "title": "Plots with ggplot2",
+    "section": "",
+    "text": "Use Case\nFunction\nExample\n\n\n\n\nAdd a title, subtitle and axis labels\nlabs()\nsee the chunk below\n\n\nRename the legend\nlabs(fill = ) / labs(color = )\nlabs(fill = \"Fare Class\")\n\n\nColor by a variable\naes(color = ) / aes(fill = )\naes(x = displ, y = hwy, color = class)\n\n\nChoose a color for each category (bars)\nscale_fill_manual()\nsee the chunk below\n\n\nChoose a color for each category (points, lines)\nscale_color_manual()\nsee the chunk below\n\n\nList R’s color names\ncolors()\nRun in the Console; hex codes work too: \"#4682B4\"\n\n\nChange the overall look\ntheme_*()\ntheme_minimal(), theme_bw(), theme_classic()\n\n\nSave a plot as an object\n&lt;-\nmy_plot &lt;- ggplot(mpg, aes(x = class)) + geom_bar()\n\n\nExport a plot as an image file\nggsave()\nggsave(\"mpg-plot.png\", plot = my_plot)\n\n\n\n\nggplot(mpg, aes(x = displ, y = hwy, color = drv)) +\n  geom_point() +\n  scale_color_manual(\n    values = c(\"4\" = \"steelblue\", \"f\" = \"tomato\", \"r\" = \"gray40\")\n  ) +\n  labs(\n    title = \"Engine size and fuel economy\",\n    x = \"Displacement (L)\",\n    y = \"Highway mpg\",\n    color = \"Drive train\"\n  ) +\n  theme_minimal()\n\n\n\n\n\n\n\n\nscale_fill_manual() works the same way for bars (from the Titanic activity):\nscale_fill_manual(values = c(\"First\" = \"cornflowerblue\",\n                             \"Second\" = \"mediumvioletred\",\n                             \"Third\" = \"darkgoldenrod1\"))",
+    "crumbs": [
+      "B DATA 200",
+      "Visualizing & Modeling",
+      "Plots with ggplot2"
+    ]
+  },
+  {
+    "objectID": "bdata200/eda.html",
+    "href": "bdata200/eda.html",
+    "title": "Exploratory Data Analysis",
+    "section": "",
+    "text": "From the R4DS Ch. 10 reading and the 10/14 in-class activity (Day 5), using mpg\nEDA means looking at the data before building a model. Five questions to work through:\n\n\n\n\n\n\n\n\nIdea\nQuestion\nGo-to tools\n\n\n\n\nVariation\nHow much do values differ from case to case?\ngeom_histogram(), sd(), IQR()\n\n\nTypical values\nWhat’s a reasonable summary of the “middle”?\nmean(), median(), summary()\n\n\nUnusual values\nWhich cases stand out? Errors, rare cases, or informative?\ngeom_boxplot(), 1.5 × IQR rule\n\n\nCovariation\nHow do two variables change together?\ngeom_point(), boxplots by group, color =\n\n\nPatterns & models\nIs the trend linear, curved, clustered?\ngeom_smooth()\n\n\n\n\n\n\nggplot(mpg, aes(x = hwy)) +\n  geom_histogram(binwidth = 3, color = \"white\") +\n  labs(x = \"Highway mpg\", y = \"Number of cars\")\n\n\n\n\n\n\n\n\nWhen describing a distribution, cover:\n\nCenter: where most values sit (here, two bumps around 17–20 and 26–27 mpg)\nShape: symmetric or skewed? One peak or several? (here: two peaks, slight right skew)\nSpread: how far apart values are\nUnusual values: anything far from the rest (a couple of cars above 40 mpg)\n\n\nmpg |&gt;\n  summarize(\n    mean_hwy = mean(hwy),\n    median_hwy = median(hwy),\n    sd_hwy = sd(hwy),\n    iqr_hwy = IQR(hwy)\n  )\n\n# A tibble: 1 × 4\n  mean_hwy median_hwy sd_hwy iqr_hwy\n     &lt;dbl&gt;      &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;\n1     23.4         24   5.95       9\n\n\n\n\n\n\n\n\n\n\n\n\n\nMeasure\nWhat it is\nAffected by outliers?\nUse when…\n\n\n\n\nMean\nAverage of all values\nYes, pulled toward them\nData is roughly symmetric\n\n\nMedian\nMiddle value (50th percentile)\nNo (resistant)\nData is skewed or has outliers\n\n\nStandard deviation\nTypical distance of values from the mean\nYes\nPaired with the mean\n\n\nIQR\nQ3 (75th pct.) − Q1 (25th pct.): the spread of the middle 50%\nNo (resistant)\nPaired with the median\n\n\n\n\n!! Mean far from median is a clue the data is skewed: the mean gets dragged toward the long tail\nSame median, different IQR = same center, different spread\n\n\n\n\n\nA boxplot flags a point as an outlier if it’s more than 1.5 × IQR beyond the box (below Q1 or above Q3).\n\nmpg |&gt;\n  mutate(\n    lower_limit = quantile(hwy, 0.25) - 1.5 * IQR(hwy),\n    upper_limit = quantile(hwy, 0.75) + 1.5 * IQR(hwy)\n  ) |&gt;\n  filter(hwy &lt; lower_limit | hwy &gt; upper_limit) |&gt;\n  select(manufacturer, model, class, hwy)\n\n# A tibble: 3 × 4\n  manufacturer model      class        hwy\n  &lt;chr&gt;        &lt;chr&gt;      &lt;chr&gt;      &lt;int&gt;\n1 volkswagen   jetta      compact       44\n2 volkswagen   new beetle subcompact    44\n3 volkswagen   new beetle subcompact    41\n\n\n\nThree cars are outliers, but the boxplot only shows two dots: two of them have the same hwy value, so their points overlap\nBefore removing an outlier, ask: is it a data entry error, or a real (rare) case? What do the outliers have in common?\n!! “Outlier” depends on the comparison group. Split mpg by class and new outliers appear within each class.\n\n\n\n\nOne numerical + one categorical: compare distributions across groups.\n\nggplot(mpg, aes(x = class, y = hwy)) +\n  geom_boxplot() +\n  coord_flip()\n\n\n\n\n\n\n\n\nTwo numerical: scatterplot. Describe the relationship with four words:\n\nDirection: positive or negative?\nForm: linear or curved?\nStrength: weak, moderate, or strong?\nExceptions: which points don’t follow the pattern?\n\n\nggplot(mpg, aes(x = displ, y = hwy, color = class)) +\n  geom_point()\n\n\n\n\n\n\n\n\nBigger engines get worse highway mileage (negative, slightly curved, moderately strong). Coloring by class explains many exceptions: the 2-seaters have big engines but better mileage than SUVs and pickups with similar engines.\n\n\n\nAdding a trend line helps judge form. See Trend Lines for a straight line vs. a LOESS curve on this same plot. If the two disagree, a single straight line hides a real pattern.",
+    "crumbs": [
+      "B DATA 200",
+      "Visualizing & Modeling",
+      "Exploratory Data Analysis"
+    ]
+  },
+  {
+    "objectID": "bdata200/eda.html#variation-and-typical-values",
+    "href": "bdata200/eda.html#variation-and-typical-values",
+    "title": "Exploratory Data Analysis",
+    "section": "",
+    "text": "ggplot(mpg, aes(x = hwy)) +\n  geom_histogram(binwidth = 3, color = \"white\") +\n  labs(x = \"Highway mpg\", y = \"Number of cars\")\n\n\n\n\n\n\n\n\nWhen describing a distribution, cover:\n\nCenter: where most values sit (here, two bumps around 17–20 and 26–27 mpg)\nShape: symmetric or skewed? One peak or several? (here: two peaks, slight right skew)\nSpread: how far apart values are\nUnusual values: anything far from the rest (a couple of cars above 40 mpg)\n\n\nmpg |&gt;\n  summarize(\n    mean_hwy = mean(hwy),\n    median_hwy = median(hwy),\n    sd_hwy = sd(hwy),\n    iqr_hwy = IQR(hwy)\n  )\n\n# A tibble: 1 × 4\n  mean_hwy median_hwy sd_hwy iqr_hwy\n     &lt;dbl&gt;      &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;\n1     23.4         24   5.95       9\n\n\n\n\n\n\n\n\n\n\n\n\n\nMeasure\nWhat it is\nAffected by outliers?\nUse when…\n\n\n\n\nMean\nAverage of all values\nYes, pulled toward them\nData is roughly symmetric\n\n\nMedian\nMiddle value (50th percentile)\nNo (resistant)\nData is skewed or has outliers\n\n\nStandard deviation\nTypical distance of values from the mean\nYes\nPaired with the mean\n\n\nIQR\nQ3 (75th pct.) − Q1 (25th pct.): the spread of the middle 50%\nNo (resistant)\nPaired with the median\n\n\n\n\n!! Mean far from median is a clue the data is skewed: the mean gets dragged toward the long tail\nSame median, different IQR = same center, different spread",
+    "crumbs": [
+      "B DATA 200",
+      "Visualizing & Modeling",
+      "Exploratory Data Analysis"
+    ]
+  },
+  {
+    "objectID": "bdata200/eda.html#unusual-values",
+    "href": "bdata200/eda.html#unusual-values",
+    "title": "Exploratory Data Analysis",
+    "section": "",
+    "text": "A boxplot flags a point as an outlier if it’s more than 1.5 × IQR beyond the box (below Q1 or above Q3).\n\nmpg |&gt;\n  mutate(\n    lower_limit = quantile(hwy, 0.25) - 1.5 * IQR(hwy),\n    upper_limit = quantile(hwy, 0.75) + 1.5 * IQR(hwy)\n  ) |&gt;\n  filter(hwy &lt; lower_limit | hwy &gt; upper_limit) |&gt;\n  select(manufacturer, model, class, hwy)\n\n# A tibble: 3 × 4\n  manufacturer model      class        hwy\n  &lt;chr&gt;        &lt;chr&gt;      &lt;chr&gt;      &lt;int&gt;\n1 volkswagen   jetta      compact       44\n2 volkswagen   new beetle subcompact    44\n3 volkswagen   new beetle subcompact    41\n\n\n\nThree cars are outliers, but the boxplot only shows two dots: two of them have the same hwy value, so their points overlap\nBefore removing an outlier, ask: is it a data entry error, or a real (rare) case? What do the outliers have in common?\n!! “Outlier” depends on the comparison group. Split mpg by class and new outliers appear within each class.",
+    "crumbs": [
+      "B DATA 200",
+      "Visualizing & Modeling",
+      "Exploratory Data Analysis"
+    ]
+  },
+  {
+    "objectID": "bdata200/eda.html#covariation",
+    "href": "bdata200/eda.html#covariation",
+    "title": "Exploratory Data Analysis",
+    "section": "",
+    "text": "One numerical + one categorical: compare distributions across groups.\n\nggplot(mpg, aes(x = class, y = hwy)) +\n  geom_boxplot() +\n  coord_flip()\n\n\n\n\n\n\n\n\nTwo numerical: scatterplot. Describe the relationship with four words:\n\nDirection: positive or negative?\nForm: linear or curved?\nStrength: weak, moderate, or strong?\nExceptions: which points don’t follow the pattern?\n\n\nggplot(mpg, aes(x = displ, y = hwy, color = class)) +\n  geom_point()\n\n\n\n\n\n\n\n\nBigger engines get worse highway mileage (negative, slightly curved, moderately strong). Coloring by class explains many exceptions: the 2-seaters have big engines but better mileage than SUVs and pickups with similar engines.",
+    "crumbs": [
+      "B DATA 200",
+      "Visualizing & Modeling",
+      "Exploratory Data Analysis"
+    ]
+  },
+  {
+    "objectID": "bdata200/eda.html#patterns-and-models",
+    "href": "bdata200/eda.html#patterns-and-models",
+    "title": "Exploratory Data Analysis",
+    "section": "",
+    "text": "Adding a trend line helps judge form. See Trend Lines for a straight line vs. a LOESS curve on this same plot. If the two disagree, a single straight line hides a real pattern.",
+    "crumbs": [
+      "B DATA 200",
+      "Visualizing & Modeling",
+      "Exploratory Data Analysis"
+    ]
+  },
+  {
+    "objectID": "bdata200/reflection.html",
+    "href": "bdata200/reflection.html",
+    "title": "Reflection & To-do",
+    "section": "",
+    "text": "Note\n\n\n\nTODO (Derek): answer the Notes #2 reflection questions here in my own words.\n\n\n\n\n\n\nWhat is something you find yourself struggling with the most often in this class? How did you incorporate that into your cheatsheet?\nI can see myself struggling to keep track of all the syntax, even with using Quarto. The tables featured in this assignment were copied from my own personal notes I’ve been maintaining since week 1. A weakness of Quarto documents is that it will always be structured as an actual document that reads from top to bottom. This can be (and is already) quite lengthy unless I split my notes up into separate Quarto documents. Alternatively, I am looking into saving my notes with the Quarto sites feature and treating each document as a separate section / web page.\nWhat is something in the class that is helping you learn?\nQuarto! I find the ability to write markdown-styled notes along with runnable code chunks extremely useful. I used to use Notion and Obsidian for my notes, but having to flip between a window for note-taking and an IDE interrupted my learning flow.\nWhat is something that I could do to help your learning in this class?\nI already like the current flow of the pre-class readings and working on an in-class activity each session. The only minor feedback I have would be a request for you to prefix the activity .zips with the class section (ex. 200_Day5.zip, 232_Day6.zip). Since I’m in both of our BDATA sections, my activities get marked as a duplicate when I go to download them.\n\n\n\n\n\n\n\nReplace longer code in table cells with real code chunks (Plots)\nTable of contents: the sidebar on the website, and toc: true in the PDF\nChunk options error, message, label, warning, echo, include (Workflow)\nTrend lines with geom_smooth() (Plots)\nEDA reading notes: center, spread, outliers, variation, covariation (EDA)\nPseudocode before worked examples\nLook up the &lt;- vs = convention (Workflow)\n\n\n\n\n\nLogistic regression in more depth if we come back to it\nMore regex patterns for str_detect() / names_pattern\nMake a personal site on GitHub Pages that holds these notes (home)",
+    "crumbs": [
+      "B DATA 200",
+      "Wrap-up",
+      "Reflection & To-do"
+    ]
+  },
+  {
+    "objectID": "bdata200/reflection.html#notes-2-reflection",
+    "href": "bdata200/reflection.html#notes-2-reflection",
+    "title": "Reflection & To-do",
+    "section": "",
+    "text": "Note\n\n\n\nTODO (Derek): answer the Notes #2 reflection questions here in my own words.",
+    "crumbs": [
+      "B DATA 200",
+      "Wrap-up",
+      "Reflection & To-do"
+    ]
+  },
+  {
+    "objectID": "bdata200/reflection.html#notes-1-reflection-archived",
+    "href": "bdata200/reflection.html#notes-1-reflection-archived",
+    "title": "Reflection & To-do",
+    "section": "",
+    "text": "What is something you find yourself struggling with the most often in this class? How did you incorporate that into your cheatsheet?\nI can see myself struggling to keep track of all the syntax, even with using Quarto. The tables featured in this assignment were copied from my own personal notes I’ve been maintaining since week 1. A weakness of Quarto documents is that it will always be structured as an actual document that reads from top to bottom. This can be (and is already) quite lengthy unless I split my notes up into separate Quarto documents. Alternatively, I am looking into saving my notes with the Quarto sites feature and treating each document as a separate section / web page.\nWhat is something in the class that is helping you learn?\nQuarto! I find the ability to write markdown-styled notes along with runnable code chunks extremely useful. I used to use Notion and Obsidian for my notes, but having to flip between a window for note-taking and an IDE interrupted my learning flow.\nWhat is something that I could do to help your learning in this class?\nI already like the current flow of the pre-class readings and working on an in-class activity each session. The only minor feedback I have would be a request for you to prefix the activity .zips with the class section (ex. 200_Day5.zip, 232_Day6.zip). Since I’m in both of our BDATA sections, my activities get marked as a duplicate when I go to download them.",
+    "crumbs": [
+      "B DATA 200",
+      "Wrap-up",
+      "Reflection & To-do"
+    ]
+  },
+  {
+    "objectID": "bdata200/reflection.html#to-do-list",
+    "href": "bdata200/reflection.html#to-do-list",
+    "title": "Reflection & To-do",
+    "section": "",
+    "text": "Replace longer code in table cells with real code chunks (Plots)\nTable of contents: the sidebar on the website, and toc: true in the PDF\nChunk options error, message, label, warning, echo, include (Workflow)\nTrend lines with geom_smooth() (Plots)\nEDA reading notes: center, spread, outliers, variation, covariation (EDA)\nPseudocode before worked examples\nLook up the &lt;- vs = convention (Workflow)\n\n\n\n\n\nLogistic regression in more depth if we come back to it\nMore regex patterns for str_detect() / names_pattern\nMake a personal site on GitHub Pages that holds these notes (home)",
+    "crumbs": [
+      "B DATA 200",
+      "Wrap-up",
+      "Reflection & To-do"
+    ]
+  },
+  {
+    "objectID": "guide.html",
+    "href": "guide.html",
+    "title": "Site Guide",
+    "section": "",
+    "text": "Current workflow:"
+  },
+  {
+    "objectID": "guide.html#publishing-changes",
+    "href": "guide.html#publishing-changes",
+    "title": "Site Guide",
+    "section": "Publishing Changes",
+    "text": "Publishing Changes\nCommitting doesn’t publish anything. GitHub serves whatever is in docs/, so the order is render → commit → push.\n\nRender in RStudio: Build → Render Website (or quarto render in the terminal). This rebuilds docs/ and the course PDFs.\nCommit in VS Code: Source Control (Cmd + Shift + G) → stage everything, including docs/ and _freeze/ → write a message → Commit.\nPush in VS Code: Sync Changes.\nWait about a minute while GitHub rebuilds the site. Watch it under the repo’s Actions tab (“pages build and deployment”), then hard-refresh with Cmd + Shift + R.\n\n\n\n\n\n\n\nWarning\n\n\n\nIf I edit a .qmd but skip rendering, the live site won’t change, because docs/ still has the old version.\n\n\n\nThe Render button on a single file only previews that page. It doesn’t rebuild the course PDF.\nSave in RStudio before committing: VS Code only sees saved changes."
+  },
+  {
+    "objectID": "guide.html#adding-a-new-section",
+    "href": "guide.html#adding-a-new-section",
+    "title": "Site Guide",
+    "section": "Adding a New Section",
+    "text": "Adding a New Section\nExample: adding a course called math208 with its own navbar entry and sidebar.\n\n1. Create the folder and a landing page\nmath208/index.qmd:\n---\ntitle: \"MATH 208: Course Name\"\nsubtitle: \"UW Bothell · Winter 2027\"\ntoc: false\n---\n\nNotes for MATH 208.\n\n\n2. Add it to the navbar\nIn _quarto.yml, under website: navbar: left:\n      - href: math208/index.qmd\n        text: MATH 208\n\n\n3. Give it its own sidebar\nIn _quarto.yml, under website: sidebar:, next to the existing bdata200 and bdata232 entries:\n    - id: math208\n      title: \"MATH 208\"\n      style: docked\n      contents:\n        - href: math208/index.qmd\n          text: Course home\n        - href: math208/week1.qmd\n          text: Week 1\nEvery page listed in a sidebar’s contents gets that sidebar. A new page that isn’t listed in any sidebar has none.\n\n\n4. Optional extras\n\nAdd a row for it to the Courses table on the home page\nPython pages: use Python code chunks (```{python} instead of ```{r}) in a .qmd, or drop in a Jupyter notebook (.ipynb). Everything else works the same way."
+  },
+  {
+    "objectID": "guide.html#breaking-up-a-page",
+    "href": "guide.html#breaking-up-a-page",
+    "title": "Site Guide",
+    "section": "Breaking Up a Page",
+    "text": "Breaking Up a Page\n\nHeadings\nEach ## and ### heading becomes a section in the “On this page” list on the right:\n## Big section\n\n### Smaller part of that section\n\n#### Even smaller (doesn't show in \"On this page\")\n\n\nSection IDs for linking\nGive a heading an ID to link straight to it:\n## Trend Lines {#trend-lines}\nThen link to it from another page with [see trend lines](plots.qmd#trend-lines).\n\n\nGrouping pages in the sidebar\nUse section: in _quarto.yml. This is how B DATA 200 has “Wrangling”, “Visualizing & Modeling” and so on:\n        - section: \"Wrangling\"\n          contents:\n            - href: bdata200/joins.qmd\n              text: Joins\n\n\nTabs and callouts\n::: {.panel-tabset}\n## R\nR version here\n## Python\nPython version here\n:::\n\n::: {.callout-note}\nA highlighted note box.\n:::"
+  },
+  {
+    "objectID": "guide.html#pdf-exports",
+    "href": "guide.html#pdf-exports",
+    "title": "Site Guide",
+    "section": "PDF Exports",
+    "text": "PDF Exports\nB DATA 200 pages also go into the printable PDF (bdata200/bdata200-notes.qmd) as a backup in case of a site render error.\n\nPage titles: pages use pagetitle: at the top plus a # Heading line, not title:. A title: will overwrite the PDF’s title.\nNew chapters: a new 200 chapter needs three things:\n\nthe .qmd file in bdata200/\na sidebar entry in _quarto.yml\nan include line in bdata200/bdata200-notes.qmd:\n{{&lt; include newfile.qmd &gt;}}\n\nWithout step 3, the chapter shows on the site but not in the PDF.\n\nOther sections (232, Python, new courses) can use plain title: unless they get a printable PDF too. If they do, copy the setup in bdata200/bdata200-notes.qmd."
+  },
+  {
+    "objectID": "python/index.html",
+    "href": "python/index.html",
+    "title": "Python",
+    "section": "",
+    "text": "Python scripts and notes will go here.\nTo add a page: create a .qmd with Python code chunks, or a Jupyter notebook (.ipynb), in python/ and list it under the python sidebar in _quarto.yml.\nWinter Break Project: Python for Data Science is heavily inspired by Hadley’s R for Data Science (2e). P4DS would make an excellent primer for recreating R projects in Python.",
+    "crumbs": [
+      "Python",
+      "Overview"
+    ]
+  },
+  {
+    "objectID": "bdata200/models.html",
+    "href": "bdata200/models.html",
+    "title": "Choosing Plots & Models",
+    "section": "",
+    "text": "From the 10/26 in-class activity (Day 8)\nA plot helps you see and communicate a pattern. A model puts a number on a relationship. You don’t need a model every time you make a plot, and you should always plot before you model.\n\n\nStart with the question, then name the outcome (what I’m trying to understand) and the predictor (what might explain it), and their types.\n\n\n\n\n\n\n\n\n\nOutcome\nPredictor\nFirst plot to try\nPossible model\n\n\n\n\nNumerical\nNumerical\nScatterplot (+ trend line)\nLinear regression\n\n\nNumerical\nCategorical\nJittered points or boxplots by group, means marked\nANOVA / linear model with a categorical predictor\n\n\nCategorical\nCategorical\nTwo-way table; bar chart of proportions\nChi-square test\n\n\nBinary (yes/no)\nNumerical\nProportion “yes” across groups; jittered 0/1 points\nLogistic regression\n\n\nCount\nTime\nCounts over time\nA count model (beyond this class)\n\n\n\n\nThese are starting points, not rules\n!! A scatterplot is the wrong choice when both variables are categorical: every point lands on a few grid spots\n\n\n\n\nCorrelation (r) measures the direction and strength of a linear relationship between two numerical variables, from −1 to 1.\n\nPositive: big x goes with big y. Negative: big x goes with small y\nNear 0: little linear relationship, not “no relationship”\n!! A U-shaped curve can have r ≈ 0 even though y depends completely on x. Always look at the plot first.\n\n\ncor(mpg$displ, mpg$hwy)\n\n[1] -0.76602\n\n\n\n\n\nThe fitted line:\n\\[\\hat{y} = b_0 + b_1 x\\]\n\n\n\n\n\n\n\nTerm\nMeaning\n\n\n\n\nSlope \\(b_1\\)\nPredicted change in y for a one-unit increase in x\n\n\nIntercept \\(b_0\\)\nPredicted y when x = 0 (often an extrapolation, so not meaningful)\n\n\nResidual\nObserved y − predicted y: the vertical gap between a point and the line\n\n\n\n\n\nQuestion: How much does the predicted exam score go up per extra hour of studying?\nPseudocode: plot hours vs. score → fit a line with lm() → read the slope with coef() → interpret it with units.\n\nmodel_data &lt;- tibble(\n  study_hours = c(1, 2, 2, 3, 4, 4, 5, 6, 7, 8, 8, 9),\n  score       = c(52, 55, 61, 60, 64, 70, 68, 74, 77, 79, 85, 87)\n)\n\nfit &lt;- lm(score ~ study_hours, data = model_data) # outcome ~ predictor\ncoef(fit)\n\n(Intercept) study_hours \n  48.939810    4.147835 \n\n\n\nlm() makes the model but prints nothing; save it with &lt;- and use coef() to see the numbers\n!! Formula order is outcome ~ predictor (y ~ x)\n\n\n# predicted values and residuals for each student\nmodel_data |&gt;\n  mutate(predicted = fitted(fit), residual = resid(fit)) |&gt;\n  head(4)\n\n# A tibble: 4 × 4\n  study_hours score predicted residual\n        &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;\n1           1    52      53.1    -1.09\n2           2    55      57.2    -2.24\n3           2    61      57.2     3.76\n4           3    60      61.4    -1.38\n\n\nAnswer: Each extra hour studied goes with about 4.1 more points, on average. The intercept (48.9) is the predicted score at 0 hours, which is outside the data (the minimum is 1 hour). A positive residual means the student scored above the line.\n!! This is association, not causation: these are observational data, and motivation or prior knowledge could drive both study time and scores.\n\n\n\n\nThe same lm() works with a categorical predictor. It then compares group means.\n\nscores &lt;- tibble(\n  strategy = rep(c(\"Flashcards\", \"Practice problems\", \"Rereading\"), each = 12),\n  score = c(72, 75, 78, 69, 74, 80, 76, 73, 77, 71, 79, 74,\n            78, 82, 85, 80, 76, 88, 83, 81, 79, 86, 84, 80,\n            65, 72, 70, 68, 75, 71, 69, 73, 67, 74, 70, 66)\n)\n\nggplot(scores, aes(x = strategy, y = score)) +\n  geom_jitter(width = 0.1, height = 0, alpha = 0.6) +\n  stat_summary(fun = mean, geom = \"point\", shape = 18, size = 4, color = \"red\")\n\n\n\n\n\n\n\ngroup_fit &lt;- lm(score ~ strategy, data = scores)\ncoef(group_fit)\n\n              (Intercept) strategyPractice problems         strategyRereading \n                74.833333                  7.000000                 -4.833333 \n\n\n\nR picks a reference group (first alphabetically: Flashcards)\nIntercept = mean of the reference group\nOther coefficients = difference between that group’s mean and the reference group’s mean\n\ne.g. strategyPractice problems = 7: practice problems averaged that many points more than flashcards\n\nChanging the reference group (relevel()) changes how the coefficients are written, not the group means\n\n\n\nA one-way ANOVA asks: do the mean outcomes differ across two or more groups? It compares the variation between group means to the variation within groups.\n\nanova(group_fit)\n\nAnalysis of Variance Table\n\nResponse: score\n          Df Sum Sq Mean Sq F value    Pr(&gt;F)    \nstrategy   2 849.56  424.78  38.161 2.611e-09 ***\nResiduals 33 367.33   11.13                      \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n\n\nA tiny p-value means the group means differ by more than chance would explain\nWith exactly two groups, ANOVA, a two-sample t-test, and lm() give the same test\n!! Lead with the plot, not the table: means alone hide spread, overlap and outliers\n\n\n\n\n\nWhen the outcome is yes/no (pass/fail), a straight line can predict impossible probabilities below 0 or above 1. Logistic regression models the probability of “yes” with an S-shaped curve that stays between 0 and 1.\nggplot(data, aes(x = hours, y = passed)) +   # passed is 0 or 1\n  geom_jitter(height = 0.05, width = 0) +\n  geom_smooth(method = \"glm\", method.args = list(family = \"binomial\"))\nMatching rule of thumb: numerical outcome → linear model; binary outcome → logistic regression.",
+    "crumbs": [
+      "B DATA 200",
+      "Visualizing & Modeling",
+      "Choosing Plots & Models"
+    ]
+  },
+  {
+    "objectID": "bdata200/models.html#choosing-a-plot",
+    "href": "bdata200/models.html#choosing-a-plot",
+    "title": "Choosing Plots & Models",
+    "section": "",
+    "text": "Start with the question, then name the outcome (what I’m trying to understand) and the predictor (what might explain it), and their types.\n\n\n\n\n\n\n\n\n\nOutcome\nPredictor\nFirst plot to try\nPossible model\n\n\n\n\nNumerical\nNumerical\nScatterplot (+ trend line)\nLinear regression\n\n\nNumerical\nCategorical\nJittered points or boxplots by group, means marked\nANOVA / linear model with a categorical predictor\n\n\nCategorical\nCategorical\nTwo-way table; bar chart of proportions\nChi-square test\n\n\nBinary (yes/no)\nNumerical\nProportion “yes” across groups; jittered 0/1 points\nLogistic regression\n\n\nCount\nTime\nCounts over time\nA count model (beyond this class)\n\n\n\n\nThese are starting points, not rules\n!! A scatterplot is the wrong choice when both variables are categorical: every point lands on a few grid spots",
+    "crumbs": [
+      "B DATA 200",
+      "Visualizing & Modeling",
+      "Choosing Plots & Models"
+    ]
+  },
+  {
+    "objectID": "bdata200/models.html#correlation",
+    "href": "bdata200/models.html#correlation",
+    "title": "Choosing Plots & Models",
+    "section": "",
+    "text": "Correlation (r) measures the direction and strength of a linear relationship between two numerical variables, from −1 to 1.\n\nPositive: big x goes with big y. Negative: big x goes with small y\nNear 0: little linear relationship, not “no relationship”\n!! A U-shaped curve can have r ≈ 0 even though y depends completely on x. Always look at the plot first.\n\n\ncor(mpg$displ, mpg$hwy)\n\n[1] -0.76602",
+    "crumbs": [
+      "B DATA 200",
+      "Visualizing & Modeling",
+      "Choosing Plots & Models"
+    ]
+  },
+  {
+    "objectID": "bdata200/models.html#simple-linear-regression",
+    "href": "bdata200/models.html#simple-linear-regression",
+    "title": "Choosing Plots & Models",
+    "section": "",
+    "text": "The fitted line:\n\\[\\hat{y} = b_0 + b_1 x\\]\n\n\n\n\n\n\n\nTerm\nMeaning\n\n\n\n\nSlope \\(b_1\\)\nPredicted change in y for a one-unit increase in x\n\n\nIntercept \\(b_0\\)\nPredicted y when x = 0 (often an extrapolation, so not meaningful)\n\n\nResidual\nObserved y − predicted y: the vertical gap between a point and the line\n\n\n\n\n\nQuestion: How much does the predicted exam score go up per extra hour of studying?\nPseudocode: plot hours vs. score → fit a line with lm() → read the slope with coef() → interpret it with units.\n\nmodel_data &lt;- tibble(\n  study_hours = c(1, 2, 2, 3, 4, 4, 5, 6, 7, 8, 8, 9),\n  score       = c(52, 55, 61, 60, 64, 70, 68, 74, 77, 79, 85, 87)\n)\n\nfit &lt;- lm(score ~ study_hours, data = model_data) # outcome ~ predictor\ncoef(fit)\n\n(Intercept) study_hours \n  48.939810    4.147835 \n\n\n\nlm() makes the model but prints nothing; save it with &lt;- and use coef() to see the numbers\n!! Formula order is outcome ~ predictor (y ~ x)\n\n\n# predicted values and residuals for each student\nmodel_data |&gt;\n  mutate(predicted = fitted(fit), residual = resid(fit)) |&gt;\n  head(4)\n\n# A tibble: 4 × 4\n  study_hours score predicted residual\n        &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;\n1           1    52      53.1    -1.09\n2           2    55      57.2    -2.24\n3           2    61      57.2     3.76\n4           3    60      61.4    -1.38\n\n\nAnswer: Each extra hour studied goes with about 4.1 more points, on average. The intercept (48.9) is the predicted score at 0 hours, which is outside the data (the minimum is 1 hour). A positive residual means the student scored above the line.\n!! This is association, not causation: these are observational data, and motivation or prior knowledge could drive both study time and scores.",
+    "crumbs": [
+      "B DATA 200",
+      "Visualizing & Modeling",
+      "Choosing Plots & Models"
+    ]
+  },
+  {
+    "objectID": "bdata200/models.html#categorical-predictor-comparing-group-means",
+    "href": "bdata200/models.html#categorical-predictor-comparing-group-means",
+    "title": "Choosing Plots & Models",
+    "section": "",
+    "text": "The same lm() works with a categorical predictor. It then compares group means.\n\nscores &lt;- tibble(\n  strategy = rep(c(\"Flashcards\", \"Practice problems\", \"Rereading\"), each = 12),\n  score = c(72, 75, 78, 69, 74, 80, 76, 73, 77, 71, 79, 74,\n            78, 82, 85, 80, 76, 88, 83, 81, 79, 86, 84, 80,\n            65, 72, 70, 68, 75, 71, 69, 73, 67, 74, 70, 66)\n)\n\nggplot(scores, aes(x = strategy, y = score)) +\n  geom_jitter(width = 0.1, height = 0, alpha = 0.6) +\n  stat_summary(fun = mean, geom = \"point\", shape = 18, size = 4, color = \"red\")\n\n\n\n\n\n\n\ngroup_fit &lt;- lm(score ~ strategy, data = scores)\ncoef(group_fit)\n\n              (Intercept) strategyPractice problems         strategyRereading \n                74.833333                  7.000000                 -4.833333 \n\n\n\nR picks a reference group (first alphabetically: Flashcards)\nIntercept = mean of the reference group\nOther coefficients = difference between that group’s mean and the reference group’s mean\n\ne.g. strategyPractice problems = 7: practice problems averaged that many points more than flashcards\n\nChanging the reference group (relevel()) changes how the coefficients are written, not the group means\n\n\n\nA one-way ANOVA asks: do the mean outcomes differ across two or more groups? It compares the variation between group means to the variation within groups.\n\nanova(group_fit)\n\nAnalysis of Variance Table\n\nResponse: score\n          Df Sum Sq Mean Sq F value    Pr(&gt;F)    \nstrategy   2 849.56  424.78  38.161 2.611e-09 ***\nResiduals 33 367.33   11.13                      \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n\n\nA tiny p-value means the group means differ by more than chance would explain\nWith exactly two groups, ANOVA, a two-sample t-test, and lm() give the same test\n!! Lead with the plot, not the table: means alone hide spread, overlap and outliers",
+    "crumbs": [
+      "B DATA 200",
+      "Visualizing & Modeling",
+      "Choosing Plots & Models"
+    ]
+  },
+  {
+    "objectID": "bdata200/models.html#binary-outcomes-logistic-regression-first-look",
+    "href": "bdata200/models.html#binary-outcomes-logistic-regression-first-look",
+    "title": "Choosing Plots & Models",
+    "section": "",
+    "text": "When the outcome is yes/no (pass/fail), a straight line can predict impossible probabilities below 0 or above 1. Logistic regression models the probability of “yes” with an S-shaped curve that stays between 0 and 1.\nggplot(data, aes(x = hours, y = passed)) +   # passed is 0 or 1\n  geom_jitter(height = 0.05, width = 0) +\n  geom_smooth(method = \"glm\", method.args = list(family = \"binomial\"))\nMatching rule of thumb: numerical outcome → linear model; binary outcome → logistic regression.",
+    "crumbs": [
+      "B DATA 200",
+      "Visualizing & Modeling",
+      "Choosing Plots & Models"
+    ]
+  },
+  {
+    "objectID": "bdata200/pitfalls.html",
+    "href": "bdata200/pitfalls.html",
+    "title": "Common Pitfalls & Troubleshooting",
+    "section": "",
+    "text": "# !! one = means \"assign\" or \"name an argument\", not \"is equal to\"\nflights |&gt;\n  filter(month = 1)\n\nError in `filter()`:\n! We detected a named input.\nℹ This usually means that you've used `=` instead of `==`.\nℹ Did you mean `month == 1`?\n\n\ndplyr catches this and suggests the fix:\n\nflights |&gt;\n  filter(month == 1) |&gt;\n  count(month)\n\n# A tibble: 1 × 2\n  month     n\n  &lt;int&gt; &lt;int&gt;\n1     1 27004\n\n\n\n\n\n\n# !! any missing value makes the whole result NA\nflights |&gt;\n  summarize(avg_delay = mean(arr_delay))\n\n# A tibble: 1 × 1\n  avg_delay\n      &lt;dbl&gt;\n1        NA\n\n\n\n# Fix: ignore missing values\nflights |&gt;\n  summarize(avg_delay = mean(arr_delay, na.rm = TRUE))\n\n# A tibble: 1 × 1\n  avg_delay\n      &lt;dbl&gt;\n1      6.90\n\n\n\n\n\n\n# Keep only flights in January OR February\n# !! PRODUCES A BUGGED OUTPUT\nflights |&gt;\n  filter(month == 1 | 2) |&gt;\n  count(month)\n\n# A tibble: 12 × 2\n   month     n\n   &lt;int&gt; &lt;int&gt;\n 1     1 27004\n 2     2 24951\n 3     3 28834\n 4     4 28330\n 5     5 28796\n 6     6 28243\n 7     7 29425\n 8     8 29327\n 9     9 27574\n10    10 28889\n11    11 27268\n12    12 28135\n\n\nError: R treats nonzero numbers in conditional statements as TRUE, so it reads this as “keep rows where month is 1, or TRUE”, which keeps every row.\n\n# Fix 1\nflights |&gt;\n  filter(month == 1 | month == 2) |&gt;\n  count(month)\n\n# A tibble: 2 × 2\n  month     n\n  &lt;int&gt; &lt;int&gt;\n1     1 27004\n2     2 24951\n\n# Fix 2\nflights |&gt;\n  filter(month %in% c(1, 2)) |&gt;\n  count(month)\n\n# A tibble: 2 × 2\n  month     n\n  &lt;int&gt; &lt;int&gt;\n1     1 27004\n2     2 24951\n\n\n\n\n\n\nflights |&gt;\n  filter(month == 1) |&gt;\n  nrow()\n\n[1] 27004\n\nnrow(flights) # unchanged!\n\n[1] 336776\n\n\ndplyr verbs never change the original data. To keep the result, save it: jan_flights &lt;- flights |&gt; filter(month == 1).\n\n\n\n!! From my own Notes #1: filtering to non-face cards before assigning face-card values meant the face-card rule never ran. Think through the order of steps (write pseudocode) before chaining. See the card deck example.\n\n\n\n\nwide &lt;- tibble(id = 1:2, `2022` = c(5, 6), `2023` = c(7, 8))\n\n# !! names_to without quotes: R looks for an object called year (and finds lubridate's year() function)\nwide |&gt;\n  pivot_longer(cols = -id, names_to = year, values_to = \"n\")\n\nError in `pivot_longer()`:\n! `names_to` must be a character vector or `NULL`, not a function.\n\n\n\n# Fix: new column names are quoted\nwide |&gt;\n  pivot_longer(cols = -id, names_to = \"year\", values_to = \"n\")\n\n# A tibble: 4 × 3\n     id year      n\n  &lt;int&gt; &lt;chr&gt; &lt;dbl&gt;\n1     1 2022      5\n2     1 2023      7\n3     2 2022      6\n4     2 2023      8\n\n\n\n\n\n!! A one-to-many join repeats rows on the “one” side. A total or average taken after the join can double count:\n\ncounties &lt;- tibble(county_id = c(101, 103), population = c(10000, 15000))\nprograms &lt;- tibble(county_id = c(101, 101, 103), program = c(\"A\", \"B\", \"C\"))\n\n# Real total population is 25,000, but Alder is counted twice\ncounties |&gt;\n  left_join(programs, by = \"county_id\") |&gt;\n  summarize(total_pop = sum(population))\n\n# A tibble: 1 × 1\n  total_pop\n      &lt;dbl&gt;\n1     35000\n\n\nFix: summarize the “many” table first (e.g. count(county_id)), then join. Or add relationship = \"one-to-one\" to make dplyr error when there are duplicates.\n\n\n\nAfter a left_join(), unmatched rows get NA. That means unknown, not 0. Don’t replace them with 0 unless you know the true value is zero.",
+    "crumbs": [
+      "B DATA 200",
+      "Wrap-up",
+      "Common Pitfalls"
+    ]
+  },
+  {
+    "objectID": "bdata200/pitfalls.html#instead-of",
+    "href": "bdata200/pitfalls.html#instead-of",
+    "title": "Common Pitfalls & Troubleshooting",
+    "section": "",
+    "text": "# !! one = means \"assign\" or \"name an argument\", not \"is equal to\"\nflights |&gt;\n  filter(month = 1)\n\nError in `filter()`:\n! We detected a named input.\nℹ This usually means that you've used `=` instead of `==`.\nℹ Did you mean `month == 1`?\n\n\ndplyr catches this and suggests the fix:\n\nflights |&gt;\n  filter(month == 1) |&gt;\n  count(month)\n\n# A tibble: 1 × 2\n  month     n\n  &lt;int&gt; &lt;int&gt;\n1     1 27004",
+    "crumbs": [
+      "B DATA 200",
+      "Wrap-up",
+      "Common Pitfalls"
+    ]
+  },
+  {
+    "objectID": "bdata200/pitfalls.html#forgetting-na.rm-true",
+    "href": "bdata200/pitfalls.html#forgetting-na.rm-true",
+    "title": "Common Pitfalls & Troubleshooting",
+    "section": "",
+    "text": "# !! any missing value makes the whole result NA\nflights |&gt;\n  summarize(avg_delay = mean(arr_delay))\n\n# A tibble: 1 × 1\n  avg_delay\n      &lt;dbl&gt;\n1        NA\n\n\n\n# Fix: ignore missing values\nflights |&gt;\n  summarize(avg_delay = mean(arr_delay, na.rm = TRUE))\n\n# A tibble: 1 × 1\n  avg_delay\n      &lt;dbl&gt;\n1      6.90",
+    "crumbs": [
+      "B DATA 200",
+      "Wrap-up",
+      "Common Pitfalls"
+    ]
+  },
+  {
+    "objectID": "bdata200/pitfalls.html#using-the-and-operators",
+    "href": "bdata200/pitfalls.html#using-the-and-operators",
+    "title": "Common Pitfalls & Troubleshooting",
+    "section": "",
+    "text": "# Keep only flights in January OR February\n# !! PRODUCES A BUGGED OUTPUT\nflights |&gt;\n  filter(month == 1 | 2) |&gt;\n  count(month)\n\n# A tibble: 12 × 2\n   month     n\n   &lt;int&gt; &lt;int&gt;\n 1     1 27004\n 2     2 24951\n 3     3 28834\n 4     4 28330\n 5     5 28796\n 6     6 28243\n 7     7 29425\n 8     8 29327\n 9     9 27574\n10    10 28889\n11    11 27268\n12    12 28135\n\n\nError: R treats nonzero numbers in conditional statements as TRUE, so it reads this as “keep rows where month is 1, or TRUE”, which keeps every row.\n\n# Fix 1\nflights |&gt;\n  filter(month == 1 | month == 2) |&gt;\n  count(month)\n\n# A tibble: 2 × 2\n  month     n\n  &lt;int&gt; &lt;int&gt;\n1     1 27004\n2     2 24951\n\n# Fix 2\nflights |&gt;\n  filter(month %in% c(1, 2)) |&gt;\n  count(month)\n\n# A tibble: 2 × 2\n  month     n\n  &lt;int&gt; &lt;int&gt;\n1     1 27004\n2     2 24951",
+    "crumbs": [
+      "B DATA 200",
+      "Wrap-up",
+      "Common Pitfalls"
+    ]
+  },
+  {
+    "objectID": "bdata200/pitfalls.html#forgetting-to-save-with--",
+    "href": "bdata200/pitfalls.html#forgetting-to-save-with--",
+    "title": "Common Pitfalls & Troubleshooting",
+    "section": "",
+    "text": "flights |&gt;\n  filter(month == 1) |&gt;\n  nrow()\n\n[1] 27004\n\nnrow(flights) # unchanged!\n\n[1] 336776\n\n\ndplyr verbs never change the original data. To keep the result, save it: jan_flights &lt;- flights |&gt; filter(month == 1).",
+    "crumbs": [
+      "B DATA 200",
+      "Wrap-up",
+      "Common Pitfalls"
+    ]
+  },
+  {
+    "objectID": "bdata200/pitfalls.html#filtering-before-a-step-that-needs-the-rows",
+    "href": "bdata200/pitfalls.html#filtering-before-a-step-that-needs-the-rows",
+    "title": "Common Pitfalls & Troubleshooting",
+    "section": "",
+    "text": "!! From my own Notes #1: filtering to non-face cards before assigning face-card values meant the face-card rule never ran. Think through the order of steps (write pseudocode) before chaining. See the card deck example.",
+    "crumbs": [
+      "B DATA 200",
+      "Wrap-up",
+      "Common Pitfalls"
+    ]
+  },
+  {
+    "objectID": "bdata200/pitfalls.html#quoting-column-names-in-pivots",
+    "href": "bdata200/pitfalls.html#quoting-column-names-in-pivots",
+    "title": "Common Pitfalls & Troubleshooting",
+    "section": "",
+    "text": "wide &lt;- tibble(id = 1:2, `2022` = c(5, 6), `2023` = c(7, 8))\n\n# !! names_to without quotes: R looks for an object called year (and finds lubridate's year() function)\nwide |&gt;\n  pivot_longer(cols = -id, names_to = year, values_to = \"n\")\n\nError in `pivot_longer()`:\n! `names_to` must be a character vector or `NULL`, not a function.\n\n\n\n# Fix: new column names are quoted\nwide |&gt;\n  pivot_longer(cols = -id, names_to = \"year\", values_to = \"n\")\n\n# A tibble: 4 × 3\n     id year      n\n  &lt;int&gt; &lt;chr&gt; &lt;dbl&gt;\n1     1 2022      5\n2     1 2023      7\n3     2 2022      6\n4     2 2023      8",
+    "crumbs": [
+      "B DATA 200",
+      "Wrap-up",
+      "Common Pitfalls"
+    ]
+  },
+  {
+    "objectID": "bdata200/pitfalls.html#joins-that-add-rows",
+    "href": "bdata200/pitfalls.html#joins-that-add-rows",
+    "title": "Common Pitfalls & Troubleshooting",
+    "section": "",
+    "text": "!! A one-to-many join repeats rows on the “one” side. A total or average taken after the join can double count:\n\ncounties &lt;- tibble(county_id = c(101, 103), population = c(10000, 15000))\nprograms &lt;- tibble(county_id = c(101, 101, 103), program = c(\"A\", \"B\", \"C\"))\n\n# Real total population is 25,000, but Alder is counted twice\ncounties |&gt;\n  left_join(programs, by = \"county_id\") |&gt;\n  summarize(total_pop = sum(population))\n\n# A tibble: 1 × 1\n  total_pop\n      &lt;dbl&gt;\n1     35000\n\n\nFix: summarize the “many” table first (e.g. count(county_id)), then join. Or add relationship = \"one-to-one\" to make dplyr error when there are duplicates.",
+    "crumbs": [
+      "B DATA 200",
+      "Wrap-up",
+      "Common Pitfalls"
+    ]
+  },
+  {
+    "objectID": "bdata200/pitfalls.html#na-is-not-zero",
+    "href": "bdata200/pitfalls.html#na-is-not-zero",
+    "title": "Common Pitfalls & Troubleshooting",
+    "section": "",
+    "text": "After a left_join(), unmatched rows get NA. That means unknown, not 0. Don’t replace them with 0 unless you know the true value is zero.",
+    "crumbs": [
+      "B DATA 200",
+      "Wrap-up",
+      "Common Pitfalls"
+    ]
+  },
+  {
+    "objectID": "bdata200/index.html",
+    "href": "bdata200/index.html",
+    "title": "B DATA 200: Introduction to Data Studies",
+    "section": "",
+    "text": "TipNotice for Dr. Lisinker - Oct. 29, 2026\n\n\n\n\nBackup PDF: Download the full course notes.\nFeedback addressed: Feedback Log lists each Notes #1 comment and where it was fixed\nWhat’s new since Notes #1 (besides this site): see the list at the bottom of this page!\nRunning notes for B DATA 200 at the University of Washington Bothell, Autumn 2026.",
+    "crumbs": [
+      "B DATA 200",
+      "Course home"
+    ]
+  },
+  {
+    "objectID": "bdata200/index.html#chapters",
+    "href": "bdata200/index.html#chapters",
+    "title": "B DATA 200: Introduction to Data Studies",
+    "section": "Chapters",
+    "text": "Chapters\n\n\n\nPart\nChapters\n\n\n\n\nR Workflow\nWorkflow & Reminders · Data Basics\n\n\nWrangling\nRows & Columns · Groups & Summaries · Tidying · Joins\n\n\nVisualizing & Modeling\nPlots · Exploratory Data Analysis · Choosing Plots & Models\n\n\nData in Context\nStudy Design & Data Ethics\n\n\nWrap-up\nCommon Pitfalls · Reflection & To-do · Feedback Log",
+    "crumbs": [
+      "B DATA 200",
+      "Course home"
+    ]
+  },
+  {
+    "objectID": "bdata200/index.html#conventions",
+    "href": "bdata200/index.html#conventions",
+    "title": "B DATA 200: Introduction to Data Studies",
+    "section": "Conventions",
+    "text": "Conventions\n\n!! marks something I got wrong at least once or want to remember.\nWorked examples follow the same pattern: Question → Pseudocode → code → Answer.\nEvery code chunk uses the native pipe |&gt; and &lt;- for assignment (see Assignment Operators).\nPackages: tidyverse (dplyr, ggplot2, tidyr, readr, stringr) and nycflights13 (the flights data). mpg comes with ggplot2.",
+    "crumbs": [
+      "B DATA 200",
+      "Course home"
+    ]
+  },
+  {
+    "objectID": "bdata200/index.html#whats-new-in-notes-2",
+    "href": "bdata200/index.html#whats-new-in-notes-2",
+    "title": "B DATA 200: Introduction to Data Studies",
+    "section": "What’s new in Notes #2",
+    "text": "What’s new in Notes #2\n\nMoved from one long PDF to this website, following feedback on Notes #1 (see Feedback Log)\nNew chapters: Tidying, Joins, Exploratory Data Analysis, Choosing Plots & Models, Study Design & Ethics\nTrend lines, overplotting fixes and reference lines added to Plots",
+    "crumbs": [
+      "B DATA 200",
+      "Course home"
+    ]
+  },
+  {
+    "objectID": "bdata200/feedback-log.html",
+    "href": "bdata200/feedback-log.html",
+    "title": "Feedback Log",
+    "section": "",
+    "text": "Addressing feedback and how they were incorporated in each Notes iteration.\n\n\n\n\n\n#\nFeedback\nWhat I changed\nWhere\n\n\n\n\n1\nCode in the Plots table ran into the next column in the PDF\nI kept table examples short, moved longer code into chunks under the table, and checked the PDF\nPlots\n\n\n2\nMost people use &lt;- over = so assignment stays separate from ==\nI use &lt;- for assignment now, and = only for function arguments\nWorkflow\n\n\n3\nColumns go unquoted, except in functions like the pivots\nI added the pivot exception to rule 2, plus a pitfall for forgetting the quotes\nData Basics, Tidying\n\n\n4\necho: false runs the code but hides it in the render\nI added it to my Chunk Options table with an example\nWorkflow\n\n\n5\nTurning off warnings is useful too\nI added warning: false, along with message, error, include and label\nWorkflow\n\n\n6\nTry a Quarto site on GitHub Pages, or a clickable table of contents\nI moved my notes to a Quarto website on GitHub Pages, with one page per topic\nThis site! :)\n\n\n7\nA table of contents in the PDF\nI added one to the PDF version, linked from the course home page\nCourse home",
+    "crumbs": [
+      "B DATA 200",
+      "Wrap-up",
+      "Feedback Log"
+    ]
+  },
+  {
+    "objectID": "bdata200/feedback-log.html#notes-1---october-20-2026",
+    "href": "bdata200/feedback-log.html#notes-1---october-20-2026",
+    "title": "Feedback Log",
+    "section": "",
+    "text": "#\nFeedback\nWhat I changed\nWhere\n\n\n\n\n1\nCode in the Plots table ran into the next column in the PDF\nI kept table examples short, moved longer code into chunks under the table, and checked the PDF\nPlots\n\n\n2\nMost people use &lt;- over = so assignment stays separate from ==\nI use &lt;- for assignment now, and = only for function arguments\nWorkflow\n\n\n3\nColumns go unquoted, except in functions like the pivots\nI added the pivot exception to rule 2, plus a pitfall for forgetting the quotes\nData Basics, Tidying\n\n\n4\necho: false runs the code but hides it in the render\nI added it to my Chunk Options table with an example\nWorkflow\n\n\n5\nTurning off warnings is useful too\nI added warning: false, along with message, error, include and label\nWorkflow\n\n\n6\nTry a Quarto site on GitHub Pages, or a clickable table of contents\nI moved my notes to a Quarto website on GitHub Pages, with one page per topic\nThis site! :)\n\n\n7\nA table of contents in the PDF\nI added one to the PDF version, linked from the course home page\nCourse home",
+    "crumbs": [
+      "B DATA 200",
+      "Wrap-up",
+      "Feedback Log"
+    ]
+  },
+  {
+    "objectID": "bdata200/basics.html",
+    "href": "bdata200/basics.html",
+    "title": "Data Basics",
+    "section": "",
+    "text": "Use Case\nFunction\nExample\n\n\n\n\nSee the first n rows\nhead()\nhead(mpg, n = 10)\n\n\nSee the last n rows\ntail()\ntail(mpg, n = 3)\n\n\nSee every column, its type and first values\nglimpse()\nglimpse(flights)\n\n\nSummary stats for each column\nsummary()\nmpg |&gt; select(hwy) |&gt; summary()\n\n\nSee the structure of the data\nstr()\nstr(mpg)\n\n\nList the column names\nnames()\nnames(mpg)\n\n\nCount the rows\nnrow()\nnrow(flights)\n\n\nCount missing values in every column\nacross() inside summarize()\nsee the chunk below\n\n\nOpen a spreadsheet view\nView()\nView(flights) !! keep out of the render with eval: false\n\n\nRead the help page for a dataset/function\n?\n?mpg (in the Console)\n\n\n\n\n# Count missing values in every column\nflights |&gt;\n  summarize(across(everything(), ~ sum(is.na(.))))\n\n# A tibble: 1 × 19\n   year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time\n  &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;int&gt;    &lt;int&gt;          &lt;int&gt;\n1     0     0     0     8255              0      8255     8713              0\n# ℹ 11 more variables: arr_delay &lt;int&gt;, carrier &lt;int&gt;, flight &lt;int&gt;,\n#   tailnum &lt;int&gt;, origin &lt;int&gt;, dest &lt;int&gt;, air_time &lt;int&gt;, distance &lt;int&gt;,\n#   hour &lt;int&gt;, minute &lt;int&gt;, time_hour &lt;int&gt;\n\n\n\n\n\n\nEach row is one case (a passenger, a flight, a car)\nEach column is a variable measured on that case\nTibbles are the tidyverse’s version of a data frame\n\nA dataset is tidy when it follows three rules (more in Tidying):\n\nEach variable is a column; each column is a variable\nEach observation is a row; each row is an observation\nEach value is a cell; each cell is a single value\n\n\n\n\nColumn types determine which operations are possible. For example, you can take the mean() of a number (int, dbl), but not of text (chr).\n\n\n\nType\nMeans\nExample values\n\n\n\n\n&lt;int&gt;\ninteger (whole numbers)\nmonth, hwy\n\n\n&lt;dbl&gt;\ndouble (decimal numbers)\ndep_delay, displ\n\n\n&lt;chr&gt;\ncharacter (text)\ncarrier, class\n\n\n&lt;lgl&gt;\nlogical (TRUE / FALSE)\nthe result of dep_delay &gt; 0\n\n\n&lt;fct&gt;\nfactor (categories with a fixed order)\nstudy strategy in Models\n\n\n\n\nChange a type with as.numeric(), as.character(), factor()\n!! A number stored as text (\"10\") looks fine but mean() fails on it. Check glimpse() first.\n\n\n\n\nEvery dplyr verb follows the same rules:\n\nFirst argument is the data frame\nColumns are named without quotes\n\n!! Exception, pivots: when a function creates new columns from text, the new names go in quotes: pivot_longer(cols = ..., names_to = \"season\", values_to = \"count\"). Existing columns (cols =) are still unquoted. See Tidying.\nJoins also accept quoted names: left_join(y, by = \"county_id\")\n\nOutput is always a new data frame (the original is never changed unless you save over it with &lt;-)\n\n\n\n\nThe pipe means “and then”.\n\nPasses the result on its left into the first argument of the function on its right\nBecause of rule 1, every dplyr verb can be chained\n\n\n# \"Take flights, AND THEN keep Seattle flights, AND THEN count them by carrier\"\nflights |&gt;\n  filter(dest == \"SEA\") |&gt;\n  count(carrier, sort = TRUE)\n\n# A tibble: 5 × 2\n  carrier     n\n  &lt;chr&gt;   &lt;int&gt;\n1 DL       1213\n2 UA       1117\n3 AS        714\n4 B6        514\n5 AA        365",
+    "crumbs": [
+      "B DATA 200",
+      "R Workflow",
+      "Data Basics"
+    ]
+  },
+  {
+    "objectID": "bdata200/basics.html#quick-reference-inspecting-overview",
+    "href": "bdata200/basics.html#quick-reference-inspecting-overview",
+    "title": "Data Basics",
+    "section": "",
+    "text": "Use Case\nFunction\nExample\n\n\n\n\nSee the first n rows\nhead()\nhead(mpg, n = 10)\n\n\nSee the last n rows\ntail()\ntail(mpg, n = 3)\n\n\nSee every column, its type and first values\nglimpse()\nglimpse(flights)\n\n\nSummary stats for each column\nsummary()\nmpg |&gt; select(hwy) |&gt; summary()\n\n\nSee the structure of the data\nstr()\nstr(mpg)\n\n\nList the column names\nnames()\nnames(mpg)\n\n\nCount the rows\nnrow()\nnrow(flights)\n\n\nCount missing values in every column\nacross() inside summarize()\nsee the chunk below\n\n\nOpen a spreadsheet view\nView()\nView(flights) !! keep out of the render with eval: false\n\n\nRead the help page for a dataset/function\n?\n?mpg (in the Console)\n\n\n\n\n# Count missing values in every column\nflights |&gt;\n  summarize(across(everything(), ~ sum(is.na(.))))\n\n# A tibble: 1 × 19\n   year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time\n  &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;int&gt;    &lt;int&gt;          &lt;int&gt;\n1     0     0     0     8255              0      8255     8713              0\n# ℹ 11 more variables: arr_delay &lt;int&gt;, carrier &lt;int&gt;, flight &lt;int&gt;,\n#   tailnum &lt;int&gt;, origin &lt;int&gt;, dest &lt;int&gt;, air_time &lt;int&gt;, distance &lt;int&gt;,\n#   hour &lt;int&gt;, minute &lt;int&gt;, time_hour &lt;int&gt;",
+    "crumbs": [
+      "B DATA 200",
+      "R Workflow",
+      "Data Basics"
+    ]
+  },
+  {
+    "objectID": "bdata200/basics.html#case-by-variable-format",
+    "href": "bdata200/basics.html#case-by-variable-format",
+    "title": "Data Basics",
+    "section": "",
+    "text": "Each row is one case (a passenger, a flight, a car)\nEach column is a variable measured on that case\nTibbles are the tidyverse’s version of a data frame\n\nA dataset is tidy when it follows three rules (more in Tidying):\n\nEach variable is a column; each column is a variable\nEach observation is a row; each row is an observation\nEach value is a cell; each cell is a single value",
+    "crumbs": [
+      "B DATA 200",
+      "R Workflow",
+      "Data Basics"
+    ]
+  },
+  {
+    "objectID": "bdata200/basics.html#column-types",
+    "href": "bdata200/basics.html#column-types",
+    "title": "Data Basics",
+    "section": "",
+    "text": "Column types determine which operations are possible. For example, you can take the mean() of a number (int, dbl), but not of text (chr).\n\n\n\nType\nMeans\nExample values\n\n\n\n\n&lt;int&gt;\ninteger (whole numbers)\nmonth, hwy\n\n\n&lt;dbl&gt;\ndouble (decimal numbers)\ndep_delay, displ\n\n\n&lt;chr&gt;\ncharacter (text)\ncarrier, class\n\n\n&lt;lgl&gt;\nlogical (TRUE / FALSE)\nthe result of dep_delay &gt; 0\n\n\n&lt;fct&gt;\nfactor (categories with a fixed order)\nstudy strategy in Models\n\n\n\n\nChange a type with as.numeric(), as.character(), factor()\n!! A number stored as text (\"10\") looks fine but mean() fails on it. Check glimpse() first.",
+    "crumbs": [
+      "B DATA 200",
+      "R Workflow",
+      "Data Basics"
+    ]
+  },
+  {
+    "objectID": "bdata200/basics.html#the-dplyr-rules",
+    "href": "bdata200/basics.html#the-dplyr-rules",
+    "title": "Data Basics",
+    "section": "",
+    "text": "Every dplyr verb follows the same rules:\n\nFirst argument is the data frame\nColumns are named without quotes\n\n!! Exception, pivots: when a function creates new columns from text, the new names go in quotes: pivot_longer(cols = ..., names_to = \"season\", values_to = \"count\"). Existing columns (cols =) are still unquoted. See Tidying.\nJoins also accept quoted names: left_join(y, by = \"county_id\")\n\nOutput is always a new data frame (the original is never changed unless you save over it with &lt;-)",
+    "crumbs": [
+      "B DATA 200",
+      "R Workflow",
+      "Data Basics"
+    ]
+  },
+  {
+    "objectID": "bdata200/basics.html#the-pipe",
+    "href": "bdata200/basics.html#the-pipe",
+    "title": "Data Basics",
+    "section": "",
+    "text": "The pipe means “and then”.\n\nPasses the result on its left into the first argument of the function on its right\nBecause of rule 1, every dplyr verb can be chained\n\n\n# \"Take flights, AND THEN keep Seattle flights, AND THEN count them by carrier\"\nflights |&gt;\n  filter(dest == \"SEA\") |&gt;\n  count(carrier, sort = TRUE)\n\n# A tibble: 5 × 2\n  carrier     n\n  &lt;chr&gt;   &lt;int&gt;\n1 DL       1213\n2 UA       1117\n3 AS        714\n4 B6        514\n5 AA        365",
+    "crumbs": [
+      "B DATA 200",
+      "R Workflow",
+      "Data Basics"
+    ]
+  },
+  {
+    "objectID": "bdata200/tidying.html",
+    "href": "bdata200/tidying.html",
+    "title": "Tidying & Reshaping",
+    "section": "",
+    "text": "From the 10/19 in-class activity (Day 6)\nReal data rarely arrives tidy. Before reshaping, ask: what should one row represent?\n\n\n\n\n\nUse Case\nFunction\nExample\n\n\n\n\nMany columns → fewer, longer columns\npivot_longer()\npivot_longer(cols = -id, names_to = \"year\", values_to = \"n\")\n\n\nMany rows → fewer, wider rows\npivot_wider()\npivot_wider(names_from = measure, values_from = value)\n\n\nDoes a text value contain a pattern?\nstr_detect()\nfilter(str_detect(name, \"County\"))\n\n\nPull a number out of messy text\nparse_number()\nparse_number(\"45 minutes\") → 45\n\n\nReplace text that matches a pattern\nstr_replace()\nstr_replace(x, \"mins\", \"\")\n\n\nMake text all lowercase\nstr_to_lower()\nstr_to_lower(\"March\") → \"march\"\n\n\nCreate a small table by hand\ntribble()\nsee Joins\n\n\n\n!! In pivots, new column names are quoted (names_to = \"year\"), but existing columns are not (cols = starts_with(\"F_count\"), names_from = measure). This is the exception to dplyr rule 2 in Data Basics.\n\n\n\nUse when column names are actually values of a variable (years, seasons, episodes).\n\n# A wide table: one column per year\nwide &lt;- tribble(\n  ~county,  ~`2021`, ~`2022`, ~`2023`,\n  \"Alder\",  10.1,    10.4,    10.2,\n  \"Birch\",  12.0,    12.3,    12.5\n)\n\nwide |&gt;\n  pivot_longer(\n    cols = -county,          # every column except county (unquoted: it exists)\n    names_to = \"year\",       # quoted: this column is being created\n    values_to = \"estimate\"   # quoted: this column is being created\n  )\n\n# A tibble: 6 × 3\n  county year  estimate\n  &lt;chr&gt;  &lt;chr&gt;    &lt;dbl&gt;\n1 Alder  2021      10.1\n2 Alder  2022      10.4\n3 Alder  2023      10.2\n4 Birch  2021      12  \n5 Birch  2022      12.3\n6 Birch  2023      12.5\n\n\nArguments:\n\ncols: which existing columns to stack\nnames_to: name of the new column that holds the old column names\nvalues_to: name of the new column that holds the cell values\n\n\n\nIn class, the Ted Lasso data had one row and columns like F_count_RK_S1_e1 (Roy Kent’s count, season 1, episode 1) and F_count_total_S1_e1. names_pattern uses a regular expression to pull the pieces apart:\n\ntl_wide |&gt;\n  pivot_longer(\n    cols = starts_with(\"F_count_\"),\n    names_to = c(\".value\", \"Season\", \"Episode\"),\n    names_pattern = \"F_count_(RK|total)_S(\\\\d+)_e(\\\\d+)\"\n  )\n\n\nEach ( ) group in the pattern fills one entry of names_to\n\nGroup 1, (RK|total): “RK” or “total”\nGroup 2, S(\\\\d+): the digits after S, i.e. the season\nGroup 3, e(\\\\d+): the digits after e, i.e. the episode\n\n\".value\" is special: instead of making a column called .value, the matched text (RK, total) becomes column names, so the result has one row per episode with an RK column and a total column\n\\\\d+ means “one or more digits” (regex cheat sheet: the stringr regex vignette)\n\n\n\n\n\nUse when one case is spread across several rows (e.g. CDC PLACES has one row per county per measure).\n\nlong &lt;- tribble(\n  ~county, ~measure,   ~value,\n  \"Alder\", \"Diabetes\", 10.2,\n  \"Alder\", \"Obesity\",  31.0,\n  \"Birch\", \"Diabetes\", 12.5,\n  \"Birch\", \"Obesity\",  33.4\n)\n\nlong |&gt;\n  pivot_wider(\n    id_cols = county,        # one row per county\n    names_from = measure,    # new column names come from here\n    values_from = value      # cell values come from here\n  )\n\n# A tibble: 2 × 3\n  county Diabetes Obesity\n  &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;\n1 Alder      10.2    31  \n2 Birch      12.5    33.4\n\n\n\nnames_from can take several columns, e.g. names_from = c(MeasureId, Data_Value_Type), which glues them into names like DIABETES_Crude prevalence\n\n\n\n\nThe raw class survey had free-text answers like \"45 minutes\", \"1 hr\", and \"30\" in a minutes column. Write the cleaning steps in order before coding:\nPseudocode:\n\nMake everything lowercase so \"Hr\" and \"hr\" match\nFind the answers given in hours with str_detect()\nPull out the number with parse_number()\nMultiply the hour answers by 60\nCheck what’s left with count() and decide what to do with anything unusable (set to NA, don’t guess)\n\nCode Implementation:\n\nsurvey &lt;- tibble(routine_min = c(\"45 minutes\", \"1 hr\", \"30\", \"1.5 hours\", \"idk\"))\n\n# INCOMPLETE - Added to To-Do.",
+    "crumbs": [
+      "B DATA 200",
+      "Wrangling",
+      "Tidying & Reshaping"
+    ]
+  },
+  {
+    "objectID": "bdata200/tidying.html#quick-reference",
+    "href": "bdata200/tidying.html#quick-reference",
+    "title": "Tidying & Reshaping",
+    "section": "",
+    "text": "Use Case\nFunction\nExample\n\n\n\n\nMany columns → fewer, longer columns\npivot_longer()\npivot_longer(cols = -id, names_to = \"year\", values_to = \"n\")\n\n\nMany rows → fewer, wider rows\npivot_wider()\npivot_wider(names_from = measure, values_from = value)\n\n\nDoes a text value contain a pattern?\nstr_detect()\nfilter(str_detect(name, \"County\"))\n\n\nPull a number out of messy text\nparse_number()\nparse_number(\"45 minutes\") → 45\n\n\nReplace text that matches a pattern\nstr_replace()\nstr_replace(x, \"mins\", \"\")\n\n\nMake text all lowercase\nstr_to_lower()\nstr_to_lower(\"March\") → \"march\"\n\n\nCreate a small table by hand\ntribble()\nsee Joins\n\n\n\n!! In pivots, new column names are quoted (names_to = \"year\"), but existing columns are not (cols = starts_with(\"F_count\"), names_from = measure). This is the exception to dplyr rule 2 in Data Basics.",
+    "crumbs": [
+      "B DATA 200",
+      "Wrangling",
+      "Tidying & Reshaping"
+    ]
+  },
+  {
+    "objectID": "bdata200/tidying.html#wide-long-pivot_longer",
+    "href": "bdata200/tidying.html#wide-long-pivot_longer",
+    "title": "Tidying & Reshaping",
+    "section": "",
+    "text": "Use when column names are actually values of a variable (years, seasons, episodes).\n\n# A wide table: one column per year\nwide &lt;- tribble(\n  ~county,  ~`2021`, ~`2022`, ~`2023`,\n  \"Alder\",  10.1,    10.4,    10.2,\n  \"Birch\",  12.0,    12.3,    12.5\n)\n\nwide |&gt;\n  pivot_longer(\n    cols = -county,          # every column except county (unquoted: it exists)\n    names_to = \"year\",       # quoted: this column is being created\n    values_to = \"estimate\"   # quoted: this column is being created\n  )\n\n# A tibble: 6 × 3\n  county year  estimate\n  &lt;chr&gt;  &lt;chr&gt;    &lt;dbl&gt;\n1 Alder  2021      10.1\n2 Alder  2022      10.4\n3 Alder  2023      10.2\n4 Birch  2021      12  \n5 Birch  2022      12.3\n6 Birch  2023      12.5\n\n\nArguments:\n\ncols: which existing columns to stack\nnames_to: name of the new column that holds the old column names\nvalues_to: name of the new column that holds the cell values\n\n\n\nIn class, the Ted Lasso data had one row and columns like F_count_RK_S1_e1 (Roy Kent’s count, season 1, episode 1) and F_count_total_S1_e1. names_pattern uses a regular expression to pull the pieces apart:\n\ntl_wide |&gt;\n  pivot_longer(\n    cols = starts_with(\"F_count_\"),\n    names_to = c(\".value\", \"Season\", \"Episode\"),\n    names_pattern = \"F_count_(RK|total)_S(\\\\d+)_e(\\\\d+)\"\n  )\n\n\nEach ( ) group in the pattern fills one entry of names_to\n\nGroup 1, (RK|total): “RK” or “total”\nGroup 2, S(\\\\d+): the digits after S, i.e. the season\nGroup 3, e(\\\\d+): the digits after e, i.e. the episode\n\n\".value\" is special: instead of making a column called .value, the matched text (RK, total) becomes column names, so the result has one row per episode with an RK column and a total column\n\\\\d+ means “one or more digits” (regex cheat sheet: the stringr regex vignette)",
+    "crumbs": [
+      "B DATA 200",
+      "Wrangling",
+      "Tidying & Reshaping"
+    ]
+  },
+  {
+    "objectID": "bdata200/tidying.html#long-wide-pivot_wider",
+    "href": "bdata200/tidying.html#long-wide-pivot_wider",
+    "title": "Tidying & Reshaping",
+    "section": "",
+    "text": "Use when one case is spread across several rows (e.g. CDC PLACES has one row per county per measure).\n\nlong &lt;- tribble(\n  ~county, ~measure,   ~value,\n  \"Alder\", \"Diabetes\", 10.2,\n  \"Alder\", \"Obesity\",  31.0,\n  \"Birch\", \"Diabetes\", 12.5,\n  \"Birch\", \"Obesity\",  33.4\n)\n\nlong |&gt;\n  pivot_wider(\n    id_cols = county,        # one row per county\n    names_from = measure,    # new column names come from here\n    values_from = value      # cell values come from here\n  )\n\n# A tibble: 2 × 3\n  county Diabetes Obesity\n  &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;\n1 Alder      10.2    31  \n2 Birch      12.5    33.4\n\n\n\nnames_from can take several columns, e.g. names_from = c(MeasureId, Data_Value_Type), which glues them into names like DIABETES_Crude prevalence",
+    "crumbs": [
+      "B DATA 200",
+      "Wrangling",
+      "Tidying & Reshaping"
+    ]
+  },
+  {
+    "objectID": "bdata200/tidying.html#cleaning-messy-survey-answers",
+    "href": "bdata200/tidying.html#cleaning-messy-survey-answers",
+    "title": "Tidying & Reshaping",
+    "section": "",
+    "text": "The raw class survey had free-text answers like \"45 minutes\", \"1 hr\", and \"30\" in a minutes column. Write the cleaning steps in order before coding:\nPseudocode:\n\nMake everything lowercase so \"Hr\" and \"hr\" match\nFind the answers given in hours with str_detect()\nPull out the number with parse_number()\nMultiply the hour answers by 60\nCheck what’s left with count() and decide what to do with anything unusable (set to NA, don’t guess)\n\nCode Implementation:\n\nsurvey &lt;- tibble(routine_min = c(\"45 minutes\", \"1 hr\", \"30\", \"1.5 hours\", \"idk\"))\n\n# INCOMPLETE - Added to To-Do.",
+    "crumbs": [
+      "B DATA 200",
+      "Wrangling",
+      "Tidying & Reshaping"
+    ]
+  },
+  {
+    "objectID": "bdata200/rows-columns.html",
+    "href": "bdata200/rows-columns.html",
+    "title": "Rows & Columns",
+    "section": "",
+    "text": "Use Case\nFunction\nExample\n\n\n\n\nKeep rows that meet a condition\nfilter()\nflights |&gt; filter(dep_delay &gt; 120)\n\n\nComparison for conditional statements\n== != &gt; &gt;= &lt; &lt;=\nfilter(dest == \"IAH\")\n\n\nRequire both conditions (and)\n& or ,\nfilter(month == 1 & day == 1)\n\n\nAccept either condition (or)\n|\nfilter(month == 1 | month == 2)\n\n\nMatch any of several values\n%in%\nfilter(month %in% c(1, 2))\n\n\nKeep values inside a range\nbetween()\nmpg |&gt; filter(between(hwy, 20, 30))\n\n\nFind rows with a missing value\nis.na()\nfilter(is.na(dep_time))\n\n\nSort rows smallest to largest\narrange()\nflights |&gt; arrange(year, month, day, dep_time)\n\n\nSort rows from largest to smallest\ndesc()\nflights |&gt; arrange(desc(dep_delay))\n\n\nKeep the row(s) with the largest value\nslice_max()\nmpg |&gt; slice_max(hwy, n = 3)\n\n\nKeep the row(s) with the smallest value\nslice_min()\nmpg |&gt; slice_min(hwy)\n\n\nKeep rows by position\nslice()\nmpg |&gt; slice(1:5)\n\n\nKeep unique rows or combinations\ndistinct()\nflights |&gt; distinct(origin, dest)\n\n\nKeep the other columns\n.keep_all = TRUE\ndistinct(origin, dest, .keep_all = TRUE)\n\n\nCount how often each value appears\ncount()\nflights |&gt; count(origin, dest, sort = TRUE)\n\n\n\n\nslice_max() vs. arrange(desc()) |&gt; slice(1): same idea, but slice_max() keeps ties (from HW1, where two counties could share the top value)\n\n\n\n\n\n\n\n\n\n\n\n\nUse Case\nFunction\nExample\n\n\n\n\nAdd a column calculated from others\nmutate()\nflights |&gt; mutate(speed = distance / air_time * 60)\n\n\nPut the new column at the front\n.before / .after\nmutate(gain = dep_delay - arr_delay, .before = 1)\n\n\nKeep only the columns used in the calculation\n.keep = \"used\"\nmutate(gain = dep_delay - arr_delay, .keep = \"used\")\n\n\nPick one of two values by a condition\nif_else()\nmutate(late = if_else(arr_delay &gt; 0, \"Late\", \"On time\"))\n\n\nKeep only some columns\nselect()\nflights |&gt; select(year, month, day)\n\n\nPick columns by name pattern\nstarts_with() ends_with() contains()\nselect(starts_with(\"dep\"))\n\n\nPick columns by type\nwhere()\nselect(where(is.character))\n\n\nRename a column\nrename()\nrename(tail = tailnum) (new name first)\n\n\n\n\n\n\nFrom the 10/12 in-class activity\nQuestion: In a standard 52-card deck, give every card a point value:\n\nAce is worth 1\n2 through 10 are worth their rank\nFace cards Jack, Queen and King are worth 10\n\nPseudocode:\n\nRead in the deck\nMake point_value: if the rank is Ace, use 1; otherwise copy the rank\nOverwrite point_value with 10 for face cards\nRank is text (\"Ace\", \"King\"), so convert point_value to a number at the end\n\n\ndeck &lt;- read_csv(\"data/card_deck.csv\")\n\nRows: 52 Columns: 4\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr (3): Suit, Rank, Face\ndbl (1): Card\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\n\ndeck_points &lt;- deck |&gt;\n  mutate(\n    point_value = if_else(Rank == \"Ace\", \"1\", Rank),\n    point_value = if_else(Face == \"Yes\", \"10\", point_value),\n    point_value = as.numeric(point_value),\n    .after = Rank\n  )\n\ndeck_points |&gt; slice(c(1, 10, 13))\n\n# A tibble: 3 × 5\n   Card Suit  Rank  point_value Face \n  &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;\n1     1 Clubs Ace             1 No   \n2    10 Clubs 10             10 No   \n3    13 Clubs King           10 Yes  \n\n\n!! In Notes #1 this chunk started with filter(Face == \"No\"), which removed the face cards before the Face == \"Yes\" line could ever run. Filter after assigning values if you only want some cards:\n\n# Average point value of the non-face cards\ndeck_points |&gt;\n  filter(Face == \"No\") |&gt;\n  summarize(avg_value = mean(point_value))\n\n# A tibble: 1 × 1\n  avg_value\n      &lt;dbl&gt;\n1       5.5\n\n\nAnswer: Every card now has a numeric point_value. The 40 non-face cards average 5.5 points.\n\n\n\nQuestion: Which flights from NYC to Seattle (SEA) arrived the latest?\nPseudocode: keep Seattle flights → sort by arrival delay, biggest first → show only the columns that identify the flight.\n\nflights |&gt;\n  filter(dest == \"SEA\") |&gt;\n  arrange(desc(arr_delay)) |&gt;\n  select(month, day, carrier, origin, dest, arr_delay)\n\n# A tibble: 3,923 × 6\n   month   day carrier origin dest  arr_delay\n   &lt;int&gt; &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;     &lt;dbl&gt;\n 1     6    24 DL      JFK    SEA         444\n 2     6    27 DL      JFK    SEA         400\n 3     9    12 DL      JFK    SEA         336\n 4     8    11 B6      JFK    SEA         328\n 5     7    10 B6      JFK    SEA         307\n 6     3    18 UA      EWR    SEA         299\n 7     6    27 DL      JFK    SEA         292\n 8     9    12 UA      EWR    SEA         269\n 9     7    22 B6      JFK    SEA         258\n10     7    22 UA      EWR    SEA         255\n# ℹ 3,913 more rows\n\n\nAnswer: Out of 3,923 flights to Seattle, the latest was a Delta flight from JFK on June 24, which arrived 444 minutes (7.4 hours) late.",
+    "crumbs": [
+      "B DATA 200",
+      "Wrangling",
+      "Rows & Columns"
+    ]
+  },
+  {
+    "objectID": "bdata200/rows-columns.html#quick-reference-row-operations",
+    "href": "bdata200/rows-columns.html#quick-reference-row-operations",
+    "title": "Rows & Columns",
+    "section": "",
+    "text": "Use Case\nFunction\nExample\n\n\n\n\nKeep rows that meet a condition\nfilter()\nflights |&gt; filter(dep_delay &gt; 120)\n\n\nComparison for conditional statements\n== != &gt; &gt;= &lt; &lt;=\nfilter(dest == \"IAH\")\n\n\nRequire both conditions (and)\n& or ,\nfilter(month == 1 & day == 1)\n\n\nAccept either condition (or)\n|\nfilter(month == 1 | month == 2)\n\n\nMatch any of several values\n%in%\nfilter(month %in% c(1, 2))\n\n\nKeep values inside a range\nbetween()\nmpg |&gt; filter(between(hwy, 20, 30))\n\n\nFind rows with a missing value\nis.na()\nfilter(is.na(dep_time))\n\n\nSort rows smallest to largest\narrange()\nflights |&gt; arrange(year, month, day, dep_time)\n\n\nSort rows from largest to smallest\ndesc()\nflights |&gt; arrange(desc(dep_delay))\n\n\nKeep the row(s) with the largest value\nslice_max()\nmpg |&gt; slice_max(hwy, n = 3)\n\n\nKeep the row(s) with the smallest value\nslice_min()\nmpg |&gt; slice_min(hwy)\n\n\nKeep rows by position\nslice()\nmpg |&gt; slice(1:5)\n\n\nKeep unique rows or combinations\ndistinct()\nflights |&gt; distinct(origin, dest)\n\n\nKeep the other columns\n.keep_all = TRUE\ndistinct(origin, dest, .keep_all = TRUE)\n\n\nCount how often each value appears\ncount()\nflights |&gt; count(origin, dest, sort = TRUE)\n\n\n\n\nslice_max() vs. arrange(desc()) |&gt; slice(1): same idea, but slice_max() keeps ties (from HW1, where two counties could share the top value)",
+    "crumbs": [
+      "B DATA 200",
+      "Wrangling",
+      "Rows & Columns"
+    ]
+  },
+  {
+    "objectID": "bdata200/rows-columns.html#quick-reference-column-operations",
+    "href": "bdata200/rows-columns.html#quick-reference-column-operations",
+    "title": "Rows & Columns",
+    "section": "",
+    "text": "Use Case\nFunction\nExample\n\n\n\n\nAdd a column calculated from others\nmutate()\nflights |&gt; mutate(speed = distance / air_time * 60)\n\n\nPut the new column at the front\n.before / .after\nmutate(gain = dep_delay - arr_delay, .before = 1)\n\n\nKeep only the columns used in the calculation\n.keep = \"used\"\nmutate(gain = dep_delay - arr_delay, .keep = \"used\")\n\n\nPick one of two values by a condition\nif_else()\nmutate(late = if_else(arr_delay &gt; 0, \"Late\", \"On time\"))\n\n\nKeep only some columns\nselect()\nflights |&gt; select(year, month, day)\n\n\nPick columns by name pattern\nstarts_with() ends_with() contains()\nselect(starts_with(\"dep\"))\n\n\nPick columns by type\nwhere()\nselect(where(is.character))\n\n\nRename a column\nrename()\nrename(tail = tailnum) (new name first)",
+    "crumbs": [
+      "B DATA 200",
+      "Wrangling",
+      "Rows & Columns"
+    ]
+  },
+  {
+    "objectID": "bdata200/rows-columns.html#worked-example-point-values-for-a-deck-of-cards-mutate",
+    "href": "bdata200/rows-columns.html#worked-example-point-values-for-a-deck-of-cards-mutate",
+    "title": "Rows & Columns",
+    "section": "",
+    "text": "From the 10/12 in-class activity\nQuestion: In a standard 52-card deck, give every card a point value:\n\nAce is worth 1\n2 through 10 are worth their rank\nFace cards Jack, Queen and King are worth 10\n\nPseudocode:\n\nRead in the deck\nMake point_value: if the rank is Ace, use 1; otherwise copy the rank\nOverwrite point_value with 10 for face cards\nRank is text (\"Ace\", \"King\"), so convert point_value to a number at the end\n\n\ndeck &lt;- read_csv(\"data/card_deck.csv\")\n\nRows: 52 Columns: 4\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr (3): Suit, Rank, Face\ndbl (1): Card\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\n\ndeck_points &lt;- deck |&gt;\n  mutate(\n    point_value = if_else(Rank == \"Ace\", \"1\", Rank),\n    point_value = if_else(Face == \"Yes\", \"10\", point_value),\n    point_value = as.numeric(point_value),\n    .after = Rank\n  )\n\ndeck_points |&gt; slice(c(1, 10, 13))\n\n# A tibble: 3 × 5\n   Card Suit  Rank  point_value Face \n  &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;       &lt;dbl&gt; &lt;chr&gt;\n1     1 Clubs Ace             1 No   \n2    10 Clubs 10             10 No   \n3    13 Clubs King           10 Yes  \n\n\n!! In Notes #1 this chunk started with filter(Face == \"No\"), which removed the face cards before the Face == \"Yes\" line could ever run. Filter after assigning values if you only want some cards:\n\n# Average point value of the non-face cards\ndeck_points |&gt;\n  filter(Face == \"No\") |&gt;\n  summarize(avg_value = mean(point_value))\n\n# A tibble: 1 × 1\n  avg_value\n      &lt;dbl&gt;\n1       5.5\n\n\nAnswer: Every card now has a numeric point_value. The 40 non-face cards average 5.5 points.",
+    "crumbs": [
+      "B DATA 200",
+      "Wrangling",
+      "Rows & Columns"
+    ]
+  },
+  {
+    "objectID": "bdata200/rows-columns.html#worked-example-flights-to-seattle-with-the-longest-delays",
+    "href": "bdata200/rows-columns.html#worked-example-flights-to-seattle-with-the-longest-delays",
+    "title": "Rows & Columns",
+    "section": "",
+    "text": "Question: Which flights from NYC to Seattle (SEA) arrived the latest?\nPseudocode: keep Seattle flights → sort by arrival delay, biggest first → show only the columns that identify the flight.\n\nflights |&gt;\n  filter(dest == \"SEA\") |&gt;\n  arrange(desc(arr_delay)) |&gt;\n  select(month, day, carrier, origin, dest, arr_delay)\n\n# A tibble: 3,923 × 6\n   month   day carrier origin dest  arr_delay\n   &lt;int&gt; &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;     &lt;dbl&gt;\n 1     6    24 DL      JFK    SEA         444\n 2     6    27 DL      JFK    SEA         400\n 3     9    12 DL      JFK    SEA         336\n 4     8    11 B6      JFK    SEA         328\n 5     7    10 B6      JFK    SEA         307\n 6     3    18 UA      EWR    SEA         299\n 7     6    27 DL      JFK    SEA         292\n 8     9    12 UA      EWR    SEA         269\n 9     7    22 B6      JFK    SEA         258\n10     7    22 UA      EWR    SEA         255\n# ℹ 3,913 more rows\n\n\nAnswer: Out of 3,923 flights to Seattle, the latest was a Delta flight from JFK on June 24, which arrived 444 minutes (7.4 hours) late.",
+    "crumbs": [
+      "B DATA 200",
+      "Wrangling",
+      "Rows & Columns"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Derek Nguyen",
+    "section": "",
+    "text": "This site collects my course notes and coding work in R, Python and more. Use the navigation bar to jump to a section."
+  },
+  {
+    "objectID": "index.html#courses",
+    "href": "index.html#courses",
+    "title": "Derek Nguyen",
+    "section": "Courses",
+    "text": "Courses\n\n\n\nCourse\nTerm\nNotes\n\n\n\n\nB DATA 200: Introduction to Data Studies\nAutumn 2026\nGo to B DATA 200 notes\n\n\nB DATA 232: Introduction to Data Visualization\nAutumn 2026\nGo to B DATA 232 notes"
+  },
+  {
+    "objectID": "index.html#languages-projects",
+    "href": "index.html#languages-projects",
+    "title": "Derek Nguyen",
+    "section": "Languages & Projects",
+    "text": "Languages & Projects\n\nR: B DATA 200 and B DATA 232\nPython: scripts and notes (coming soon)\nSQL: coming soon\nLinear Algebra: coming soon"
+  }
+]

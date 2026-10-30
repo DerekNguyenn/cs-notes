@@ -1,0 +1,19 @@
+---
+pagetitle: "Feedback Log"
+---
+
+# Feedback Log {#sec-feedback-log}
+
+Addressing feedback and how they were incorporated in each Notes iteration.
+
+## Notes #1 - October 20, 2026
+
+| \# | Feedback | What I changed | Where |
+|:-------------|:------------------|:-------------------------|:-------------|
+| 1 | Code in the Plots table ran into the next column in the PDF | I kept table examples short, moved longer code into chunks under the table, and checked the PDF | [Plots](plots.qmd) |
+| 2 | Most people use `<-` over `=` so assignment stays separate from `==` | I use `<-` for assignment now, and `=` only for function arguments | [Workflow](workflow.qmd#assignment-operators) |
+| 3 | Columns go unquoted, except in functions like the pivots | I added the pivot exception to rule 2, plus a pitfall for forgetting the quotes | [Data Basics](basics.qmd), [Tidying](tidying.qmd) |
+| 4 | `echo: false` runs the code but hides it in the render | I added it to my Chunk Options table with an example | [Workflow](workflow.qmd) |
+| 5 | Turning off warnings is useful too | I added `warning: false`, along with `message`, `error`, `include` and `label` | [Workflow](workflow.qmd) |
+| 6 | Try a Quarto site on GitHub Pages, or a clickable table of contents | I moved my notes to a Quarto website on GitHub Pages, with one page per topic | This site! :) |
+| 7 | A table of contents in the PDF | I added one to the PDF version, linked from the course home page | [Course home](index.qmd) |

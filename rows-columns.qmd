@@ -1,0 +1,99 @@
+# Rows & Columns {#sec-rows-columns}
+
+```{r}
+#| include: false
+library(tidyverse)
+library(nycflights13)
+```
+
+## Quick Reference: Row Operations
+
+| Use Case                              | Function                    | Example                                          |
+|:--------------------------------------|:----------------------------|:-------------------------------------------------|
+| Keep rows that meet a condition       | `filter()`                  | `flights |> filter(dep_delay > 120)`             |
+| Comparison for conditional statements | `==` `!=` `>` `>=` `<` `<=` | `filter(dest == "IAH")`                          |
+| Require both conditions (and)         | `&` or `,`                  | `filter(month == 1 & day == 1)`                  |
+| Accept either condition (or)          | `|`                         | `filter(month == 1 | month == 2)`                |
+| Match any of several values           | `%in%`                      | `filter(month %in% c(1, 2))`                     |
+| Keep values inside a range            | `between()`                 | `mpg |> filter(between(hwy, 20, 30))`            |
+| Find rows with a missing value        | `is.na()`                   | `filter(is.na(dep_time))`                        |
+| Sort rows smallest to largest         | `arrange()`                 | `flights |> arrange(year, month, day, dep_time)` |
+| Sort rows from largest to smallest    | `desc()`                    | `flights |> arrange(desc(dep_delay))`            |
+| Keep the row(s) with the largest value | `slice_max()`              | `mpg |> slice_max(hwy, n = 3)`                   |
+| Keep the row(s) with the smallest value | `slice_min()`             | `mpg |> slice_min(hwy)`                          |
+| Keep rows by position                 | `slice()`                   | `mpg |> slice(1:5)`                              |
+| Keep unique rows or combinations      | `distinct()`                | `flights |> distinct(origin, dest)`              |
+| Keep the other columns                | `.keep_all = TRUE`          | `distinct(origin, dest, .keep_all = TRUE)`       |
+| Count how often each value appears    | `count()`                   | `flights |> count(origin, dest, sort = TRUE)`    |
+
+- `slice_max()` vs. `arrange(desc()) |> slice(1)`: same idea, but `slice_max()` keeps **ties** (from HW1, where two counties could share the top value)
+
+## Quick Reference: Column Operations
+
+| Use Case                                      | Function                                   | Example                                                |
+|:----------------------------------------------|:-------------------------------------------|:-------------------------------------------------------|
+| Add a column calculated from others           | `mutate()`                                 | `flights |> mutate(speed = distance / air_time * 60)`  |
+| Put the new column at the front               | `.before` / `.after`                       | `mutate(gain = dep_delay - arr_delay, .before = 1)`    |
+| Keep only the columns used in the calculation | `.keep = "used"`                           | `mutate(gain = dep_delay - arr_delay, .keep = "used")` |
+| Pick one of two values by a condition         | `if_else()`                                | `mutate(late = if_else(arr_delay > 0, "Late", "On time"))` |
+| Keep only some columns                        | `select()`                                 | `flights |> select(year, month, day)`                  |
+| Pick columns by name pattern                  | `starts_with()` `ends_with()` `contains()` | `select(starts_with("dep"))`                           |
+| Pick columns by type                          | `where()`                                  | `select(where(is.character))`                          |
+| Rename a column                               | `rename()`                                 | `rename(tail = tailnum)` (new name first)              |
+
+## Worked Example: Point Values for a Deck of Cards (`mutate()`)
+
+*From the 10/12 in-class activity*
+
+**Question:** In a standard 52-card deck, give every card a point value:
+
+- Ace is worth 1
+- 2 through 10 are worth their rank
+- Face cards Jack, Queen and King are worth 10
+
+**Pseudocode:**
+
+1. Read in the deck
+2. Make `point_value`: if the rank is Ace, use 1; otherwise copy the rank
+3. Overwrite `point_value` with 10 for face cards
+4. `Rank` is text (`"Ace"`, `"King"`), so convert `point_value` to a number at the end
+
+```{r}
+deck <- read_csv("data/card_deck.csv")
+
+deck_points <- deck |>
+  mutate(
+    point_value = if_else(Rank == "Ace", "1", Rank),
+    point_value = if_else(Face == "Yes", "10", point_value),
+    point_value = as.numeric(point_value),
+    .after = Rank
+  )
+
+deck_points |> slice(c(1, 10, 13))
+```
+
+!! In Notes #1 this chunk started with `filter(Face == "No")`, which removed the face cards before the `Face == "Yes"` line could ever run. Filter *after* assigning values if you only want some cards:
+
+```{r}
+# Average point value of the non-face cards
+deck_points |>
+  filter(Face == "No") |>
+  summarize(avg_value = mean(point_value))
+```
+
+**Answer:** Every card now has a numeric `point_value`. The 40 non-face cards average 5.5 points.
+
+## Worked Example: Flights to Seattle with the Longest Delays
+
+**Question:** Which flights from NYC to Seattle (SEA) arrived the latest?
+
+**Pseudocode:** keep Seattle flights → sort by arrival delay, biggest first → show only the columns that identify the flight.
+
+```{r}
+flights |>
+  filter(dest == "SEA") |>
+  arrange(desc(arr_delay)) |>
+  select(month, day, carrier, origin, dest, arr_delay)
+```
+
+**Answer:** Out of 3,923 flights to Seattle, the latest was a Delta flight from JFK on June 24, which arrived 444 minutes (7.4 hours) late.

@@ -1,0 +1,115 @@
+# Common Pitfalls & Troubleshooting {#sec-pitfalls}
+
+```{r}
+#| include: false
+library(tidyverse)
+library(nycflights13)
+```
+
+## `=` instead of `==`
+
+```{r}
+#| error: true
+# !! one = means "assign" or "name an argument", not "is equal to"
+flights |>
+  filter(month = 1)
+```
+
+dplyr catches this and suggests the fix:
+
+```{r}
+flights |>
+  filter(month == 1) |>
+  count(month)
+```
+
+## Forgetting `na.rm = TRUE`
+
+```{r}
+# !! any missing value makes the whole result NA
+flights |>
+  summarize(avg_delay = mean(arr_delay))
+```
+
+```{r}
+# Fix: ignore missing values
+flights |>
+  summarize(avg_delay = mean(arr_delay, na.rm = TRUE))
+```
+
+## Using the `&` and `|` Operators
+
+```{r}
+# Keep only flights in January OR February
+# !! PRODUCES A BUGGED OUTPUT
+flights |>
+  filter(month == 1 | 2) |>
+  count(month)
+```
+
+**Error:** R treats nonzero numbers in conditional statements as `TRUE`, so it reads this as "keep rows where `month` is 1, **or** `TRUE`", which keeps every row.
+
+```{r}
+# Fix 1
+flights |>
+  filter(month == 1 | month == 2) |>
+  count(month)
+
+# Fix 2
+flights |>
+  filter(month %in% c(1, 2)) |>
+  count(month)
+```
+
+## Forgetting to Save with `<-`
+
+```{r}
+flights |>
+  filter(month == 1) |>
+  nrow()
+
+nrow(flights) # unchanged!
+```
+
+dplyr verbs never change the original data. To keep the result, save it: `jan_flights <- flights |> filter(month == 1)`.
+
+## Filtering Before a Step That Needs the Rows
+
+!! From my own Notes #1: filtering to non-face cards *before* assigning face-card values meant the face-card rule never ran. Think through the order of steps (write pseudocode) before chaining. See the [card deck example](rows-columns.qmd).
+
+## Quoting Column Names in Pivots
+
+```{r}
+#| error: true
+wide <- tibble(id = 1:2, `2022` = c(5, 6), `2023` = c(7, 8))
+
+# !! names_to without quotes: R looks for an object called year (and finds lubridate's year() function)
+wide |>
+  pivot_longer(cols = -id, names_to = year, values_to = "n")
+```
+
+```{r}
+# Fix: new column names are quoted
+wide |>
+  pivot_longer(cols = -id, names_to = "year", values_to = "n")
+```
+
+## Joins That Add Rows
+
+!! A one-to-many join repeats rows on the "one" side. A total or average taken after the join can **double count**:
+
+```{r}
+counties <- tibble(county_id = c(101, 103), population = c(10000, 15000))
+programs <- tibble(county_id = c(101, 101, 103), program = c("A", "B", "C"))
+
+# Real total population is 25,000, but Alder is counted twice
+counties |>
+  left_join(programs, by = "county_id") |>
+  summarize(total_pop = sum(population))
+```
+
+Fix: summarize the "many" table first (e.g. `count(county_id)`), *then* join. Or add `relationship = "one-to-one"` to make dplyr error when there are duplicates.
+
+## `NA` Is Not Zero
+
+After a `left_join()`, unmatched rows get `NA`. That means **unknown**, not 0. Don't replace them with 0 unless you know the true value is zero.

@@ -1,0 +1,118 @@
+---
+pagetitle: "Tidying & Reshaping"
+---
+
+# Tidying & Reshaping {#sec-tidying}
+
+```{r}
+#| include: false
+library(tidyverse)
+```
+
+*From the 10/19 in-class activity (Day 6)*
+
+Real data rarely arrives tidy. Before reshaping, ask: **what should one row represent?**
+
+## Quick Reference
+
+| Use Case | Function | Example |
+|:----------------------|:----------------|:-------------------------------|
+| Many columns → fewer, longer columns | `pivot_longer()` | `pivot_longer(cols = -id, names_to = "year", values_to = "n")` |
+| Many rows → fewer, wider rows | `pivot_wider()` | `pivot_wider(names_from = measure, values_from = value)` |
+| Does a text value contain a pattern? | `str_detect()` | `filter(str_detect(name, "County"))` |
+| Pull a number out of messy text | `parse_number()` | `parse_number("45 minutes")` → `45` |
+| Replace text that matches a pattern | `str_replace()` | `str_replace(x, "mins", "")` |
+| Make text all lowercase | `str_to_lower()` | `str_to_lower("March")` → `"march"` |
+| Create a small table by hand | `tribble()` | see [Joins](joins.qmd) |
+
+!! In pivots, **new** column names are quoted (`names_to = "year"`), but **existing** columns are not (`cols = starts_with("F_count")`, `names_from = measure`). This is the exception to dplyr rule 2 in [Data Basics](basics.qmd).
+
+## Wide → Long: `pivot_longer()`
+
+Use when column **names** are actually values of a variable (years, seasons, episodes).
+
+```{r}
+# A wide table: one column per year
+wide <- tribble(
+  ~county,  ~`2021`, ~`2022`, ~`2023`,
+  "Alder",  10.1,    10.4,    10.2,
+  "Birch",  12.0,    12.3,    12.5
+)
+
+wide |>
+  pivot_longer(
+    cols = -county,          # every column except county (unquoted: it exists)
+    names_to = "year",       # quoted: this column is being created
+    values_to = "estimate"   # quoted: this column is being created
+  )
+```
+
+**Arguments:**
+
+- `cols`: which existing columns to stack
+- `names_to`: name of the new column that holds the old column names
+- `values_to`: name of the new column that holds the cell values
+
+### Splitting column names into several variables
+
+In class, the Ted Lasso data had one row and columns like `F_count_RK_S1_e1` (Roy Kent's count, season 1, episode 1) and `F_count_total_S1_e1`. `names_pattern` uses a regular expression to pull the pieces apart:
+
+```{r}
+#| eval: false
+tl_wide |>
+  pivot_longer(
+    cols = starts_with("F_count_"),
+    names_to = c(".value", "Season", "Episode"),
+    names_pattern = "F_count_(RK|total)_S(\\d+)_e(\\d+)"
+  )
+```
+
+- Each `( )` group in the pattern fills one entry of `names_to`
+  - Group 1, `(RK|total)`: "RK" or "total"
+  - Group 2, `S(\\d+)`: the digits after `S`, i.e. the season
+  - Group 3, `e(\\d+)`: the digits after `e`, i.e. the episode
+- `".value"` is special: instead of making a column called `.value`, the matched text (`RK`, `total`) **becomes column names**, so the result has one row per episode with an `RK` column and a `total` column
+- `\\d+` means "one or more digits" (regex cheat sheet: the [stringr regex vignette](https://cran.r-project.org/web/packages/stringr/vignettes/regular-expressions.html))
+
+## Long → Wide: `pivot_wider()`
+
+Use when one case is spread across several rows (e.g. CDC PLACES has one row per county **per measure**).
+
+```{r}
+long <- tribble(
+  ~county, ~measure,   ~value,
+  "Alder", "Diabetes", 10.2,
+  "Alder", "Obesity",  31.0,
+  "Birch", "Diabetes", 12.5,
+  "Birch", "Obesity",  33.4
+)
+
+long |>
+  pivot_wider(
+    id_cols = county,        # one row per county
+    names_from = measure,    # new column names come from here
+    values_from = value      # cell values come from here
+  )
+```
+
+- `names_from` can take several columns, e.g. `names_from = c(MeasureId, Data_Value_Type)`, which glues them into names like `DIABETES_Crude prevalence`
+
+## Cleaning Messy Survey Answers
+
+The raw class survey had free-text answers like `"45 minutes"`, `"1 hr"`, and `"30"` in a minutes column. Write the cleaning steps in order before coding:
+
+**Pseudocode:**
+
+1.  Make everything lowercase so `"Hr"` and `"hr"` match
+2.  Find the answers given in hours with `str_detect()`
+3.  Pull out the number with `parse_number()`
+4.  Multiply the hour answers by 60
+5.  Check what's left with `count()` and decide what to do with anything unusable (set to `NA`, don't guess)
+
+**Code Implementation:**
+
+```{r}
+survey <- tibble(routine_min = c("45 minutes", "1 hr", "30", "1.5 hours", "idk"))
+
+# INCOMPLETE - Added to To-Do.
+```

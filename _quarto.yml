@@ -1,0 +1,61 @@
+project:
+  type: book
+  output-dir: docs
+
+book:
+  title: "BDATA 200 Notes"
+  subtitle: "Introduction to Data Studies, Autumn 2026"
+  author: "Derek Nguyen"
+  date: today
+  date-format: long
+  repo-url: https://github.com/DerekNguyenn/bdata200-notes
+  downloads: [pdf]
+  search: true
+  chapters:
+    - index.qmd
+    - part: "R Workflow"
+      chapters:
+        - workflow.qmd
+        - basics.qmd
+    - part: "Wrangling"
+      chapters:
+        - rows-columns.qmd
+        - groups.qmd
+        - tidying.qmd
+        - joins.qmd
+    - part: "Visualizing & Modeling"
+      chapters:
+        - plots.qmd
+        - eda.qmd
+        - models.qmd
+    - part: "Data in Context"
+      chapters:
+        - study-design.qmd
+    - part: "Wrap-up"
+      chapters:
+        - pitfalls.qmd
+        - reflection.qmd
+  appendices:
+    - feedback-log.qmd
+
+execute:
+  freeze: auto
+  message: false
+
+format:
+  html:
+    theme: cosmo
+    toc: true
+    code-copy: true
+    code-overflow: wrap
+  pdf:
+    documentclass: scrreprt
+    toc: true
+    number-sections: true
+    geometry:
+      - margin=0.8in
+    code-overflow: wrap
+    fig-width: 6
+    fig-height: 3.5
+
+editor: visual
