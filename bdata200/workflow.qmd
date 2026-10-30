@@ -22,38 +22,42 @@ library(nycflights13)
 
 From the Day 4 activity, the workflow for every new `.qmd`:
 
-1. Open the `.Rproj` first, so file paths like `read_csv("titanic.csv")` work without a full path
-2. First chunk: load packages
-3. Second chunk: import the data and give it a name
-4. Meet the data (`glimpse()`, `head()`, check for `NA`s) before wrangling or plotting
+1.  Open the `.Rproj` first, so file paths like `read_csv("titanic.csv")` work without a full path
+2.  First chunk: load packages
+3.  Second chunk: import the data and give it a name
+4.  Meet the data (`glimpse()`, `head()`, check for `NA`s) before wrangling or plotting
 
 Keep one purpose per chunk. Loading packages and importing data are separate chunks.
 
 ## Keyboard Shortcuts
 
-| I want to...                         | Shortcut              |
-|:-------------------------------------|:----------------------|
-| Run the current line or selection    | Cmd + Enter           |
-| Run the whole current chunk          | Cmd + Shift + Enter   |
-| Insert a code chunk                  | Cmd + Option + I      |
-| Type the pipe `|>`                   | Cmd + Shift + M       |
-| Type the assignment arrow `<-`       | Option + -            |
-| Render the document                  | Cmd + Shift + K       |
-| See all keyboard shortcuts (overlay) | Option + Shift + K    |
+| I want to...                         | Shortcut            |
+|:-------------------------------------|:--------------------|
+| Run the current line or selection    | Cmd + Enter         |
+| Run the whole current chunk          | Cmd + Shift + Enter |
+| Insert a code chunk                  | Cmd + Option + I    |
+| Type the pipe `|>`                   | Cmd + Shift + M     |
+| Type the assignment arrow `<-`       | Option + -          |
+| Render the document                  | Cmd + Shift + K     |
+| See all keyboard shortcuts (overlay) | Option + Shift + K  |
 
 ## Chunk Options
 
 Chunk options go on the first lines inside a code chunk and start with `#|`.
 
-| Option             | What it does                                                    | When I use it                                                  |
-|:-------------------|:----------------------------------------------------------------|:---------------------------------------------------------------|
-| `#| eval: false`   | Shows the code but never runs it                                | `View()`, `install.packages()`, code I only want to display    |
-| `#| echo: false`   | Runs the code and shows the output, but hides the code          | A finished plot in a report where the reader doesn't need code |
-| `#| include: false`| Runs the code but hides both code and output                    | Setup chunks (loading packages, importing data)                |
-| `#| warning: false`| Hides warnings (the code still runs)                            | Known, harmless warnings, e.g. `geom_smooth()` messages        |
-| `#| message: false`| Hides messages, e.g. the startup text from `library(tidyverse)` | Package loading and `read_csv()` column-type messages          |
-| `#| error: true`   | Keeps rendering even if the chunk errors, and shows the error   | Demonstrating a mistake on purpose (see [Pitfalls](pitfalls.qmd)) |
-| `#| label: name`   | Names the chunk                                                 | Finding a chunk in the outline; cross-referencing figures      |
+::: callout-tip
+## In RStudio, chunk options can be easily toggled with the cogwheel icon under each code chunk.
+:::
+
+| Option | What it does | When I use it |
+|:---------------|:----------------------------|:---------------------------|
+| `#| eval: false` | Shows the code but never runs it | `View()`, `install.packages()`, code I only want to display |
+| `#| echo: false` | Runs the code and shows the output, but hides the code | A finished plot in a report where the reader doesn't need code |
+| `#| include: false` | Runs the code but hides both code and output | Setup chunks (loading packages, importing data) |
+| `#| warning: false` | Hides warnings (the code still runs) | Known, harmless warnings, e.g. `geom_smooth()` messages |
+| `#| message: false` | Hides messages, e.g. the startup text from `library(tidyverse)` | Package loading and `read_csv()` column-type messages |
+| `#| error: true` | Keeps rendering even if the chunk errors, and shows the error | Demonstrating a mistake on purpose (see [Pitfalls](pitfalls.qmd)) |
+| `#| label: name` | Names the chunk | Finding a chunk in the outline; cross-referencing figures |
 
 ```{r}
 #| label: chunk-option-demo
