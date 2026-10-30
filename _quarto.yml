@@ -4,8 +4,8 @@ project:
 
 website:
   title: "Derek Nguyen"
-  site-url: https://dereknguyenn.github.io
-  repo-url: https://github.com/DerekNguyenn/DerekNguyenn.github.io
+  site-url: https://dereknguyenn.github.io/cs-notes
+  repo-url: https://github.com/DerekNguyenn/cs-notes
   search: true
   page-navigation: true
   navbar:
