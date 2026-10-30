@@ -8,10 +8,10 @@ This site collects my course notes and coding work in R, Python and more. Use th
 
 ## Courses
 
-| Course                                        | Term         | Notes                                   |
-|:----------------------------------------------|:-------------|:----------------------------------------|
-| **B DATA 200**: Introduction to Data Studies  | Autumn 2026  | [Go to B DATA 200 notes](bdata200/index.qmd) |
-| **B DATA 232**                                | Autumn 2026  | [Go to B DATA 232 notes](bdata232/index.qmd) |
+| Course | Term | Notes |
+|:-----------------------------|:---------------|:-------------------------|
+| **B DATA 200**: Introduction to Data Studies | Autumn 2026 | [Go to B DATA 200 notes](bdata200/index.qmd) |
+| **B DATA 232**: Introduction to Data Visualization | Autumn 2026 | [Go to B DATA 232 notes](bdata232/index.qmd) |
 
 ## Languages & Projects
 
