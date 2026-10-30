@@ -371,7 +371,6 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#where-anova-fits" id="toc-where-anova-fits" class="nav-link" data-scroll-target="#where-anova-fits">Where ANOVA fits</a></li>
   </ul></li>
-  <li><a href="#binary-outcomes-logistic-regression-first-look" id="toc-binary-outcomes-logistic-regression-first-look" class="nav-link" data-scroll-target="#binary-outcomes-logistic-regression-first-look">Binary Outcomes: Logistic Regression (first look)</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -391,10 +390,10 @@ window.Quarto = {
 <p>Start with the question, then name the <strong>outcome</strong> (what I’m trying to understand) and the <strong>predictor</strong> (what might explain it), and their types.</p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 11%">
-<col style="width: 11%">
-<col style="width: 42%">
-<col style="width: 35%">
+<col style="width: 19%">
+<col style="width: 19%">
+<col style="width: 34%">
+<col style="width: 27%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -463,8 +462,8 @@ window.Quarto = {
 <p><span class="math display">\[\hat{y} = b_0 + b_1 x\]</span></p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 26%">
-<col style="width: 73%">
+<col style="width: 27%">
+<col style="width: 72%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -585,17 +584,9 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <li>With exactly two groups, ANOVA, a two-sample t-test, and <code>lm()</code> give the same test</li>
 <li>!! Lead with the <strong>plot</strong>, not the table: means alone hide spread, overlap and outliers</li>
 </ul>
-</section>
-</section>
-<section id="binary-outcomes-logistic-regression-first-look" class="level2">
-<h2 class="anchored" data-anchor-id="binary-outcomes-logistic-regression-first-look">Binary Outcomes: Logistic Regression (first look)</h2>
-<p>When the outcome is yes/no (pass/fail), a straight line can predict impossible probabilities below 0 or above 1. <strong>Logistic regression</strong> models the <em>probability</em> of “yes” with an S-shaped curve that stays between 0 and 1.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x =</span> hours, <span class="at">y =</span> passed)) <span class="sc">+</span>   <span class="co"># passed is 0 or 1</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">height =</span> <span class="fl">0.05</span>, <span class="at">width =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"glm"</span>, <span class="at">method.args =</span> <span class="fu">list</span>(<span class="at">family =</span> <span class="st">"binomial"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Matching rule of thumb: <strong>numerical outcome → linear model; binary outcome → logistic regression.</strong></p>
 
 
+</section>
 </section>
 </section>
 
