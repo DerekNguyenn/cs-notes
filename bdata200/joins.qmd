@@ -13,23 +13,25 @@ library(tidyverse)
 
 A join is a decision about which records belong together, not just a line of code. Before joining, ask:
 
-1. What does **one row** represent in each table?
-2. What makes two records a **valid match**?
-3. After joining, does the result still answer my question? (Check the row count and what one row now means.)
+1.  What does **one row** represent in each table?
+2.  What makes two records a **valid match**?
+3.  After joining, does the result still answer my question? (Check the row count and what one row now means.)
+
+[![Source: medium.com](images/clipboard-1449090112.png){fig-align="center" width="591" height="332"}](https://medium.com/@gajendrasharmawork/understanding-sql-joins-left-join-right-join-and-union-explained-11de9a80522c)
 
 ## Quick Reference
 
-| Function              | Keeps which rows?           | Adds columns from `y`? | Use it to...                          |
-|:----------------------|:----------------------------|:-----------------------|:--------------------------------------|
-| `left_join(x, y)`     | All rows in `x`             | Yes                    | Add lookup info to my starting table  |
-| `right_join(x, y)`    | All rows in `y`             | Yes                    | Same as a left join with `x`/`y` swapped |
-| `inner_join(x, y)`    | Only rows that match        | Yes                    | Analyze complete matches only         |
-| `full_join(x, y)`     | All rows from both          | Yes                    | Reconcile/audit two sources           |
-| `semi_join(x, y)`     | Rows in `x` with a match    | No                     | Filter `x` to records that have a match |
-| `anti_join(x, y)`     | Rows in `x` with no match   | No                     | Find what *didn't* match (diagnostics) |
-| `intersect(x, y)`     | Identical rows in both      | No (same columns)      | Rows shared by two extracts           |
-| `union(x, y)`         | Distinct rows in either     | No (same columns)      | Stack two compatible tables, no duplicates |
-| `setdiff(x, y)`       | Rows in `x` not in `y`      | No (same columns)      | What was added/removed between snapshots |
+| Function | Keeps which rows? | Adds columns from `y`? | Use it to... |
+|:----------------|:----------------|:----------------|:----------------------|
+| `left_join(x, y)` | All rows in `x` | Yes | Add lookup info to my starting table |
+| `right_join(x, y)` | All rows in `y` | Yes | Same as a left join with `x`/`y` swapped |
+| `inner_join(x, y)` | Only rows that match | Yes | Analyze complete matches only |
+| `full_join(x, y)` | All rows from both | Yes | Reconcile/audit two sources |
+| `semi_join(x, y)` | Rows in `x` with a match | No | Filter `x` to records that have a match |
+| `anti_join(x, y)` | Rows in `x` with no match | No | Find what *didn't* match (diagnostics) |
+| `intersect(x, y)` | Identical rows in both | No (same columns) | Rows shared by two extracts |
+| `union(x, y)` | Distinct rows in either | No (same columns) | Stack two compatible tables, no duplicates |
+| `setdiff(x, y)` | Rows in `x` not in `y` | No (same columns) | What was added/removed between snapshots |
 
 - Read `x |> left_join(y, by = "id")` as "**join y to x**": `x` is the starting population
 - Always write `by =` (or `join_by()`) so dplyr doesn't silently match on other columns that share a name
@@ -65,13 +67,13 @@ programs <- tribble(
 
 ## Keys
 
-| Key           | Meaning                                                    | Example here                      |
-|:--------------|:-----------------------------------------------------------|:----------------------------------|
-| Primary key   | Uniquely identifies each row; never repeated, never `NA`   | `county_id` in `counties`         |
-| Foreign key   | Points to a key in another table; may repeat               | `county_id` in `programs`         |
+| Key | Meaning | Example here |
+|:---------------|:-----------------------------------|:--------------------|
+| Primary key | Uniquely identifies each row; never repeated, never `NA` | `county_id` in `counties` |
+| Foreign key | Points to a key in another table; may repeat | `county_id` in `programs` |
 | Duplicate key | A key value in several rows: fine for a foreign key, a data problem for a primary key | `101` appears twice in `programs` |
-| Surrogate key | An ID made up just to identify records                     | `program_id` (`"P01"`)            |
-| Natural key   | A meaningful attribute that already identifies the thing   | A state + county FIPS code        |
+| Surrogate key | An ID made up just to identify records | `program_id` (`"P01"`) |
+| Natural key | A meaningful attribute that already identifies the thing | A state + county FIPS code |
 
 Check that a primary key really is unique. Both of these should return **zero rows**:
 
@@ -84,11 +86,11 @@ counties |> filter(is.na(county_id))
 
 ### Relationships
 
-| Relationship  | Meaning                                         | Example                          |
-|:--------------|:------------------------------------------------|:---------------------------------|
-| One-to-one    | Each row matches at most one row on the other side | County → one population value  |
-| One-to-many   | One row can match several rows                  | County → its programs            |
-| Many-to-many  | Rows on both sides can match several rows       | Students ↔ courses               |
+| Relationship | Meaning | Example |
+|:---------------|:--------------------------------|:----------------------|
+| One-to-one | Each row matches at most one row on the other side | County → one population value |
+| One-to-many | One row can match several rows | County → its programs |
+| Many-to-many | Rows on both sides can match several rows | Students ↔ courses |
 
 A one-to-many join **adds rows**: Alder appears twice after joining `programs` because it has two programs. State what you expect so dplyr can warn you:
 
@@ -162,13 +164,3 @@ setdiff(spring, fall)    # rows new in spring
 ```
 
 !! `intersect()` finds identical student-*and*-course rows. To find students enrolled in both terms *regardless of course*, compare just the key: `fall |> semi_join(spring, by = "student_id")`.
-
-## Checking a Join
-
-A join isn't correct just because the row count looks right. Check:
-
-- **Meaning:** do the key columns identify the same thing in both tables?
-- **Uniqueness:** does each key have the expected number of rows?
-- **Unmatched records:** what does `anti_join()` turn up?
-- **Row count and row meaning:** what does one output row represent now?
-- **Spot check:** look up a few records by hand
