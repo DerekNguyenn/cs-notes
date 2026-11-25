@@ -35,7 +35,7 @@ library(tidyverse)
 
 **Question:** A newly discovered fruit has 10 seeds. Is it a berry, citrus, drupe, or pome?
 
-**Pseudocode:** distance = \|seeds − 10\| for every known fruit → sort by distance → k = ⌈√n⌉ → count the classes among the k closest → majority wins.
+**Pseudocode:** distance = \|seeds − 10\| for every known fruit → sort by distance → $k = \lceil \sqrt{n} \rceil$ → count the classes among the k closest → majority wins.
 
 ```{r}
 fruit <- read_csv("data/fruits-data.csv", show_col_types = FALSE)
@@ -51,7 +51,7 @@ fruit_dist |>
 ```
 
 ```{r}
-k <- ceiling(sqrt(nrow(fruit))) # n = 18 known fruits → √18 ≈ 4.24 → 5
+k <- ceiling(sqrt(nrow(fruit))) # n = 18 known fruits: sqrt(18) = 4.24, rounded up to 5
 k
 
 fruit_dist |>
@@ -82,7 +82,7 @@ nearest <- songs |>
   mutate(
     dx = Danceability - purple_rain["danceability"],
     dy = Loudness - purple_rain["loudness"],
-    distance = sqrt(dx^2 + dy^2) # squaring makes the sign not matter, so no abs() needed
+    distance = sqrt(dx^2 + dy^2) # squaring removes the sign, so no abs() needed
   ) |>
   slice_min(distance, n = 5)
 
@@ -118,7 +118,8 @@ Predict each test song's album from its single nearest training song (k = 1):
 ```{r}
 predictions <- test |>
   mutate(test_id = row_number()) |>
-  cross_join(train, suffix = c("", "_train")) |> # every test song paired with every training song
+  # pair every test song with every training song
+  cross_join(train, suffix = c("", "_train")) |>
   mutate(distance = sqrt((Danceability - Danceability_train)^2 +
                          (Loudness - Loudness_train)^2)) |>
   group_by(test_id) |>
@@ -155,7 +156,7 @@ predictions |>
 ```
 
 - 67% beats random guessing among 3 albums (33%), but the test set has only 9 songs, so each song moves accuracy by 11 points
-- !! Overall accuracy hides **where** the errors are. Here every miss is *folklore* ↔ *Midnights*. Both are quieter, mellower albums, while *1989* is loud pop, so two variables can't tell them apart.
+- !! Overall accuracy hides **where** the errors are. Here every miss mixes up *folklore* and *Midnights*. Both are quieter, mellower albums, while *1989* is loud pop, so two variables can't tell them apart.
 
 ## Overfitting
 
