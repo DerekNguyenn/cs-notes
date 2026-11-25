@@ -154,15 +154,19 @@ A join can run without errors and still be wrong. After every join, check:
 | 6 | Did it match on the right columns? | Write `by =` every time | `by = "county_id"`, not every column with a shared name |
 
 ```{r}
+# 1: relationship = errors if a key repeats
 joined <- counties |>
-  left_join(health, by = "county_id", relationship = "one-to-one") # 1: errors if a key repeats
+  left_join(health, by = "county_id", relationship = "one-to-one")
 
-c(before = nrow(counties), after = nrow(joined))                # 2: should be equal
+# 2: should be equal
+c(before = nrow(counties), after = nrow(joined))
 
-counties |> anti_join(health, by = "county_id") |> nrow()      # 3: counties with no estimate
-health |> anti_join(counties, by = "county_id") |> nrow()      # 3: estimates with no county
+# 3: unmatched rows, in both directions
+counties |> anti_join(health, by = "county_id") |> nrow() # counties with no estimate
+health |> anti_join(counties, by = "county_id") |> nrow() # estimates with no county
 
-joined |> filter(is.na(estimate))                                # 4: where the NAs came from
+# 4: where the NAs came from
+joined |> filter(is.na(estimate))
 ```
 
 - !! `relationship =` turns check 1 into an error instead of something I have to remember to look at
