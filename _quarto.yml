@@ -59,6 +59,10 @@ website:
           contents:
             - href: bdata200/study-design.qmd
               text: Study Design & Data Ethics
+        - section: "Inference & Prediction"
+          contents:
+            - href: bdata200/hypothesis-testing.qmd
+              text: Hypothesis Testing & Simulation
         - section: "Wrap-up"
           contents:
             - href: bdata200/pitfalls.qmd

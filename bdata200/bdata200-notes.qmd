@@ -47,6 +47,8 @@ Online version, with search: <https://dereknguyenn.github.io/cs-notes/bdata200/>
 
 {{< include study-design.qmd >}}
 
+{{< include hypothesis-testing.qmd >}}
+
 {{< include pitfalls.qmd >}}
 
 {{< include reflection.qmd >}}
