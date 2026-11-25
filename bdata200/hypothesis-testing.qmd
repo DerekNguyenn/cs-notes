@@ -98,7 +98,7 @@ ggplot(null_dist, aes(x = stat)) +
   geom_vline(xintercept = -obs_diff$stat, color = "red", linetype = "dashed") +
   labs(
     title = "Null distribution of the difference in mean melting times",
-    x = "Chocolate − butterscotch (seconds)",
+    x = "Chocolate - butterscotch (seconds)",
     y = "Number of shuffles"
   ) +
   theme_minimal()
@@ -113,10 +113,12 @@ Step 4: the p-value.
 p_val <- mean(abs(null_dist$stat) >= abs(obs_diff$stat))
 p_val
 
-# same thing with infer
+# with infer
 null_dist |>
   get_p_value(obs_stat = obs_diff, direction = "two-sided")
 ```
+
+- The two p-values differ a little. By hand counts shuffles in **both** tails. `get_p_value()` takes the smaller tail and **doubles** it. With a symmetric null distribution they're close, and either one is fine. Just say which one I used.
 
 **Answer:** Chocolate took `r round(obs_diff$stat, 1)` seconds longer on average in our class. If chip type made no difference, a gap at least this big (either way) would show up in about `r round(p_val * 100)`% of random assignments. Since `r round(p_val, 2)` \> 0.05, we **fail to reject** $H_0$: we don't have convincing evidence that the chips melt at different speeds.
 
@@ -124,17 +126,17 @@ null_dist |>
 
 ## Reading a p-value
 
-| ✅ / ❌ | Statement (p = 0.002) |
-|:---:|:-------------------------------------------------------------|
-| ✅ | **Assuming $H_0$ is true**, there's a 0.2% chance of a statistic at least this extreme |
-| ❌ | There's a 0.2% chance $H_0$ is true |
-| ❌ | There's a 0.2% chance the data happened by chance |
-| ❌ | There's a 99.8% chance $H_A$ is true |
+| Correct? | Statement (p = 0.002) |
+|:-----------:|:-------------------------------------------------------------|
+| **Yes** | **Assuming $H_0$ is true**, there's a 0.2% chance of a statistic at least this extreme |
+| No | There's a 0.2% chance $H_0$ is true |
+| No | There's a 0.2% chance the data happened by chance |
+| No | There's a 99.8% chance $H_A$ is true |
 
 - Small p-value → the data would be surprising under $H_0$ → evidence against $H_0$
 - Large p-value → the data look like what chance produces → no convincing evidence (not proof of $H_0$)
 - !! If **no** shuffle was as extreme as the observed statistic, the p-value isn't 0. Report it as less than 1 / reps (e.g. \< 0.001 with 1,000 reps).
-- !! **Statistically** significant ≠ **practically** important. With a huge sample, a 1-second difference in melting time could be "significant" and still not matter to anyone eating chips.
+- !! **Statistically** significant doesn't mean **practically** important. With a huge sample, a 1-second difference in melting time could be "significant" and still not matter to anyone eating chips.
 
 ### Physical vs. computational simulation
 
@@ -164,10 +166,10 @@ Power is how likely the study is to **detect a real effect**. It depends on how 
 
 | Change | Effect on power | Why |
 |:-------------------------|:-------------|:---------------------------------------------|
-| Larger sample size | ⬆️ | Group means are more precise, so the null distribution is narrower |
-| Larger true difference | ⬆️ | The observed statistic lands farther out in the tail |
-| Less variability | ⬆️ | Narrower null distribution. E.g. same-size chips, a clear "fully melted" rule, or each person melting both chips (paired design) |
-| Higher $\alpha$ | ⬆️ | Easier to reject, but more Type I errors |
+| Larger sample size | Increases | Group means are more precise, so the null distribution is narrower |
+| Larger true difference | Increases | The observed statistic lands farther out in the tail |
+| Less variability | Increases | Narrower null distribution. E.g. same-size chips, a clear "fully melted" rule, or each person melting both chips (paired design) |
+| Higher $\alpha$ | Increases | Easier to reject, but more Type I errors |
 
 Takeaway:
 
