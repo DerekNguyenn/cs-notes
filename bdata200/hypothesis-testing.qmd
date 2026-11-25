@@ -50,7 +50,7 @@ From the reading (the Kristen Gilbert case): 40 deaths in 257 shifts when Gilber
 5.  Compare to $\alpha = 0.05$ and write the conclusion in context
 
 ```{r}
-melting <- read_csv("data/melting-times.csv")
+melting <- read_csv("data/melting-times.csv", show_col_types = FALSE)
 
 melting |>
   group_by(Chip) |>
