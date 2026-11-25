@@ -58,6 +58,7 @@ Chunk options go on the first lines inside a code chunk and start with `#|`.
 | `#| message: false` | Hides messages, e.g. the startup text from `library(tidyverse)` | Package loading and `read_csv()` column-type messages |
 | `#| error: true` | Keeps rendering even if the chunk errors, and shows the error | Demonstrating a mistake on purpose (see [Pitfalls](pitfalls.qmd)) |
 | `#| label: name` | Names the chunk | Finding a chunk in the outline; cross-referencing figures |
+| `#| cache: true` | Saves the chunk's results and reuses them on later renders, until the chunk's code changes | Slow chunks, like reading eight 7-million-row daily files in my Data Story EDA |
 
 ```{r}
 #| label: chunk-option-demo
@@ -65,6 +66,8 @@ Chunk options go on the first lines inside a code chunk and start with `#|`.
 # echo: false: the reader sees only the result below, not this code
 mpg |> count(drv)
 ```
+
+!! `cache: true` only watches the chunk's **code**. If the data file changes but the code doesn't, it reuses the old results. Delete the `<file name>_cache/` folder to force a rerun. It also won't notice when an **earlier** chunk it depends on changes. Another option: save the slow step's output once with `write_csv()` and read that file instead.
 
 !! Warnings vs. messages vs. errors:
 
