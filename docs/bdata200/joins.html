@@ -369,6 +369,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></li>
   <li><a href="#mutating-joins-add-columns" id="toc-mutating-joins-add-columns" class="nav-link" data-scroll-target="#mutating-joins-add-columns">Mutating Joins (add columns)</a></li>
   <li><a href="#filtering-joins-keep-or-drop-rows-no-new-columns" id="toc-filtering-joins-keep-or-drop-rows-no-new-columns" class="nav-link" data-scroll-target="#filtering-joins-keep-or-drop-rows-no-new-columns">Filtering Joins (keep or drop rows, no new columns)</a></li>
+  <li><a href="#join-checklist" id="toc-join-checklist" class="nav-link" data-scroll-target="#join-checklist">Checking a Join</a></li>
   <li><a href="#set-operations-compare-whole-rows" id="toc-set-operations-compare-whole-rows" class="nav-link" data-scroll-target="#set-operations-compare-whole-rows">Set Operations (compare whole rows)</a></li>
   </ul></li>
   </ul>
@@ -699,24 +700,115 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>The two anti joins answer different questions, so the order of <code>x</code> and <code>y</code> matters.</p>
 </section>
+<section id="join-checklist" class="level2">
+<h2 class="anchored" data-anchor-id="join-checklist">Checking a Join</h2>
+<p>A join can run without errors and still be wrong. After every join, check:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 4%">
+<col style="width: 29%">
+<col style="width: 30%">
+<col style="width: 35%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">#</th>
+<th style="text-align: left;">Check</th>
+<th style="text-align: left;">How</th>
+<th style="text-align: left;">What I expect for <code>counties |&gt; left_join(health)</code></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: left;">Is the key unique where it should be?</td>
+<td style="text-align: left;"><code>count(key) |&gt; filter(n &gt; 1)</code> on the lookup table</td>
+<td style="text-align: left;">0 rows: one health row per county</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">2</td>
+<td style="text-align: left;">Did the row count change?</td>
+<td style="text-align: left;"><code>nrow()</code> before and after</td>
+<td style="text-align: left;">Left join: same as <code>x</code> (4). More rows = duplicate keys in <code>y</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">3</td>
+<td style="text-align: left;">What didn’t match, in <strong>each</strong> direction?</td>
+<td style="text-align: left;"><code>anti_join(x, y)</code> and <code>anti_join(y, x)</code></td>
+<td style="text-align: left;">Dogwood has no estimate; county 105 isn’t in <code>counties</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">4</td>
+<td style="text-align: left;">Where did new <code>NA</code>s appear?</td>
+<td style="text-align: left;"><code>filter(is.na(new_column))</code></td>
+<td style="text-align: left;">Only Dogwood, and it’s a missing value, not 0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">5</td>
+<td style="text-align: left;">What does one row mean now?</td>
+<td style="text-align: left;">Look at a few rows</td>
+<td style="text-align: left;">Still one county, now with its diabetes estimate</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">6</td>
+<td style="text-align: left;">Did it match on the right columns?</td>
+<td style="text-align: left;">Write <code>by =</code> every time</td>
+<td style="text-align: left;"><code>by = "county_id"</code>, not every column with a shared name</td>
+</tr>
+</tbody>
+</table>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1: relationship = errors if a key repeats</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>joined <span class="ot">&lt;-</span> counties <span class="sc">|&gt;</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(health, <span class="at">by =</span> <span class="st">"county_id"</span>, <span class="at">relationship =</span> <span class="st">"one-to-one"</span>)</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="co"># 2: should be equal</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">before =</span> <span class="fu">nrow</span>(counties), <span class="at">after =</span> <span class="fu">nrow</span>(joined))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>before  after 
+     4      4 </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 3: unmatched rows, in both directions</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>counties <span class="sc">|&gt;</span> <span class="fu">anti_join</span>(health, <span class="at">by =</span> <span class="st">"county_id"</span>) <span class="sc">|&gt;</span> <span class="fu">nrow</span>() <span class="co"># counties with no estimate</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>health <span class="sc">|&gt;</span> <span class="fu">anti_join</span>(counties, <span class="at">by =</span> <span class="st">"county_id"</span>) <span class="sc">|&gt;</span> <span class="fu">nrow</span>() <span class="co"># estimates with no county</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 4: where the NAs came from</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>joined <span class="sc">|&gt;</span> <span class="fu">filter</span>(<span class="fu">is.na</span>(estimate))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 5
+  county_id county  population measure estimate
+      &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt; &lt;chr&gt;      &lt;dbl&gt;
+1       104 Dogwood       8000 &lt;NA&gt;          NA</code></pre>
+</div>
+</div>
+<ul>
+<li>!! <code>relationship =</code> turns check 1 into an error instead of something I have to remember to look at</li>
+<li>When counts don’t match what I expected, the join isn’t automatically wrong, but I should be able to <strong>explain</strong> the difference before using the result</li>
+</ul>
+</section>
 <section id="set-operations-compare-whole-rows" class="level2">
 <h2 class="anchored" data-anchor-id="set-operations-compare-whole-rows">Set Operations (compare whole rows)</h2>
 <p>Set operations need tables with the <strong>same columns</strong> and compare entire rows, not a chosen key.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>fall <span class="ot">&lt;-</span> <span class="fu">tribble</span>(</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="sc">~</span>student_id, <span class="sc">~</span>course,</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="dv">1</span>, <span class="st">"Data 200"</span>,</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="dv">2</span>, <span class="st">"Data 200"</span>,</span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="dv">3</span>, <span class="st">"Data 232"</span></span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>spring <span class="ot">&lt;-</span> <span class="fu">tribble</span>(</span>
-<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>  <span class="sc">~</span>student_id, <span class="sc">~</span>course,</span>
-<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>  <span class="dv">2</span>, <span class="st">"Data 200"</span>,</span>
-<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>  <span class="dv">3</span>, <span class="st">"Data 232"</span>,</span>
-<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>  <span class="dv">4</span>, <span class="st">"Data 200"</span></span>
-<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a><span class="fu">intersect</span>(fall, spring)  <span class="co"># identical rows in both terms</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>fall <span class="ot">&lt;-</span> <span class="fu">tribble</span>(</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="sc">~</span>student_id, <span class="sc">~</span>course,</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="dv">1</span>, <span class="st">"Data 200"</span>,</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="dv">2</span>, <span class="st">"Data 200"</span>,</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>  <span class="dv">3</span>, <span class="st">"Data 232"</span></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>spring <span class="ot">&lt;-</span> <span class="fu">tribble</span>(</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>  <span class="sc">~</span>student_id, <span class="sc">~</span>course,</span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>  <span class="dv">2</span>, <span class="st">"Data 200"</span>,</span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>  <span class="dv">3</span>, <span class="st">"Data 232"</span>,</span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>  <span class="dv">4</span>, <span class="st">"Data 200"</span></span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a><span class="fu">intersect</span>(fall, spring)  <span class="co"># identical rows in both terms</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 2
   student_id course  
@@ -724,7 +816,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 1          2 Data 200
 2          3 Data 232</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">union</span>(fall, spring)      <span class="co"># every distinct row, once</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">union</span>(fall, spring)      <span class="co"># every distinct row, once</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4 × 2
   student_id course  
@@ -734,7 +826,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 3          3 Data 232
 4          4 Data 200</code></pre>
 </div>
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setdiff</span>(spring, fall)    <span class="co"># rows new in spring</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setdiff</span>(spring, fall)    <span class="co"># rows new in spring</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1 × 2
   student_id course  

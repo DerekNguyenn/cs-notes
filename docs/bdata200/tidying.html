@@ -533,10 +533,50 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ol>
 <p><strong>Code Implementation:</strong></p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>survey <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">routine_min =</span> <span class="fu">c</span>(<span class="st">"45 minutes"</span>, <span class="st">"1 hr"</span>, <span class="st">"30"</span>, <span class="st">"1.5 hours"</span>, <span class="st">"idk"</span>))</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># INCOMPLETE - Added to To-Do.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># warning: false hides parse_number()'s warning about "idk" (expected, see step 5)</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>survey <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">routine_min =</span> <span class="fu">c</span>(<span class="st">"45 minutes"</span>, <span class="st">"1 hr"</span>, <span class="st">"30"</span>, <span class="st">"1.5 hours"</span>, <span class="st">"idk"</span>, <span class="st">"2 Hrs"</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>survey_clean <span class="ot">&lt;-</span> survey <span class="sc">|&gt;</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">answer =</span> <span class="fu">str_to_lower</span>(routine_min),           <span class="co"># 1. "2 Hrs" → "2 hrs"</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">is_hours =</span> <span class="fu">str_detect</span>(answer, <span class="st">"hr|hour"</span>),     <span class="co"># 2. | means "or" in a pattern</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">number =</span> <span class="fu">parse_number</span>(answer),                <span class="co"># 3. "1.5 hours" → 1.5, "idk" → NA</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">minutes =</span> <span class="fu">if_else</span>(is_hours, number <span class="sc">*</span> <span class="dv">60</span>, number) <span class="co"># 4. hours → minutes</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>survey_clean</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 5
+  routine_min answer     is_hours number minutes
+  &lt;chr&gt;       &lt;chr&gt;      &lt;lgl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
+1 45 minutes  45 minutes FALSE      45        45
+2 1 hr        1 hr       TRUE        1        60
+3 30          30         FALSE      30        30
+4 1.5 hours   1.5 hours  TRUE        1.5      90
+5 idk         idk        FALSE      NA        NA
+6 2 Hrs       2 hrs      TRUE        2       120</code></pre>
 </div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 5. What didn't convert? Look before deciding what to do with it</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>survey_clean <span class="sc">|&gt;</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">is.na</span>(minutes)) <span class="sc">|&gt;</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(routine_min)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 2
+  routine_min     n
+  &lt;chr&gt;       &lt;int&gt;
+1 idk             1</code></pre>
+</div>
+</div>
+<ul>
+<li><code>"idk"</code> has no number, so it stays <code>NA</code>. Making up a value would be guessing.</li>
+<li>!! <code>parse_number()</code> keeps only the <strong>first</strong> number, so <code>"1 hr 30 min"</code> would become 60 minutes instead of 90. Check the unique answers first (<code>count(routine_min)</code>) to see which formats are actually in the data.</li>
+<li>!! Order matters: lowercase <strong>before</strong> <code>str_detect()</code>, or <code>"Hrs"</code> won’t match <code>"hr"</code>.</li>
+<li>Keeping <code>is_hours</code> and <code>number</code> as their own columns makes each step easy to check. Drop them with <code>select(-is_hours, -number)</code> once the result looks right.</li>
+</ul>
 
 
 </section>
