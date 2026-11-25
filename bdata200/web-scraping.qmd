@@ -34,7 +34,7 @@ Web scraping pulls a table (or list) off a web page and into R as a tibble. It w
 
 | Use case | Function | Example |
 |:--------------------------|:---------------------|:------------------------------------|
-| Download a page | `read_html()` | `page <- read_html(url)` |
+| Download a page (or read a saved one) | `read_html()` | `page <- read_html(url)` |
 | First match of a selector | `html_element()` | `html_element(page, "table")` |
 | **All** matches | `html_elements()` | `html_elements(page, "table")` |
 | Pick the nth match | `pluck()` | `pluck(2)` |
@@ -53,7 +53,9 @@ These run against real websites, so they are set to `eval: false`. Pages change 
 ```{r}
 #| eval: false
 # one table on the page: the first <table> is the one I want
-countries <- read_html("https://www.worldometers.info/world-population/population-by-country/")
+countries <- read_html(
+  "https://www.worldometers.info/world-population/population-by-country/"
+)
 
 countries |>
   html_element("table") |>  # first <table> element
@@ -97,10 +99,10 @@ uwb |>
 Scraped column names come straight from the page's headers. `clean_names()` makes them easy to type:
 
 | Before | After | Rule |
-|:----------------|:----------------|:-------------------------------------------|
-| `Country (or dependency)` | `country_or_dependency` | Lowercase, spaces → `_`, parentheses dropped |
-| `Yearly Change %` | `yearly_change_percent` | Symbols → words (`%` → `percent`, `#` → `number`) |
-| `Land Area (Km²)` | `land_area_km2` | Superscripts → plain numbers |
+|:--------------|:--------------|:-------------------------------------------|
+| `Pop (2026)` | `pop_2026` | Lowercase, spaces → `_`, parentheses dropped |
+| `Change %` | `change_percent` | Symbols → words (`%` → `percent`, `#` → `number`) |
+| `Area (Km²)` | `area_km2` | Superscripts → plain numbers |
 | `3P%` | `x3p_percent` | A name can't start with a number, so it gets an `x` |
 | `Total`, `Total` | `total`, `total_2` | Duplicate names get numbered |
 
@@ -108,25 +110,10 @@ Scraped column names come straight from the page's headers. `clean_names()` make
 
 ## Worked Example: Scraping and Cleaning a Roster
 
-In class we scraped the Minnesota Timberwolves' roster and per-game stats from Basketball Reference. To keep these notes working offline, the example below builds a small made-up page with `minimal_html()`. The scraped table comes out with the **same problems** the real one had.
+In class we scraped the Minnesota Timberwolves' roster and per-game stats from Basketball Reference. To keep these notes working offline, the example below reads a small **made-up** page saved as [`data/roster-page.html`](data/roster-page.html), with the same two tables (`#roster` and `#per_game_stats`). The scraped tables come out with the **same problems** the real ones had.
 
 ```{r}
-page <- minimal_html('
-  <table id="roster">
-    <tr><th>No.</th><th>Player</th><th>Pos</th><th>Ht</th><th>Birth Date</th><th>Birth</th></tr>
-    <tr><td>1</td><td>Player A</td><td>PG</td><td>6-2</td><td>March 5, 2001</td><td>us US</td></tr>
-    <tr><td>5</td><td>Player B</td><td>SF</td><td>6-8</td><td>July 21, 1999</td><td>ca CA</td></tr>
-    <tr><td>9</td><td>Player C</td><td>C</td><td>7-1</td><td>November 30, 2003</td><td>fr FR</td></tr>
-    <tr><td>12</td><td>Player D</td><td>SG</td><td>6-5</td><td>January 14, 2002</td><td>us US</td></tr>
-  </table>
-  <table id="per_game_stats">
-    <tr><th>Player</th><th>Pos</th><th>PTS</th><th>3P</th><th>3PA</th><th>2P</th><th>2PA</th></tr>
-    <tr><td>Player A</td><td>PG</td><td>18.4</td><td>2.1</td><td>5.6</td><td>4.3</td><td>8.9</td></tr>
-    <tr><td>Player B</td><td>SF</td><td>12.9</td><td>1.4</td><td>3.9</td><td>3.6</td><td>7.0</td></tr>
-    <tr><td>Player C</td><td>C</td><td>15.2</td><td>0.2</td><td>0.8</td><td>6.4</td><td>10.7</td></tr>
-    <tr><td>Player D</td><td>SG</td><td>9.7</td><td>1.8</td><td>4.6</td><td>1.9</td><td>4.2</td></tr>
-  </table>
-')
+page <- read_html("data/roster-page.html") # a saved page works just like a URL
 ```
 
 **Question:** Which positions score the most, and what share of each player's 2- and 3-point shots go in?
@@ -179,7 +166,8 @@ players |>
   select(player, pos, ht_inches, birth_country, birth_month, pts, shot_pct) |>
   arrange(desc(pts)) |>
   kable(
-    col.names = c("Player", "Position", "Height (in)", "Born in", "Birth month", "Points per game", "Shooting %"),
+    col.names = c("Player", "Position", "Height (in)", "Born in",
+                  "Birth month", "Points per game", "Shooting %"),
     digits = 1
   )
 ```
