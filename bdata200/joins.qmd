@@ -140,6 +140,34 @@ health |> anti_join(counties, by = "county_id")
 
 The two anti joins answer different questions, so the order of `x` and `y` matters.
 
+## Checking a Join {#join-checklist}
+
+A join can run without errors and still be wrong. After every join, check:
+
+| \# | Check | How | What I expect for `counties |> left_join(health)` |
+|:--:|:----------------------------|:-----------------------------|:----------------------------------|
+| 1 | Is the key unique where it should be? | `count(key) |> filter(n > 1)` on the lookup table | 0 rows: one health row per county |
+| 2 | Did the row count change? | `nrow()` before and after | Left join: same as `x` (4). More rows = duplicate keys in `y` |
+| 3 | What didn't match, in **each** direction? | `anti_join(x, y)` and `anti_join(y, x)` | Dogwood has no estimate; county 105 isn't in `counties` |
+| 4 | Where did new `NA`s appear? | `filter(is.na(new_column))` | Only Dogwood, and it's a missing value, not 0 |
+| 5 | What does one row mean now? | Look at a few rows | Still one county, now with its diabetes estimate |
+| 6 | Did it match on the right columns? | Write `by =` every time | `by = "county_id"`, not every column with a shared name |
+
+```{r}
+joined <- counties |>
+  left_join(health, by = "county_id", relationship = "one-to-one") # 1: errors if a key repeats
+
+c(before = nrow(counties), after = nrow(joined))                # 2: should be equal
+
+counties |> anti_join(health, by = "county_id") |> nrow()      # 3: counties with no estimate
+health |> anti_join(counties, by = "county_id") |> nrow()      # 3: estimates with no county
+
+joined |> filter(is.na(estimate))                                # 4: where the NAs came from
+```
+
+- !! `relationship =` turns check 1 into an error instead of something I have to remember to look at
+- When counts don't match what I expected, the join isn't automatically wrong, but I should be able to **explain** the difference before using the result
+
 ## Set Operations (compare whole rows)
 
 Set operations need tables with the **same columns** and compare entire rows, not a chosen key.
