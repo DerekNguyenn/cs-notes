@@ -5,11 +5,11 @@ toc: false
 ---
 
 ::: {.callout-tip appearance="simple"}
-## Notice for Dr. Lisinker - Oct. 29, 2026
+## Notice for Dr. Lisinker - Nov. 25, 2026
 
 - **Backup PDF:** [Download the full course notes](bdata200-notes.pdf).
 - **Feedback addressed:** [Feedback Log](feedback-log.qmd) lists each Notes #1 comment and where it was fixed
-- **What's new since Notes #1 (besides this site):** see the list at the bottom of this page!
+- **What's new since Notes #2:** see the list at the bottom of this page!
 - Reflection can be found under [Reflection & To-do](reflection.qmd)
 :::
 
@@ -20,9 +20,10 @@ Running notes for B DATA 200 at the University of Washington Bothell, Autumn 202
 | Part | Chapters |
 |:-----------------|:-----------------------------------------------------|
 | R Workflow | [Workflow & Reminders](workflow.qmd) · [Data Basics](basics.qmd) |
-| Wrangling | [Rows & Columns](rows-columns.qmd) · [Groups & Summaries](groups.qmd) · [Tidying](tidying.qmd) · [Joins](joins.qmd) |
+| Wrangling | [Rows & Columns](rows-columns.qmd) · [Groups & Summaries](groups.qmd) · [Tidying](tidying.qmd) · [Joins](joins.qmd) · [Web Scraping](web-scraping.qmd) |
 | Visualizing & Modeling | [Plots](plots.qmd) · [Exploratory Data Analysis](eda.qmd) · [Choosing Plots & Models](models.qmd) |
 | Data in Context | [Study Design & Data Ethics](study-design.qmd) |
+| Inference & Prediction | [Hypothesis Testing & Simulation](hypothesis-testing.qmd) · [Classification with k-NN](classification.qmd) |
 | Wrap-up | [Common Pitfalls](pitfalls.qmd) · [Reflection & To-do](reflection.qmd) · [Feedback Log](feedback-log.qmd) |
 
 ## Conventions
@@ -30,7 +31,16 @@ Running notes for B DATA 200 at the University of Washington Bothell, Autumn 202
 - `!!` marks something I got wrong at least once or want to remember.
 - Worked examples follow the same pattern: **Question** → **Pseudocode** → code → **Answer**.
 - Every code chunk uses the native pipe `|>` and `<-` for assignment (see [Assignment Operators](workflow.qmd#assignment-operators)).
-- Packages: `tidyverse` (dplyr, ggplot2, tidyr, readr, stringr) and `nycflights13` (the `flights` data). `mpg` comes with ggplot2.
+- Packages: `tidyverse` (dplyr, ggplot2, tidyr, readr, stringr, lubridate) and `nycflights13` (the `flights` data). `mpg` comes with ggplot2. Newer chapters also use `infer`, `rvest`, `janitor` and `knitr`.
+
+## What's new in Notes #3
+
+- New chapters: [Hypothesis Testing & Simulation](hypothesis-testing.qmd) (Day 11), [Web Scraping](web-scraping.qmd) (Day 13), [Classification with k-NN](classification.qmd) (Days 14–15)
+- Finished every content item on my Notes #2 to-do list (see [Reflection & To-do](reflection.qmd)):
+  - [Vectors and `c()`](basics.qmd#vectors-and-c), [`%in%`](basics.qmd#matching-several-values-in) and [storing values in variables](basics.qmd#storing-values-in-variables)
+  - [A checklist for checking a join](joins.qmd#join-checklist)
+  - [The survey cleaning code](tidying.qmd#cleaning-messy-survey-answers)
+- `cache: true` added to the [Chunk Options](workflow.qmd) table, from my Data Story EDA
 
 ## What's new in Notes #2
 
