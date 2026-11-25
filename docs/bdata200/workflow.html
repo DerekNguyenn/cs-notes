@@ -505,6 +505,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: left;">Names the chunk</td>
 <td style="text-align: left;">Finding a chunk in the outline; cross-referencing figures</td>
 </tr>
+<tr class="even">
+<td style="text-align: left;"><code>#| cache: true</code></td>
+<td style="text-align: left;">Saves the chunk’s results and reuses them on later renders, until the chunk’s code changes</td>
+<td style="text-align: left;">Slow chunks, like reading eight 7-million-row daily files in my Data Story EDA</td>
+</tr>
 </tbody>
 </table>
 <div class="cell">
@@ -517,6 +522,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 3 r        25</code></pre>
 </div>
 </div>
+<p>!! <code>cache: true</code> only watches the chunk’s <strong>code</strong>. If the data file changes but the code doesn’t, it reuses the old results. Delete the <code>&lt;file name&gt;_cache/</code> folder to force a rerun. It also won’t notice when an <strong>earlier</strong> chunk it depends on changes. Another option: save the slow step’s output once with <code>write_csv()</code> and read that file instead.</p>
 <p>!! Warnings vs.&nbsp;messages vs.&nbsp;errors:</p>
 <ul>
 <li><strong>Message</strong>: just information (e.g.&nbsp;which columns <code>read_csv()</code> guessed)</li>

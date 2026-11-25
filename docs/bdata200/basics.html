@@ -366,6 +366,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#column-types" id="toc-column-types" class="nav-link" data-scroll-target="#column-types">Column Types</a></li>
   <li><a href="#the-dplyr-rules" id="toc-the-dplyr-rules" class="nav-link" data-scroll-target="#the-dplyr-rules">The dplyr Rules</a></li>
   <li><a href="#the-pipe" id="toc-the-pipe" class="nav-link" data-scroll-target="#the-pipe">The Pipe <code>|&gt;</code></a></li>
+  <li><a href="#vectors-and-c" id="toc-vectors-and-c" class="nav-link" data-scroll-target="#vectors-and-c">Vectors and <code>c()</code></a></li>
+  <li><a href="#matching-several-values-in" id="toc-matching-several-values-in" class="nav-link" data-scroll-target="#matching-several-values-in">Matching Several Values: <code>%in%</code></a></li>
+  <li><a href="#storing-values-in-variables" id="toc-storing-values-in-variables" class="nav-link" data-scroll-target="#storing-values-in-variables">Storing Values in Variables</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -555,6 +558,167 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 5 AA        365</code></pre>
 </div>
 </div>
+</section>
+<section id="vectors-and-c" class="level2">
+<h2 class="anchored" data-anchor-id="vectors-and-c">Vectors and <code>c()</code></h2>
+<p>A <strong>vector</strong> is a list of values that are all the same type. <code>c()</code> (“combine”) makes one.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>seattle_area <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"SEA"</span>, <span class="st">"BFI"</span>, <span class="st">"PAE"</span>)  <span class="co"># character vector</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>delays <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="sc">-</span><span class="dv">2</span>, <span class="dv">30</span>, <span class="cn">NA</span>)              <span class="co"># numeric vector</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(seattle_area)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(delays, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 11</code></pre>
+</div>
+</div>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 38%">
+<col style="width: 61%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Where I’ve used <code>c()</code></th>
+<th style="text-align: left;">Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Several columns at once</td>
+<td style="text-align: left;"><code>select(c(year, month, day))</code>, <code>pivot_longer(cols = c(q1, q2))</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Several values to match</td>
+<td style="text-align: left;"><code>filter(dest %in% c("SEA", "PDX"))</code> (below)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">New column names</td>
+<td style="text-align: left;"><code>separate(ht, into = c("feet", "inches"))</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Join on several keys</td>
+<td style="text-align: left;"><code>left_join(per_game, by = c("player", "pos"))</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Plot labels and colors</td>
+<td style="text-align: left;"><code>scale_x_discrete(labels = c("PG" = "Point guard"))</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Building a tibble by hand</td>
+<td style="text-align: left;"><code>tibble(x = c(1, 2, 3))</code></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>!! Mixing types forces everything to one type: <code>c(1, "two", 3)</code> turns every value into text (<code>"1"</code>, <code>"two"</code>, <code>"3"</code>)</li>
+<li><code>1:5</code> is a shortcut for <code>c(1, 2, 3, 4, 5)</code></li>
+</ul>
+</section>
+<section id="matching-several-values-in" class="level2">
+<h2 class="anchored" data-anchor-id="matching-several-values-in">Matching Several Values: <code>%in%</code></h2>
+<p><code>x %in% y</code> asks, for each value of <code>x</code>: <strong>is it one of the values in <code>y</code>?</strong> It returns <code>TRUE</code>/<code>FALSE</code>, so it works inside <code>filter()</code>.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Long way: one == per value, joined with | (or)</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(dest <span class="sc">==</span> <span class="st">"SEA"</span> <span class="sc">|</span> dest <span class="sc">==</span> <span class="st">"PDX"</span> <span class="sc">|</span> dest <span class="sc">==</span> <span class="st">"SFO"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(dest)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 2
+  dest      n
+  &lt;chr&gt; &lt;int&gt;
+1 PDX    1354
+2 SEA    3923
+3 SFO   13331</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Short way: same result</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>west_coast <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"SEA"</span>, <span class="st">"PDX"</span>, <span class="st">"SFO"</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(dest <span class="sc">%in%</span> west_coast) <span class="sc">|&gt;</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(dest)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 2
+  dest      n
+  &lt;chr&gt; &lt;int&gt;
+1 PDX    1354
+2 SEA    3923
+3 SFO   13331</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># NOT in: put ! in front of the whole test</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>(carrier <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"UA"</span>, <span class="st">"B6"</span>, <span class="st">"EV"</span>))) <span class="sc">|&gt;</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(carrier, <span class="at">sort =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>(<span class="dv">3</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 2
+  carrier     n
+  &lt;chr&gt;   &lt;int&gt;
+1 DL      48110
+2 AA      32729
+3 MQ      26397</code></pre>
+</div>
+</div>
+<ul>
+<li>!! <code>dest == c("SEA", "PDX")</code> is <strong>not</strong> the same as <code>%in%</code>. <code>==</code> compares row 1 to <code>"SEA"</code>, row 2 to <code>"PDX"</code>, row 3 to <code>"SEA"</code> again, and so on, so it silently drops matching rows. Use <code>%in%</code> for “any of these.”</li>
+<li>Also works in <code>mutate()</code>: <code>mutate(west = dest %in% west_coast)</code> makes a <code>TRUE</code>/<code>FALSE</code> column</li>
+<li>Order matters: <code>"SEA" %in% flights$dest</code> asks one question (“does SEA appear anywhere?”) and gives one answer</li>
+</ul>
+</section>
+<section id="storing-values-in-variables" class="level2">
+<h2 class="anchored" data-anchor-id="storing-values-in-variables">Storing Values in Variables</h2>
+<p>I save new datasets with <code>&lt;-</code> all the time, but single <strong>values</strong> can be saved too. It’s worth doing when a number:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Reason</th>
+<th style="text-align: left;">Example from my notes</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Gets used more than once</td>
+<td style="text-align: left;"><code>mystery_seeds &lt;- 10</code>, then <code>abs(num_seeds - mystery_seeds)</code> (<a href="../bdata200/classification.html">Classification</a>)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Might change later</td>
+<td style="text-align: left;"><code>k &lt;- ceiling(sqrt(nrow(fruit)))</code>: add fruits and k updates on its own</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Comes from the data, not from me</td>
+<td style="text-align: left;"><code>obs_diff</code> from <code>calculate()</code> instead of typing <code>6</code> (<a href="../bdata200/hypothesis-testing.html">Hypothesis Testing</a>)</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Needs a name to make sense</td>
+<td style="text-align: left;"><code>west_coast &lt;- c("SEA", "PDX", "SFO")</code> reads better than the raw vector</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Gets quoted in the text</td>
+<td style="text-align: left;"><code>`r round(p_val, 2)`</code> in a sentence prints the current value, so the text can’t go out of date</td>
+</tr>
+</tbody>
+</table>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>min_delay <span class="ot">&lt;-</span> <span class="dv">60</span> <span class="co"># change the cutoff in one place</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(arr_delay <span class="sc">&gt;=</span> min_delay) <span class="sc">|&gt;</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">n_late =</span> <span class="fu">n</span>(), <span class="at">pct_of_all =</span> <span class="fu">n</span>() <span class="sc">/</span> <span class="fu">nrow</span>(flights) <span class="sc">*</span> <span class="dv">100</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 2
+  n_late pct_of_all
+   &lt;int&gt;      &lt;dbl&gt;
+1  28317       8.41</code></pre>
+</div>
+</div>
+<ul>
+<li>!! Typing a result by hand (<code>78.46 - 72.46</code>) breaks as soon as the data change. Compute it and save it instead.</li>
+<li>Names: lowercase with <code>_</code> (snake_case), and not the same as a column name. A variable called <code>dest</code> gets confusing inside <code>filter()</code>.</li>
+</ul>
 
 
 </section>
