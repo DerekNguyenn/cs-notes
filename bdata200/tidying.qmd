@@ -112,7 +112,29 @@ The raw class survey had free-text answers like `"45 minutes"`, `"1 hr"`, and `"
 **Code Implementation:**
 
 ```{r}
-survey <- tibble(routine_min = c("45 minutes", "1 hr", "30", "1.5 hours", "idk"))
+#| warning: false
+# warning: false hides parse_number()'s warning about "idk" (expected, see step 5)
+survey <- tibble(routine_min = c("45 minutes", "1 hr", "30", "1.5 hours", "idk", "2 Hrs"))
 
-# INCOMPLETE - Added to To-Do.
+survey_clean <- survey |>
+  mutate(
+    answer = str_to_lower(routine_min),           # 1. "2 Hrs" → "2 hrs"
+    is_hours = str_detect(answer, "hr|hour"),     # 2. | means "or" in a pattern
+    number = parse_number(answer),                # 3. "1.5 hours" → 1.5, "idk" → NA
+    minutes = if_else(is_hours, number * 60, number) # 4. hours → minutes
+  )
+
+survey_clean
 ```
+
+```{r}
+# 5. What didn't convert? Look before deciding what to do with it
+survey_clean |>
+  filter(is.na(minutes)) |>
+  count(routine_min)
+```
+
+- `"idk"` has no number, so it stays `NA`. Making up a value would be guessing.
+- !! `parse_number()` keeps only the **first** number, so `"1 hr 30 min"` would become 60 minutes instead of 90. Check the unique answers first (`count(routine_min)`) to see which formats are actually in the data.
+- !! Order matters: lowercase **before** `str_detect()`, or `"Hrs"` won't match `"hr"`.
+- Keeping `is_hours` and `number` as their own columns makes each step easy to check. Drop them with `select(-is_hours, -number)` once the result looks right.
