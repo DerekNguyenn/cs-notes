@@ -81,3 +81,79 @@ flights |>
   filter(dest == "SEA") |>
   count(carrier, sort = TRUE)
 ```
+
+## Vectors and `c()`
+
+A **vector** is a list of values that are all the same type. `c()` ("combine") makes one.
+
+```{r}
+seattle_area <- c("SEA", "BFI", "PAE")  # character vector
+delays <- c(5, -2, 30, NA)              # numeric vector
+length(seattle_area)
+mean(delays, na.rm = TRUE)
+```
+
+| Where I've used `c()` | Example |
+|:---------------------------|:--------------------------------------------|
+| Several columns at once | `select(c(year, month, day))`, `pivot_longer(cols = c(q1, q2))` |
+| Several values to match | `filter(dest %in% c("SEA", "PDX"))` (below) |
+| New column names | `separate(ht, into = c("feet", "inches"))` |
+| Join on several keys | `left_join(per_game, by = c("player", "pos"))` |
+| Plot labels and colors | `scale_x_discrete(labels = c("PG" = "Point guard"))` |
+| Building a tibble by hand | `tibble(x = c(1, 2, 3))` |
+
+- !! Mixing types forces everything to one type: `c(1, "two", 3)` turns every value into text (`"1"`, `"two"`, `"3"`)
+- `1:5` is a shortcut for `c(1, 2, 3, 4, 5)`
+
+## Matching Several Values: `%in%`
+
+`x %in% y` asks, for each value of `x`: **is it one of the values in `y`?** It returns `TRUE`/`FALSE`, so it works inside `filter()`.
+
+```{r}
+# Long way: one == per value, joined with | (or)
+flights |>
+  filter(dest == "SEA" | dest == "PDX" | dest == "SFO") |>
+  count(dest)
+
+# Short way: same result
+west_coast <- c("SEA", "PDX", "SFO")
+
+flights |>
+  filter(dest %in% west_coast) |>
+  count(dest)
+```
+
+```{r}
+# NOT in: put ! in front of the whole test
+flights |>
+  filter(!(carrier %in% c("UA", "B6", "EV"))) |>
+  count(carrier, sort = TRUE) |>
+  head(3)
+```
+
+- !! `dest == c("SEA", "PDX")` is **not** the same as `%in%`. `==` compares row 1 to `"SEA"`, row 2 to `"PDX"`, row 3 to `"SEA"` again, and so on, so it silently drops matching rows. Use `%in%` for "any of these."
+- Also works in `mutate()`: `mutate(west = dest %in% west_coast)` makes a `TRUE`/`FALSE` column
+- Order matters: `"SEA" %in% flights$dest` asks one question ("does SEA appear anywhere?") and gives one answer
+
+## Storing Values in Variables
+
+I save new datasets with `<-` all the time, but single **values** can be saved too. It's worth doing when a number:
+
+| Reason | Example from my notes |
+|:----------------------------------|:-----------------------------------------|
+| Gets used more than once | `mystery_seeds <- 10`, then `abs(num_seeds - mystery_seeds)` ([Classification](classification.qmd)) |
+| Might change later | `k <- ceiling(sqrt(nrow(fruit)))`: add fruits and k updates on its own |
+| Comes from the data, not from me | `obs_diff` from `calculate()` instead of typing `6` ([Hypothesis Testing](hypothesis-testing.qmd)) |
+| Needs a name to make sense | `west_coast <- c("SEA", "PDX", "SFO")` reads better than the raw vector |
+| Gets quoted in the text | `` `r knitr::inline_expr("round(p_val, 2)")` `` in a sentence prints the current value, so the text can't go out of date |
+
+```{r}
+min_delay <- 60 # change the cutoff in one place
+
+flights |>
+  filter(arr_delay >= min_delay) |>
+  summarize(n_late = n(), pct_of_all = n() / nrow(flights) * 100)
+```
+
+- !! Typing a result by hand (`78.46 - 72.46`) breaks as soon as the data change. Compute it and save it instead.
+- Names: lowercase with `_` (snake_case), and not the same as a column name. A variable called `dest` gets confusing inside `filter()`.
