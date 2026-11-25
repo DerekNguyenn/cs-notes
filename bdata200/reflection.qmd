@@ -54,11 +54,11 @@ pagetitle: "Reflection & To-do"
 ### Notes #2 - October 29, 2026
 
 - [ ] Start syncing in-class activities to the GitHub repository for archiving and "deeper dives."
-- [ ] Complete the code implementation under [Cleaning Messy Survey Answers](tidying.qmd)
-- [ ] Write a checklist for evaluating a join (*did the join actually do what it was supposed to do?*)
-- [ ] Notes on `%in%` operator
-- [ ] Notes on using the `c()` function
-- [ ] Storing values into variables: how and when its useful in R
+- [x] Complete the code implementation under [Cleaning Messy Survey Answers](tidying.qmd#cleaning-messy-survey-answers)
+- [x] Write a checklist for evaluating a join (*did the join actually do what it was supposed to do?*) ([Checking a Join](joins.qmd#join-checklist))
+- [x] Notes on `%in%` operator ([Data Basics](basics.qmd#matching-several-values-in))
+- [x] Notes on using the `c()` function ([Data Basics](basics.qmd#vectors-and-c))
+- [x] Storing values into variables: how and when its useful in R ([Data Basics](basics.qmd#storing-values-in-variables))
 
 ### Done since Notes #1
 
