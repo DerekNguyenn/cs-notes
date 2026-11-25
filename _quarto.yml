@@ -47,6 +47,8 @@ website:
               text: Tidying & Reshaping
             - href: bdata200/joins.qmd
               text: Joins & Relational Data
+            - href: bdata200/web-scraping.qmd
+              text: Web Scraping
         - section: "Visualizing & Modeling"
           contents:
             - href: bdata200/plots.qmd

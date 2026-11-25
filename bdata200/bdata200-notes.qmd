@@ -39,6 +39,8 @@ Online version, with search: <https://dereknguyenn.github.io/cs-notes/bdata200/>
 
 {{< include joins.qmd >}}
 
+{{< include web-scraping.qmd >}}
+
 {{< include plots.qmd >}}
 
 {{< include eda.qmd >}}

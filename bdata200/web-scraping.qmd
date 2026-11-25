@@ -1,0 +1,213 @@
+---
+pagetitle: "Web Scraping"
+---
+
+# Web Scraping {#sec-web-scraping}
+
+```{r}
+#| include: false
+library(tidyverse)
+library(rvest)
+library(knitr)
+```
+
+*From the 11/16 in-class activity (Day 13)*
+
+Web scraping pulls a table (or list) off a web page and into R as a tibble. It works best for grabbing **one or two tables** I need. For collecting lots of data, it's slow, the cleanup is tedious, and it can get me blocked.
+
+## How Web Pages Are Built
+
+| Piece | Job | What it means for scraping |
+|:-----------|:-----------------------------|:-----------------------------------|
+| HTML | Structure and content: `<table>`, `<tr>` (row), `<td>` (cell), `<li>` (list item) | The **elements** I select |
+| CSS | How it looks. Selectors: `.name` = class, `#name` = id | The **selectors** I select by |
+| JavaScript | Makes pages interactive; can load content after the page opens | Content added this way may be missing from `read_html()` |
+
+| Rendering | What the server sends | Can `read_html()` see the data? |
+|:-------------------|:-----------------------------------|:-------------------------|
+| **Server-side** | HTML with the data already filled in | Usually yes |
+| **Client-side** | A page skeleton; JavaScript fetches the data afterward (often from an **API**) | Often no. Look for the API **endpoint** (a URL that returns data, usually JSON) instead |
+
+!! A page can mix both, so "I can see it in my browser" doesn't mean `read_html()` gets it.
+
+## Quick Reference
+
+| Use case | Function | Example |
+|:--------------------------|:---------------------|:------------------------------------|
+| Download a page | `read_html()` | `page <- read_html(url)` |
+| First match of a selector | `html_element()` | `html_element(page, "table")` |
+| **All** matches | `html_elements()` | `html_elements(page, "table")` |
+| Pick the nth match | `pluck()` | `pluck(2)` |
+| HTML table → tibble | `html_table()` | `html_table()` |
+| Text inside an element | `html_text2()` | `html_text2(html_elements(page, "li"))` |
+| Fix column names | `janitor::clean_names()` | `clean_names()` |
+| Format a table for a report | `knitr::kable()` | `kable(digits = 1)` |
+
+- !! `html_element()` (singular) returns only the **first** match. With several tables on a page, use `html_elements()` (plural) plus `pluck()`, or a more specific selector.
+- Selectors: `"table"` (any table), `".wikitable"` (class), `"#per_game_stats"` (id, unique on the page)
+
+## Scraping Live Pages
+
+These run against real websites, so they are set to `eval: false`. Pages change and sites can refuse requests, and I don't want the notes to break when that happens.
+
+```{r}
+#| eval: false
+# one table on the page: the first <table> is the one I want
+countries <- read_html("https://www.worldometers.info/world-population/population-by-country/")
+
+countries |>
+  html_element("table") |>  # first <table> element
+  html_table() |>           # <table> → tibble
+  janitor::clean_names()    # tidy column names
+```
+
+```{r}
+#| eval: false
+# several tables: grab all of them, then take the second
+emissions <- read_html("https://www.worldometers.info/co2-emissions/")
+
+emissions |>
+  html_elements("table") |> # every <table> on the page
+  pluck(2) |>               # the 2nd one ("Global Fossil CO2 emissions by Year")
+  html_table() |>
+  janitor::clean_names()
+```
+
+```{r}
+#| eval: false
+# Wikipedia: data tables have the class "wikitable"
+uwb <- read_html("https://en.wikipedia.org/wiki/University_of_Washington_Bothell")
+
+uwb |>
+  html_element(".wikitable") |>
+  html_table() |>
+  janitor::clean_names()
+```
+
+- !! Wikipedia's sortable tables are harder to grab with one CSS selector. The easy route is to take every `.wikitable` and clean up afterward. Some things that don't look like tables (like a bulleted list of countries) are still `.wikitable`s.
+
+### Finding a selector
+
+1.  In Chrome, open the page and click the **SelectorGadget** extension (or right-click → **Inspect**)
+2.  Click the table I want. Click anything else that gets highlighted to deselect it.
+3.  Read the path in the bottom bar. I want the table's own name, like `#per_game_stats`, not `.left` / `.center` / `.right` (those style single cells).
+
+## `janitor::clean_names()`
+
+Scraped column names come straight from the page's headers. `clean_names()` makes them easy to type:
+
+| Before | After | Rule |
+|:----------------|:----------------|:-------------------------------------------|
+| `Country (or dependency)` | `country_or_dependency` | Lowercase, spaces → `_`, parentheses dropped |
+| `Yearly Change %` | `yearly_change_percent` | Symbols → words (`%` → `percent`, `#` → `number`) |
+| `Land Area (Km²)` | `land_area_km2` | Superscripts → plain numbers |
+| `3P%` | `x3p_percent` | A name can't start with a number, so it gets an `x` |
+| `Total`, `Total` | `total`, `total_2` | Duplicate names get numbered |
+
+!! `package::function()` runs one function from an installed package without `library()`. It's handy when I only need one function, or when two packages share a function name.
+
+## Worked Example: Scraping and Cleaning a Roster
+
+In class we scraped the Minnesota Timberwolves' roster and per-game stats from Basketball Reference. To keep these notes working offline, the example below builds a small made-up page with `minimal_html()`. The scraped table comes out with the **same problems** the real one had.
+
+```{r}
+page <- minimal_html('
+  <table id="roster">
+    <tr><th>No.</th><th>Player</th><th>Pos</th><th>Ht</th><th>Birth Date</th><th>Birth</th></tr>
+    <tr><td>1</td><td>Player A</td><td>PG</td><td>6-2</td><td>March 5, 2001</td><td>us US</td></tr>
+    <tr><td>5</td><td>Player B</td><td>SF</td><td>6-8</td><td>July 21, 1999</td><td>ca CA</td></tr>
+    <tr><td>9</td><td>Player C</td><td>C</td><td>7-1</td><td>November 30, 2003</td><td>fr FR</td></tr>
+    <tr><td>12</td><td>Player D</td><td>SG</td><td>6-5</td><td>January 14, 2002</td><td>us US</td></tr>
+  </table>
+  <table id="per_game_stats">
+    <tr><th>Player</th><th>Pos</th><th>PTS</th><th>3P</th><th>3PA</th><th>2P</th><th>2PA</th></tr>
+    <tr><td>Player A</td><td>PG</td><td>18.4</td><td>2.1</td><td>5.6</td><td>4.3</td><td>8.9</td></tr>
+    <tr><td>Player B</td><td>SF</td><td>12.9</td><td>1.4</td><td>3.9</td><td>3.6</td><td>7.0</td></tr>
+    <tr><td>Player C</td><td>C</td><td>15.2</td><td>0.2</td><td>0.8</td><td>6.4</td><td>10.7</td></tr>
+    <tr><td>Player D</td><td>SG</td><td>9.7</td><td>1.8</td><td>4.6</td><td>1.9</td><td>4.2</td></tr>
+  </table>
+')
+```
+
+**Question:** Which positions score the most, and what share of each player's 2- and 3-point shots go in?
+
+**Pseudocode:**
+
+1.  Select each table by its id, turn it into a tibble, clean the names
+2.  `left_join()` the stats to the roster by player **and** position
+3.  Fix the columns that came out wrong: flag text in `birth`, birth date stored as text, height written as feet-inches
+4.  Compute shooting percentage, then sort and show the result as a `kable()` table
+
+```{r}
+roster <- page |>
+  html_element("#roster") |>
+  html_table() |>
+  janitor::clean_names()
+
+per_game <- page |>
+  html_element("#per_game_stats") |>
+  html_table() |>
+  janitor::clean_names()
+
+roster
+```
+
+Three columns need fixing:
+
+- `birth` has `"us US"`: the page's flag images are named with lowercase country codes, and they got scraped as text
+- `birth_date` is `<chr>`, so R can't sort it by date or pull out the month
+- `ht` is `"6-8"`: text, not a number I can plot
+
+```{r}
+players <- roster |>
+  left_join(per_game, by = c("player", "pos")) |>
+  mutate(
+    # ^ = start of the text, [a-z]{2} = exactly 2 lowercase letters, then a space
+    birth_country = str_remove(birth, "^[a-z]{2} "),
+    # text → Date: %B = full month name, %d = day, %Y = 4-digit year
+    birth_date = as.Date(birth_date, format = "%B %d, %Y"),
+    birth_month = month(birth_date) # lubridate (part of the tidyverse)
+  ) |>
+  # "6-8" → feet = 6, inches = 8; convert = TRUE makes them numbers
+  separate(ht, into = c("feet", "inches"), sep = "-", convert = TRUE) |>
+  mutate(
+    ht_inches = feet * 12 + inches,
+    shot_pct = (x3p + x2p) / (x3pa + x2pa) * 100
+  )
+
+players |>
+  select(player, pos, ht_inches, birth_country, birth_month, pts, shot_pct) |>
+  arrange(desc(pts)) |>
+  kable(
+    col.names = c("Player", "Position", "Height (in)", "Born in", "Birth month", "Points per game", "Shooting %"),
+    digits = 1
+  )
+```
+
+**Answer:** In this made-up data, the point guard scores the most per game (18.4), and the center makes the highest share of shots (57%), mostly because nearly all of Player C's shots are 2-pointers.
+
+- Joining by `c("player", "pos")` matches on **both** columns. One player listed twice at different positions would still match correctly.
+- To keep the lowercase code instead, remove the uppercase one: `str_remove(birth, " [A-Z]{2}$")` (`$` = end of the text)
+- !! `str_remove()` only removes the **first** match; `str_remove_all()` removes every match
+- In class, `DescTools::Zodiac(birth_date)` turned birth dates into star signs, which replaced a 12-line `case_when()`. Before writing a long `case_when()`, check whether a package already does it.
+
+## Plot Reminders from the Activity
+
+| Want | Code |
+|:-------------------------------|:---------------------------------------------|
+| One color for every bar | `geom_bar(fill = "#236192")`, **outside** `aes()` |
+| Color by a variable | `geom_point(aes(color = pos))`, **inside** `aes()` |
+| Rename bar labels without changing the data | `scale_x_discrete(labels = c("PG" = "Point guard", "C" = "Center"))` |
+| Horizontal bars (long category names) | `+ coord_flip()` |
+| Individual points on top of boxplots | `geom_boxplot() + geom_jitter(width = 0.1)` |
+| Credit the data source | `labs(caption = "Source: basketball-reference.com")` |
+| Nicer `kable()` table in HTML | `kableExtra::kable_styling(bootstrap_options = c("striped", "hover"))` |
+
+!! Height vs. points is **observational**: taller players also play different positions and minutes, so a trend line doesn't show that height causes scoring.
+
+## Before Scraping
+
+- Check the site's terms and its `robots.txt` (e.g. `site.com/robots.txt`) for what's allowed
+- Scrape once, save the result with `write_csv()`, and work from the file instead of hitting the site every render
+- Note **when** I scraped. Live tables (rosters, populations) change, so my numbers might not match the page later
+- Scraped data has the same representativeness questions as any other source (see [Study Design](study-design.qmd))
