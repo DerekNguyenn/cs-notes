@@ -1,0 +1,19 @@
+name,num_seeds,diameter_cm,category
+strawberry,200,2.5,berry
+raspberry,110,1.9,berry
+blueberry,50,1,berry
+blackberry,94,2,berry
+lemon,8,5,citrus
+lime,0,4.5,citrus
+orange,10,7.3,citrus
+tangerine,20,5.8,citrus
+apple,6.5,7.5,pome
+pear,10,5,pome
+pomelo,160,20,citrus
+cherry,1,2,drupe
+apricot,1,4,drupe
+peach,1,6.8,drupe
+nectarine,1,6.3,drupe
+grapefruit,40,12.7,citrus
+asian pear,5,8.8,pome
+quince,12,7.5,pome

@@ -65,6 +65,8 @@ website:
           contents:
             - href: bdata200/hypothesis-testing.qmd
               text: Hypothesis Testing & Simulation
+            - href: bdata200/classification.qmd
+              text: Classification with k-NN
         - section: "Wrap-up"
           contents:
             - href: bdata200/pitfalls.qmd

@@ -1,0 +1,181 @@
+---
+pagetitle: "Classification with k-Nearest Neighbors"
+---
+
+# Classification with k-Nearest Neighbors {#sec-classification}
+
+```{r}
+#| include: false
+library(tidyverse)
+```
+
+*From the 11/18 in-class activity (Day 14) and the 11/23 take-home activity (Day 15)*
+
+**Classification** means predicting a **category** (fruit type, album) for a new case from cases whose category I already know. k-nearest neighbors (k-NN) does this by finding the known cases that are **most similar** to the new one and letting them vote.
+
+## The k-NN Algorithm
+
+1.  Choose **k**, the number of neighbors
+2.  Compute the **distance** from the new case to every case with a known class
+3.  Keep the **k closest** cases
+4.  Count how many of those k are in each class
+5.  Predict the **majority** class
+
+| Distance | Formula | When I used it |
+|:------------------|:----------------------------------|:--------------------------|
+| Absolute difference (1 variable) | $\lvert x_1 - x_2 \rvert$ | Fruits: number of seeds |
+| Sum of absolute differences | $\lvert \Delta x \rvert + \lvert \Delta y \rvert$ | My first try at comparing songs |
+| **Euclidean** (straight line) | $\sqrt{(\Delta x)^2 + (\Delta y)^2}$, and so on for more variables | Songs: danceability + loudness |
+
+- Smaller distance = more similar. 0 = identical on those variables.
+- A starting value for k: $k = \lceil \sqrt{n} \rceil$, where $n$ is the number of cases with known classes and $\lceil \ \rceil$ rounds **up** (`ceiling()`)
+- !! An **even** k can tie between two classes. Common fixes: an odd k, adding the next-closest neighbor, or weighting closer neighbors' votes more.
+
+## Worked Example: The Mystery Fruit (1 variable)
+
+**Question:** A newly discovered fruit has 10 seeds. Is it a berry, citrus, drupe, or pome?
+
+**Pseudocode:** distance = \|seeds − 10\| for every known fruit → sort by distance → k = ⌈√n⌉ → count the classes among the k closest → majority wins.
+
+```{r}
+fruit <- read_csv("data/fruits-data.csv", show_col_types = FALSE)
+mystery_seeds <- 10
+
+fruit_dist <- fruit |>
+  mutate(distance = abs(num_seeds - mystery_seeds)) |>
+  arrange(distance)
+
+fruit_dist |>
+  select(name, category, num_seeds, distance) |>
+  head(7)
+```
+
+```{r}
+k <- ceiling(sqrt(nrow(fruit))) # n = 18 known fruits → √18 ≈ 4.24 → 5
+k
+
+fruit_dist |>
+  slice_min(distance, n = k) |>  # the k closest (keeps ties, so check the row count)
+  count(category, sort = TRUE)
+```
+
+**Answer:** With k = `r k`, the closest fruits are 3 pomes and 2 citrus fruits, so the Mystery Fruit is classified as a **pome**.
+
+- Changing k changed the answer in class. With the 12-fruit worksheet: k = 3 → citrus (2–1), k = 5 → pome (3–2), k = 4 → a 2–2 tie
+- !! `slice_min(n = k)` **keeps ties** by default, so it can return more than k rows (here lemon and quince are both 2 seeds away). `with_ties = FALSE` keeps exactly k, but then which tied row stays depends on row order.
+- Seeds alone can't separate citrus from pome very well. More variables (like diameter) would give the vote more to work with.
+
+## Worked Example: Which Album Is Purple Rain Closest To? (2 variables)
+
+Taylor Swift covered "Purple Rain" and wants it on whichever of *1989*, *folklore*, or *Midnights* it's most similar to, based on Spotify's **danceability** and **loudness** (both rescaled to 0–100 in this dataset).
+
+**Question:** Using the 5 nearest songs, which album should Purple Rain go on?
+
+**Pseudocode:** Euclidean distance from Purple Rain to every song → 5 smallest → count albums → majority wins.
+
+```{r}
+songs <- read_csv("data/taylor-swift-spotify-metrics.csv", show_col_types = FALSE)
+
+purple_rain <- c(danceability = 13.48, loudness = 47.39)
+
+nearest <- songs |>
+  mutate(
+    dx = Danceability - purple_rain["danceability"],
+    dy = Loudness - purple_rain["loudness"],
+    distance = sqrt(dx^2 + dy^2) # squaring makes the sign not matter, so no abs() needed
+  ) |>
+  slice_min(distance, n = 5)
+
+nearest |> select(Track, Album, distance)
+
+nearest |> count(Album, sort = TRUE)
+```
+
+**Answer:** `r sum(nearest$Album == "folklore")` of the 5 closest songs are on *folklore*, so Purple Rain goes on **folklore**. That's stronger evidence than just the single closest song (`r nearest$Track[1]`), because one song can be unusual for its album.
+
+## Training and Testing
+
+If I check the model on the songs it already "knows," every song's nearest neighbor is itself (distance 0) and the model looks perfect. To find out how it does on **new** songs, hold some out:
+
+| Set | What it is | Used for |
+|:-----------------|:---------------------------------------|:---------------------------|
+| **Training** (~80%) | Songs with known albums the model gets to see | Finding neighbors |
+| **Testing** (~20%) | Songs with known albums **held back** from the model | Checking predictions against the truth |
+| New observations | No known album (Purple Rain) | The actual goal |
+
+```{r}
+set.seed(123) # same random split every time
+
+train_rows <- sample(1:nrow(songs), size = floor(0.8 * nrow(songs))) # 33 of 42
+train <- songs[train_rows, ]
+test  <- songs[-train_rows, ]  # the minus sign means "every row except these"
+```
+
+- !! The split must be **random**. Otherwise the test set could be, say, all *1989* songs.
+
+Predict each test song's album from its single nearest training song (k = 1):
+
+```{r}
+predictions <- test |>
+  mutate(test_id = row_number()) |>
+  cross_join(train, suffix = c("", "_train")) |> # every test song paired with every training song
+  mutate(distance = sqrt((Danceability - Danceability_train)^2 +
+                         (Loudness - Loudness_train)^2)) |>
+  group_by(test_id) |>
+  slice_min(distance, n = 1, with_ties = FALSE) |> # closest training song per test song
+  ungroup() |>
+  select(Track, actual_album = Album, closest_song = Track_train,
+         predicted_album = Album_train, distance)
+
+predictions
+```
+
+- In class this used `crossing()` and `rename()` to do the pairing. `cross_join()` with `suffix =` does the same in one step: columns from `train` get `_train` added to their names.
+- The result has 9 × 33 = 297 rows before `slice_min()`. A cross join makes **every** combination, so don't use one on big tables.
+
+### Evaluating the model
+
+$$\text{Accuracy} = \frac{\text{correct predictions}}{\text{total predictions}}$$
+
+```{r}
+predictions |>
+  summarize(
+    correct = sum(actual_album == predicted_album), # TRUE counts as 1
+    total = n(),
+    accuracy = correct / total
+  )
+```
+
+A **confusion matrix** shows *which* albums get mixed up. Rows are the actual albums and columns are the predictions, so the correct predictions are on the diagonal.
+
+```{r}
+predictions |>
+  count(actual_album, predicted_album) |>
+  pivot_wider(names_from = predicted_album, values_from = n, values_fill = 0)
+```
+
+- 67% beats random guessing among 3 albums (33%), but the test set has only 9 songs, so each song moves accuracy by 11 points
+- !! Overall accuracy hides **where** the errors are. Here every miss is *folklore* ↔ *Midnights*. Both are quieter, mellower albums, while *1989* is loud pop, so two variables can't tell them apart.
+
+## Overfitting
+
+|  | Model A | Model B |
+|:-----------------|:-------:|:-------:|
+| Training accuracy | 80% | **100%** |
+| Testing accuracy | **75%** | 55% |
+
+- Model B **overfits**: it learned details and noise specific to the training songs, so it falls apart on new ones
+- Trust the model with better **testing** accuracy (A). Training and testing accuracy being close is also a good sign.
+- !! A model that scores perfectly on its own training data isn't necessarily good. k = 1 on the training data is the extreme case: always 100%.
+
+## More Variables, Better Predictions?
+
+Spotify measures nine properties (acousticness, danceability, energy, instrumentalness, liveness, loudness, speechiness, tempo, valence). Euclidean distance works the same with nine: add up all nine squared differences, then take the square root.
+
+- Useful variables are ones whose values **differ between albums** (acousticness probably separates *folklore* from *1989*)
+- !! Extra variables can make things **worse**:
+  - A variable unrelated to the album (liveness mostly reflects how a track was recorded) adds random distance and drowns out the useful ones
+  - Almost every Taylor Swift song has vocals, so instrumentalness is near 0 for all of them and adds nothing
+  - With many variables, every song ends up far from every other song, so "nearest" means less
+- !! **Scale matters.** Raw tempo (in beats per minute, \~70–200) would outweigh a variable measured 0–1. These metrics were already rescaled to 0–100 so each one counts about equally.
+- What none of the nine capture: lyrics, key, instruments and production, release era, collaborators

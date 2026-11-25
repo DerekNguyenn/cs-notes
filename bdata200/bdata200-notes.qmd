@@ -51,6 +51,8 @@ Online version, with search: <https://dereknguyenn.github.io/cs-notes/bdata200/>
 
 {{< include hypothesis-testing.qmd >}}
 
+{{< include classification.qmd >}}
+
 {{< include pitfalls.qmd >}}
 
 {{< include reflection.qmd >}}
