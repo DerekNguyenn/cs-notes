@@ -348,14 +348,14 @@ ul.task-list li input[type="checkbox"] {
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Notice for Dr.&nbsp;Lisinker - Oct.&nbsp;29, 2026
+<span class="screen-reader-only">Tip</span>Notice for Dr.&nbsp;Lisinker - Nov.&nbsp;25, 2026
 </div>
 </div>
 <div class="callout-body-container callout-body">
 <ul>
 <li><strong>Backup PDF:</strong> <a href="bdata200-notes.pdf">Download the full course notes</a>.</li>
 <li><strong>Feedback addressed:</strong> <a href="../bdata200/feedback-log.html">Feedback Log</a> lists each Notes #1 comment and where it was fixed</li>
-<li><strong>What’s new since Notes #1 (besides this site):</strong> see the list at the bottom of this page!</li>
+<li><strong>What’s new since Notes #2:</strong> see the list at the bottom of this page!</li>
 <li>Reflection can be found under <a href="../bdata200/reflection.html">Reflection &amp; To-do</a></li>
 </ul>
 </div>
@@ -377,7 +377,7 @@ ul.task-list li input[type="checkbox"] {
 </tr>
 <tr class="even">
 <td style="text-align: left;">Wrangling</td>
-<td style="text-align: left;"><a href="../bdata200/rows-columns.html">Rows &amp; Columns</a> · <a href="../bdata200/groups.html">Groups &amp; Summaries</a> · <a href="../bdata200/tidying.html">Tidying</a> · <a href="../bdata200/joins.html">Joins</a></td>
+<td style="text-align: left;"><a href="../bdata200/rows-columns.html">Rows &amp; Columns</a> · <a href="../bdata200/groups.html">Groups &amp; Summaries</a> · <a href="../bdata200/tidying.html">Tidying</a> · <a href="../bdata200/joins.html">Joins</a> · <a href="../bdata200/web-scraping.html">Web Scraping</a></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Visualizing &amp; Modeling</td>
@@ -388,6 +388,10 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: left;"><a href="../bdata200/study-design.html">Study Design &amp; Data Ethics</a></td>
 </tr>
 <tr class="odd">
+<td style="text-align: left;">Inference &amp; Prediction</td>
+<td style="text-align: left;"><a href="../bdata200/hypothesis-testing.html">Hypothesis Testing &amp; Simulation</a> · <a href="../bdata200/classification.html">Classification with k-NN</a></td>
+</tr>
+<tr class="even">
 <td style="text-align: left;">Wrap-up</td>
 <td style="text-align: left;"><a href="../bdata200/pitfalls.html">Common Pitfalls</a> · <a href="../bdata200/reflection.html">Reflection &amp; To-do</a> · <a href="../bdata200/feedback-log.html">Feedback Log</a></td>
 </tr>
@@ -400,7 +404,20 @@ ul.task-list li input[type="checkbox"] {
 <li><code>!!</code> marks something I got wrong at least once or want to remember.</li>
 <li>Worked examples follow the same pattern: <strong>Question</strong> → <strong>Pseudocode</strong> → code → <strong>Answer</strong>.</li>
 <li>Every code chunk uses the native pipe <code>|&gt;</code> and <code>&lt;-</code> for assignment (see <a href="../bdata200/workflow.html#assignment-operators">Assignment Operators</a>).</li>
-<li>Packages: <code>tidyverse</code> (dplyr, ggplot2, tidyr, readr, stringr) and <code>nycflights13</code> (the <code>flights</code> data). <code>mpg</code> comes with ggplot2.</li>
+<li>Packages: <code>tidyverse</code> (dplyr, ggplot2, tidyr, readr, stringr, lubridate) and <code>nycflights13</code> (the <code>flights</code> data). <code>mpg</code> comes with ggplot2. Newer chapters also use <code>infer</code>, <code>rvest</code>, <code>janitor</code> and <code>knitr</code>.</li>
+</ul>
+</section>
+<section id="whats-new-in-notes-3" class="level2">
+<h2 class="anchored" data-anchor-id="whats-new-in-notes-3">What’s new in Notes #3</h2>
+<ul>
+<li>New chapters: <a href="../bdata200/hypothesis-testing.html">Hypothesis Testing &amp; Simulation</a> (Day 11), <a href="../bdata200/web-scraping.html">Web Scraping</a> (Day 13), <a href="../bdata200/classification.html">Classification with k-NN</a> (Days 14–15)</li>
+<li>Finished every content item on my Notes #2 to-do list (see <a href="../bdata200/reflection.html">Reflection &amp; To-do</a>):
+<ul>
+<li><a href="../bdata200/basics.html#vectors-and-c">Vectors and <code>c()</code></a>, <a href="../bdata200/basics.html#matching-several-values-in"><code>%in%</code></a> and <a href="../bdata200/basics.html#storing-values-in-variables">storing values in variables</a></li>
+<li><a href="../bdata200/joins.html#join-checklist">A checklist for checking a join</a></li>
+<li><a href="../bdata200/tidying.html#cleaning-messy-survey-answers">The survey cleaning code</a></li>
+</ul></li>
+<li><code>cache: true</code> added to the <a href="../bdata200/workflow.html">Chunk Options</a> table, from my Data Story EDA</li>
 </ul>
 </section>
 <section id="whats-new-in-notes-2" class="level2">
