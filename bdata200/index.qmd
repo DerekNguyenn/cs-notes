@@ -11,6 +11,7 @@ toc: false
 - **Feedback addressed:** [Feedback Log](feedback-log.qmd) lists each Notes #1 comment and where it was fixed
 - **What's new since Notes #2:** see the list at the bottom of this page!
 - Reflection can be found under [Reflection & To-do](reflection.qmd)
+- **Notes #3 checklist:** where each requirement is met, plus [useful resources](#useful-resources), is at the bottom of this page
 :::
 
 Running notes for B DATA 200 at the University of Washington Bothell, Autumn 2026.
@@ -41,6 +42,28 @@ Running notes for B DATA 200 at the University of Washington Bothell, Autumn 202
   - [A checklist for checking a join](joins.qmd#join-checklist)
   - [The survey cleaning code](tidying.qmd#cleaning-messy-survey-answers)
 - `cache: true` added to the [Chunk Options](workflow.qmd) table, from my Data Story EDA
+
+### Notes #3 checklist
+
+| Requirement | Where |
+|:----------------------|:---------------------------------------------------------|
+| Coding topics | `infer` pipeline ([Hypothesis Testing](hypothesis-testing.qmd)), `rvest` + cleaning ([Web Scraping](web-scraping.qmd)), distances and train/test split ([Classification](classification.qmd)), [`c()` / `%in%` / variables](basics.qmd#vectors-and-c), [join checks](joins.qmd#join-checklist) |
+| Non-coding topics | [Reading a p-value](hypothesis-testing.qmd#reading-a-p-value), [Type I/II errors and power](hypothesis-testing.qmd#when-tests-are-wrong), [overfitting](classification.qmd#overfitting), [scraping ethics](web-scraping.qmd#before-scraping), [how web pages are built](web-scraping.qmd#how-web-pages-are-built) |
+| Worked examples with output | [Chocolate vs. butterscotch](hypothesis-testing.qmd#worked-example-chocolate-vs.-butterscotch), [Scraping a roster](web-scraping.qmd#worked-example-scraping-and-cleaning-a-roster), [Mystery Fruit](classification.qmd#worked-example-the-mystery-fruit-1-variable), [Purple Rain](classification.qmd#worked-example-which-album-is-purple-rain-closest-to-2-variables) |
+| Online resources | [Useful resources](#useful-resources) below, plus a Resources section at the end of each new chapter |
+| Reflection | [Notes #3 Reflection](reflection.qmd#notes-3-reflection) |
+
+## Useful Resources {#useful-resources}
+
+| Resource | What it's good for |
+|:------------------------------------|:-----------------------------------------------|
+| [R for Data Science (2e)](https://r4ds.hadley.nz/) | The main tidyverse reference: [joins](https://r4ds.hadley.nz/joins.html), [logical vectors and `%in%`](https://r4ds.hadley.nz/logicals.html), [web scraping](https://r4ds.hadley.nz/webscraping.html) |
+| [Introduction to Modern Statistics](https://openintro-ims.netlify.app/foundations-randomization.html) | Hypothesis testing by randomization (our course textbook) |
+| [infer package](https://infer.tidymodels.org/) | Simulation-based tests in R |
+| [rvest](https://rvest.tidyverse.org/) and [SelectorGadget guide](https://rvest.tidyverse.org/articles/selectorgadget.html) | Scraping tables and finding selectors |
+| [An Introduction to Statistical Learning](https://www.statlearning.com/) | k-NN, training vs. testing, overfitting (free PDF) |
+| [Posit cheatsheets: dplyr](https://rstudio.github.io/cheatsheets/html/data-transformation.html) | One-page dplyr reference |
+| [Quarto: caching](https://quarto.org/docs/computations/caching.html) | `cache: true` and when chunks rerun |
 
 ## What's new in Notes #2
 
