@@ -667,6 +667,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>!! <code>dest == c("SEA", "PDX")</code> is <strong>not</strong> the same as <code>%in%</code>. <code>==</code> compares row 1 to <code>"SEA"</code>, row 2 to <code>"PDX"</code>, row 3 to <code>"SEA"</code> again, and so on, so it silently drops matching rows. Use <code>%in%</code> for “any of these.”</li>
 <li>Also works in <code>mutate()</code>: <code>mutate(west = dest %in% west_coast)</code> makes a <code>TRUE</code>/<code>FALSE</code> column</li>
 <li>Order matters: <code>"SEA" %in% flights$dest</code> asks one question (“does SEA appear anywhere?”) and gives one answer</li>
+<li>More: <a href="https://r4ds.hadley.nz/logicals.html">R4DS Ch. 12: Logical vectors</a> covers <code>%in%</code>, <code>!</code>, <code>&amp;</code>, <code>|</code> and <code>NA</code>s in comparisons</li>
 </ul>
 </section>
 <section id="storing-values-in-variables" class="level2">
