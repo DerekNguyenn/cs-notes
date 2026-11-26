@@ -199,3 +199,10 @@ players |>
 - Scrape once, save the result with `write_csv()`, and work from the file instead of hitting the site every render
 - Note **when** I scraped. Live tables (rosters, populations) change, so my numbers might not match the page later
 - Scraped data has the same representativeness questions as any other source (see [Study Design](study-design.qmd))
+
+## Resources
+
+- [R4DS Ch. 24: Web scraping](https://r4ds.hadley.nz/webscraping.html): HTML basics, selectors, and the ethics and legal side of scraping
+- [rvest: SelectorGadget guide](https://rvest.tidyverse.org/articles/selectorgadget.html): how to find a selector step by step
+- [janitor package website](https://sfirke.github.io/janitor/): `clean_names()` and other cleanup tools like `tabyl()`
+- [APIs in R (INFO 201)](https://info201.github.io/apis.html): the reading linked from class for client-side pages and API endpoints
