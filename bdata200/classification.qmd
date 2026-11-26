@@ -180,3 +180,8 @@ Spotify measures nine properties (acousticness, danceability, energy, instrument
   - With many variables, every song ends up far from every other song, so "nearest" means less
 - !! **Scale matters.** Raw tempo (in beats per minute, \~70–200) would outweigh a variable measured 0–1. These metrics were already rescaled to 0–100 so each one counts about equally.
 - What none of the nine capture: lyrics, key, instruments and production, release era, collaborators
+
+## Resources
+
+- [An Introduction to Statistical Learning](https://www.statlearning.com/) (free PDF): Chapter 2 covers k-NN, training vs. testing error, and overfitting
+- [R4DS Ch. 12: Logical vectors](https://r4ds.hadley.nz/logicals.html): why `sum()` and `mean()` of `TRUE`/`FALSE` count and give proportions, as in the accuracy calculation
