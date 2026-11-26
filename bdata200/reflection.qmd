@@ -14,9 +14,12 @@ pagetitle: "Reflection & To-do"
 
 2.  **What has been the most challenging coding concept or topic thus far? Do you have any lingering questions?**
 
-    \
-    \
-    \
+    I can’t remember if as.numeric() was ever formally introduced in class, but I have been seeing it in our activities. The function keeps tripping me up, even though it looks simple. In my card deck example, I had to write the Ace's value as `"1"` (in quotes) and only convert with `as.numeric()` at the end, because `if_else()` won't put numbers and text in the same column ("Can't combine `true` \<double\> and `false` \<character\>"). `as.numeric()` also only works on text that is already a clean number. Anything else, like `"Ace"` or `"45 minutes"`, turns into `NA` with a "NAs introduced by coercion" warning. For the messy survey answers I needed `parse_number()` instead, which pulls the number out of the text.
+
+    Lingering questions:
+
+    -   When should I use `as.numeric()` vs. `parse_number()`? My rule so far: `as.numeric()` when the text is already just a number, `parse_number()` when there's extra text around it.
+    -   Why does `as.numeric()` on a factor return the level codes (1, 2, ...) instead of the numbers I can see? (`factor(c("10", "5"))` becomes `1 2`, so it needs `as.numeric(as.character(x))`.)
 
 3.  **How have you been utilizing your Data 200 Notebook?**
 
