@@ -353,10 +353,12 @@ ul.task-list li input[type="checkbox"] {
 <p>Day 15’s activity on classifying Taylor Swift albums was the most challenging non-coding topic so far. I think the concepts presented were so interesting that I wished this could’ve been done in-class. As such, I hope we can at least briefly talk about it next week after Thanksgiving break!</p>
 <p>Since most of the code was given to us, the hard part was thinking about how this would work at a much bigger scale. Our model compared 9 testing songs to 33 training songs, which is only 9 × 33 = 297 distance calculations. With Spotify having well over 100 million tracks in their database, k-NN has to measure the distance from a new song to every song it already knows, so classifying just one new song that way would take over 100 million calculations. I’m not sure of the exact math, but I’m sure the computation resources required would exceed what my laptop could ever handle. That makes me think a company like Spotify can’t be doing exact k-NN the way we did. Spotify has open-sourced a library called <a href="https://github.com/spotify/annoy">Annoy</a> (Approximate Nearest Neighbors Oh Yeah), which suggests the trade-off at that scale is finding songs that are probably the closest instead of checking every single one.</p></li>
 <li><p><strong>What has been the most challenging coding concept or topic thus far? Do you have any lingering questions?</strong></p>
-<p><br>
-<br>
-<br>
-</p></li>
+<p>I can’t remember if as.numeric() was ever formally introduced in class, but I have been seeing it in our activities. The function keeps tripping me up, even though it looks simple. In my card deck example, I had to write the Ace’s value as <code>"1"</code> (in quotes) and only convert with <code>as.numeric()</code> at the end, because <code>if_else()</code> won’t put numbers and text in the same column (“Can’t combine <code>true</code> &lt;double&gt; and <code>false</code> &lt;character&gt;”). <code>as.numeric()</code> also only works on text that is already a clean number. Anything else, like <code>"Ace"</code> or <code>"45 minutes"</code>, turns into <code>NA</code> with a “NAs introduced by coercion” warning. For the messy survey answers I needed <code>parse_number()</code> instead, which pulls the number out of the text.</p>
+<p>Lingering questions:</p>
+<ul>
+<li>When should I use <code>as.numeric()</code> vs.&nbsp;<code>parse_number()</code>? My rule so far: <code>as.numeric()</code> when the text is already just a number, <code>parse_number()</code> when there’s extra text around it.</li>
+<li>Why does <code>as.numeric()</code> on a factor return the level codes (1, 2, …) instead of the numbers I can see? (<code>factor(c("10", "5"))</code> becomes <code>1 2</code>, so it needs <code>as.numeric(as.character(x))</code>.)</li>
+</ul></li>
 <li><p><strong>How have you been utilizing your Data 200 Notebook?</strong></p>
 <p><br>
 <br>
