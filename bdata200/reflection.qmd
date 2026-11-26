@@ -4,6 +4,24 @@ pagetitle: "Reflection & To-do"
 
 # Reflection & To-do {#sec-reflection}
 
+## Notes #3 Reflection
+
+1.  **What has been the most challenging non-coding concept or topic thus far? Do you have any lingering questions?**
+
+    TODO: answer
+
+2.  **What has been the most challenging coding concept or topic thus far? Do you have any lingering questions?**
+
+    TODO: answer
+
+3.  **How have you been utilizing your Data 200 Notebook?**
+
+    TODO: answer
+
+4.  **Are you confident in your ability to communicate what you have learned to a non-technical audience? Explain.**
+
+    TODO: answer
+
 ## Notes #2 Reflection
 
 1.  **What topics or concepts have been the most trouble since Notes #1?**
