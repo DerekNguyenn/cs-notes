@@ -67,7 +67,7 @@ Chunk options go on the first lines inside a code chunk and start with `#|`.
 mpg |> count(drv)
 ```
 
-!! `cache: true` only watches the chunk's **code**. If the data file changes but the code doesn't, it reuses the old results. Delete the `<file name>_cache/` folder to force a rerun. It also won't notice when an **earlier** chunk it depends on changes. Another option: save the slow step's output once with `write_csv()` and read that file instead.
+!! `cache: true` only watches the chunk's **code**. If the data file changes but the code doesn't, it reuses the old results. Delete the `<file name>_cache/` folder to force a rerun. It also won't notice when an **earlier** chunk it depends on changes. Another option: save the slow step's output once with `write_csv()` and read that file instead. More: [Quarto docs on caching](https://quarto.org/docs/computations/caching.html).
 
 !! Warnings vs. messages vs. errors:
 

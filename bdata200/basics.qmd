@@ -134,6 +134,7 @@ flights |>
 - !! `dest == c("SEA", "PDX")` is **not** the same as `%in%`. `==` compares row 1 to `"SEA"`, row 2 to `"PDX"`, row 3 to `"SEA"` again, and so on, so it silently drops matching rows. Use `%in%` for "any of these."
 - Also works in `mutate()`: `mutate(west = dest %in% west_coast)` makes a `TRUE`/`FALSE` column
 - Order matters: `"SEA" %in% flights$dest` asks one question ("does SEA appear anywhere?") and gives one answer
+- More: [R4DS Ch. 12: Logical vectors](https://r4ds.hadley.nz/logicals.html) covers `%in%`, `!`, `&`, `|` and `NA`s in comparisons
 
 ## Storing Values in Variables
 

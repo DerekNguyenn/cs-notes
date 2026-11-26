@@ -171,6 +171,7 @@ joined |> filter(is.na(estimate))
 
 - !! `relationship =` turns check 1 into an error instead of something I have to remember to look at
 - When counts don't match what I expected, the join isn't automatically wrong, but I should be able to **explain** the difference before using the result
+- More: [R4DS Ch. 19: Joins](https://r4ds.hadley.nz/joins.html) and the [dplyr cheatsheet](https://rstudio.github.io/cheatsheets/html/data-transformation.html)
 
 ## Set Operations (compare whole rows)
 
