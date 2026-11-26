@@ -8,19 +8,27 @@ pagetitle: "Reflection & To-do"
 
 1.  **What has been the most challenging non-coding concept or topic thus far? Do you have any lingering questions?**
 
-    TODO: answer
+    Day 15’s activity on classifying Taylor Swift albums was the most challenging non-coding topic so far. I think the concepts presented were so interesting that I wished this could’ve been done in-class. As such, I hope we can at least briefly talk about it next week after Thanksgiving break!
+
+    Since most of the code was given to us, the hard part was thinking about how this would work at a much bigger scale. Our model compared 9 testing songs to 33 training songs, which is only 9 × 33 = 297 distance calculations. With Spotify having well over 100 million tracks in their database, k-NN has to measure the distance from a new song to every song it already knows, so classifying just one new song that way would take over 100 million calculations. I’m not sure of the exact math, but I’m sure the computation resources required would exceed what my laptop could ever handle. That makes me think a company like Spotify can't be doing exact k-NN the way we did. Spotify has open-sourced a library called [Annoy](https://github.com/spotify/annoy) (Approximate Nearest Neighbors Oh Yeah), which suggests the trade-off at that scale is finding songs that are probably the closest instead of checking every single one.
 
 2.  **What has been the most challenging coding concept or topic thus far? Do you have any lingering questions?**
 
-    TODO: answer
+    \
+    \
+    \
 
 3.  **How have you been utilizing your Data 200 Notebook?**
 
-    TODO: answer
+    \
+    \
+    \
 
 4.  **Are you confident in your ability to communicate what you have learned to a non-technical audience? Explain.**
 
-    TODO: answer
+    \
+    \
+    \
 
 ## Notes #2 Reflection
 
