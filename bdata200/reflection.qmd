@@ -23,9 +23,7 @@ pagetitle: "Reflection & To-do"
 
 3.  **How have you been utilizing your Data 200 Notebook?**
 
-    \
-    \
-    \
+    My Quarto site has this really neat search feature (magnifying glass on the top right). If I can’t remember where to find notes on a specific function on the left-hand side bar, I can immediately look it up. Sometimes it’s faster to search on Google and skim the AI overview, but I feel a lot better about looking stuff up directly in my notes because my examples were written around our class activities. For example, when I search for something like parse_number(), I land right on my survey-cleaning example. Looking up code on official documentation gives me a general answer that I still have to translate back to what we did in class, while my notes already show how it applies to our activities. Writing them up by hand is also a big part of why the material sticks with me in the first place.
 
 4.  **Are you confident in your ability to communicate what you have learned to a non-technical audience? Explain.**
 
