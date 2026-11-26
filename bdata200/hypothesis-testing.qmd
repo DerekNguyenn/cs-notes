@@ -176,3 +176,9 @@ Takeaway:
 - $\alpha$: how willing am I to risk a false positive?
 - $\beta$: how likely am I to miss a real effect?
 - Power: how likely am I to catch a real effect?
+
+## Resources
+
+- [IMS Ch. 11: Hypothesis testing with randomization](https://openintro-ims.netlify.app/foundations-randomization.html): the textbook version of the shuffling idea, with more worked examples
+- [IMS Ch. 14: Decision errors](https://openintro-ims.netlify.app/foundations-errors.html): Type I/II errors and power, with pictures
+- [infer package website](https://infer.tidymodels.org/): every `specify()` / `hypothesize()` / `generate()` / `calculate()` option, plus examples for proportions and other statistics
